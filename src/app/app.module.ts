@@ -19,9 +19,14 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { RestangularModule } from 'ngx-restangular';
 import { restangularConfigFactory } from './shared/restangular.config';
 import { RemovePlayerComponent } from './dialogs/remove-player/remove-player.component';
+import { UnlockMetamaskComponent } from './dialogs/unlock-metamask/unlock-metamask.component';
+import { LoginMetamaskComponent } from './dialogs/login-metamask/login-metamask.component';
+import { InstallMetamaskComponent } from './dialogs/install-metamask/install-metamask.component';
+import { CreateAccountComponent } from './dialogs/create-account/create-account.component';
 
 @NgModule({
-  declarations: [ RemovePlayerComponent],
+  declarations: [ RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
+    LoginMetamaskComponent, InstallMetamaskComponent],
   imports: [
     BrowserAnimationsModule,
     CommonModule,
@@ -39,6 +44,8 @@ import { RemovePlayerComponent } from './dialogs/remove-player/remove-player.com
     MatDialogModule
   ],
   providers: [],
+  entryComponents: [RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
+     LoginMetamaskComponent, InstallMetamaskComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

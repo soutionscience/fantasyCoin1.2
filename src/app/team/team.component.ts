@@ -40,7 +40,7 @@ export class TeamComponent implements OnInit {
     this.apiService.getResource('players')
     .subscribe(resp=>{
       this.allPlayers = resp;
-      console.log('all players ', this.allPlayers)
+    
       this.filterBYPosition(this.allPlayers)
 
     })
@@ -62,7 +62,7 @@ export class TeamComponent implements OnInit {
   //filter by position sort and assing to special
   filterBYPosition(l){
     this.goalKeepers = this.filterList(l, 1);
-    console.log('keepers ', this.goalKeepers)
+  
     this.defenders = this.filterList(l, 2)
     this.mids = this.filterList(l, 3)
     this.attackers = this.filterList(l, 4)
@@ -96,15 +96,15 @@ export class TeamComponent implements OnInit {
   }
   //filter by position
   filterList(list, id){
-    console.log(list)
+   
   let myElement =[];
     list.forEach(element => {
-      console.log('element id', element.position)
+     
     if(element.position == id){
       myElement.push(element);
     }
   });
-  console.log('element ', myElement)
+ 
   return myElement
   }
 
