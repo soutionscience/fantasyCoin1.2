@@ -12,12 +12,16 @@ import {
   MatCardModule,
   MatFormFieldModule,
   MatInputModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatDialogModule
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { RestangularModule } from 'ngx-restangular';
+import { restangularConfigFactory } from './shared/restangular.config';
+import { RemovePlayerComponent } from './dialogs/remove-player/remove-player.component';
 
 @NgModule({
-  declarations: [ ],
+  declarations: [ RemovePlayerComponent],
   imports: [
     BrowserAnimationsModule,
     CommonModule,
@@ -30,7 +34,9 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    MetaModule
+    MetaModule,
+    RestangularModule.forRoot(restangularConfigFactory),
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

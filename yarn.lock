@@ -311,6 +311,11 @@
   dependencies:
     "@types/jasmine" "*"
 
+"@types/lodash@^4.14.62":
+  version "4.14.123"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.123.tgz#39be5d211478c8dd3bdae98ee75bb7efe4abfe4d"
+  integrity sha512-pQvPkc4Nltyx7G1Ww45OjVqUsJP4UsZm+GWJpigXgkikZqJgRm4c48g027o6tdgubWHwFRF15iFd+Y4Pmqv6+Q==
+
 "@types/node@*":
   version "11.11.7"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-11.11.7.tgz#f1c35a906b82adae76ede5ab0d2088e58fa37843"
@@ -5433,6 +5438,14 @@ neo-async@^2.5.0, neo-async@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
   integrity sha512-MFh0d/Wa7vkKO3Y3LlacqAEeHK0mckVqzDieUKTT+KGxi+zIpeVsFxymkIiRpbpDziHc290Xr9A1O4Om7otoRA==
+
+ngx-restangular@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/ngx-restangular/-/ngx-restangular-4.0.1.tgz#9284997a5c36e099309c5e9a6448491b1390e294"
+  integrity sha512-gL0r/sYZixjOuYwVRyvZ4gi1oW5pnBOL7OLH9DDVAI5cGCr+KZJ9J+qOeNtCtACxlb2QKVic+vuzpAa9uEjtNw==
+  dependencies:
+    "@types/lodash" "^4.14.62"
+    tslib "^1.9.0"
 
 nice-try@^1.0.4:
   version "1.0.5"

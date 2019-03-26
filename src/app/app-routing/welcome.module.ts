@@ -6,15 +6,19 @@ import { MenuComponent } from '../menu/menu.component';
 import { LogosComponent } from '../logos/logos.component';
 import { BannerComponent } from '../banner/banner.component';
 import { BrandingComponent } from '../branding/branding.component';
+import { LoginHorizontalComponent } from '../login-horizontal/login-horizontal.component';
 
 const routes : Routes =[{
-  path: '', component: WelcomeComponent
+  path: '', component: WelcomeComponent, children:[
+    {path: 'teams', loadChildren: './team.module#TeamModule'},
+    {path: 'leagues', loadChildren: './leagues.module#LeaguesModule'}
+  ]
 }
 
 ]
 
 @NgModule({
-  declarations: [WelcomeComponent, MenuComponent, LogosComponent, BannerComponent, BrandingComponent],
+  declarations: [WelcomeComponent, MenuComponent, LogosComponent, BannerComponent, BrandingComponent, LoginHorizontalComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes)
