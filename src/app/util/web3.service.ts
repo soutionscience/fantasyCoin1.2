@@ -1,16 +1,18 @@
 import {Injectable} from '@angular/core';
 import contract from 'truffle-contract';
-import {Subject} from 'rxjs';
+import {Subject, Observable} from 'rxjs';
 declare let require: any;
 const Web3 = require('web3');
 
 
 declare let window: any;
+let account : string;
 
 @Injectable()
 export class Web3Service {
   private web3: any;
   private accounts: string[];
+  private account: string;
   public ready = false;
 
   public accountsObservable = new Subject<string[]>();
@@ -18,6 +20,9 @@ export class Web3Service {
   constructor() {
     window.addEventListener('load', (event) => {
       this.bootstrapWeb3();
+      this.getSingleAccount();
+      // this.checkMetamask();
+
     });
   }
 
@@ -39,41 +44,75 @@ export class Web3Service {
     setInterval(() => 1000);
   }
 
-   public async artifactsToContract(artifacts) {
-  //   if (!this.web3) {
-  //     const delay = new Promise(resolve => setTimeout(resolve, 100));
-  //     await delay;
-  //     return await this.artifactsToContract(artifacts);
-  //   }
+  checkMetamask():Observable<any>{
+    return Observable.create(observer=>{
+      if(typeof window.web3 !== 'undefined'){ //web 3 installed
+        // let accounts = this.getCoinBaseHere()
+        console.log('what is in accounts? ', account)
 
-  //   const contractAbstraction = contract(artifacts);
-  //   contractAbstraction.setProvider(this.web3.currentProvider);
-  //   return contractAbstraction;
+        if(account){ // if account is unlocked return 2
 
-   }
+          observer.next(2)
+          observer.complete()
 
-  // private refreshAccounts() {
-  //   this.web3.eth.getAccounts((err, accs) => {
-  //     console.log('Refreshing accounts');
-  //     if (err != null) {
-  //       console.warn('There was an error fetching your accounts.');
-  //       return;
-  //     }
+        }else{
+          observer.next(1)// no web3 installed
+          observer.complete()
 
-  //     // Get the initial account balance so it can be displayed.
-  //     if (accs.length === 0) {
-  //       console.warn('Couldn\'t get any accounts! Make sure your Ethereum client is configured correctly.');
-  //       return;
-  //     }
+        }
 
-  //     if (!this.accounts || this.accounts.length !== accs.length || this.accounts[0] !== accs[0]) {
-  //       console.log('Observed new accounts');
 
-  //       this.accountsObservable.next(accs);
-  //       this.accounts = accs;
-  //     }
+      }else{
+        observer.next(3)
+        observer.complete()
+      }
 
-  //     this.ready = true;
-  //   });
-  // }
+    })
+
+  }
+  getCoinBase():Observable<any>{
+    console.log('calling get accounts')
+    return Observable.create(observer=>{
+      this.web3.eth.getAccounts((err, resp)=>{
+        if(err) observer.next(err)
+        observer.next(resp[0])
+        observer.complete()
+      })
+    })
+  }
+
+ getSingleAccount(){
+ this.web3.eth.getAccounts((err, resp)=>{
+   account = resp[0];
+  })
+ }
+
+ signTransaction(nounce):Observable<any>{
+  // nounce= this.web3.utils.toHex( nounce.challenge)
+  // console.log('nounce ', nounce)
+  nounce = nounce.challenge;
+   
+   return Observable.create(observer=>{
+    let from = account
+    console.log('TCL: Web3Service -> nounce', nounce)
+    this.web3.eth.personal.sign(nounce, from, (err, result)=>{
+			console.log("TCL: Web3Service -> from", from)
+      if(err){ console.log('error signing the token');
+            observer.next(err)}
+            else{
+              console.log('SIGNED ', result)
+              let signedObject={
+                nounce: nounce,
+                sign: result
+              }
+            observer.next(signedObject)
+            observer.complete()
+            }
+    })
+
+   })
+ }
+
+
+  
 }

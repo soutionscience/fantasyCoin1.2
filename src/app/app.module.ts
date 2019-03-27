@@ -2,9 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
-import {MetaModule} from './meta/meta.module';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -23,6 +21,7 @@ import { UnlockMetamaskComponent } from './dialogs/unlock-metamask/unlock-metama
 import { LoginMetamaskComponent } from './dialogs/login-metamask/login-metamask.component';
 import { InstallMetamaskComponent } from './dialogs/install-metamask/install-metamask.component';
 import { CreateAccountComponent } from './dialogs/create-account/create-account.component';
+import { Web3Service } from './util/web3.service';
 
 @NgModule({
   declarations: [ RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
@@ -39,11 +38,10 @@ import { CreateAccountComponent } from './dialogs/create-account/create-account.
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    MetaModule,
     RestangularModule.forRoot(restangularConfigFactory),
     MatDialogModule
   ],
-  providers: [],
+  providers: [Web3Service],
   entryComponents: [RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
      LoginMetamaskComponent, InstallMetamaskComponent],
   bootstrap: [AppComponent]

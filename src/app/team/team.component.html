@@ -22,7 +22,7 @@
       
                         </div>
                         <div class="goalkeepers">
-                            <div class="panel-block heading">
+                            <div class="panel-block heading has-background-warning">
                                 <span>
                                     <div class="heading is-warning">Goal Keepers</div>
                                 </span>
@@ -30,7 +30,7 @@
       
                               </div>
                               <div class="panel-block is-small" >
-                                       <!-- {{g.web_name}} | {{g.pointsTotal}} -->
+                                <div *ngIf="!SpecialKeepers" class="button is-large is-loading is-warning is-outlined">Loading</div>
                                   <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                                     <tr class="is-hoverable" [ngClass]="checkIfPlayerisSelected(g)? 'is-selected':'not-selected'"  (click)="selectPlayer(g)" *ngFor="let g of SpecialKeepers">
                                       <td class="jersey"></td>
@@ -43,15 +43,15 @@
       
                         </div>
                         <div class="defenders">
-                            <div class="panel-block heading">
+                            <div class="panel-block heading has-background-primary">
                                 <span>
-                                    <div class="heading is-warning">Defenders</div>
+                                    <div class="heading">Defenders</div>
                                 </span>
       
       
                               </div>
                               <div class="panel-block is-small" >
-                                  <!-- {{g.web_name}} | {{g.pointsTotal}} -->
+                                <div *ngIf="!SpecialDefs" class="button is-large is-loading is-primary is-danger">Loading</div>
                              <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                                <tr class="is-hoverable" [ngClass]="checkIfPlayerisSelected(d)? 'is-selected':'not-selected'" (click)="selectPlayer(d)" *ngFor="let d of SpecialDefs">
                                  <td class="jersey"></td>
@@ -64,7 +64,7 @@
       
                         </div>
                         <div class="mids">
-                            <div class="panel-block heading">
+                            <div class="panel-block heading has-background-danger has-text-white">
                                 <span>
                                     <div class="heading is-warning">Midfielders</div>
                                 </span>
@@ -72,7 +72,7 @@
       
                               </div>
                               <div class="panel-block is-small"  >
-                                  <!-- {{g.web_name}} | {{g.pointsTotal}} -->
+                                <div *ngIf="!SpecialMids" class="button is-large is-loading  is-danger is-outlined">Loading</div>
                              <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                                <tr class="is-hoverable" [ngClass]="checkIfPlayerisSelected(d)? 'is-selected':'not-selected'" (click)="selectPlayer(d)" *ngFor="let d of SpecialMids">
                                  <td class="jersey"></td>
@@ -89,7 +89,7 @@
       
                        </nav>
                        <div class="Attackers">
-                          <div class="panel-block heading">
+                          <div class="panel-block heading has-background-info has-text-white">
                               <span>
                                   <div class="heading is-warning">Attackers</div>
                               </span>
@@ -97,7 +97,7 @@
       
                             </div>
                             <div class="panel-block is-small">
-                                <!-- {{g.web_name}} | {{g.pointsTotal}} -->
+                              <div *ngIf="!SpecialAttacks" class="button is-large is-loading  is-info is-outlined">Loading</div>
                            <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                              <tr class="is-hoverable" [ngClass]="checkIfPlayerisSelected(d)? 'is-selected':'not-selected'" (click)="selectPlayer(d)" *ngFor="let d of SpecialAttacks">
                                <td class="jersey" ></td>

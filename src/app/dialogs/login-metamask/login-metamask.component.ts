@@ -19,31 +19,32 @@ export class LoginMetamaskComponent implements OnInit {
 
   ngOnInit() {
     this.getCoinBase()
-    console.log('what is coinbase ', this.coinBase)
   }
 
   getCoinBase(){
-    // this.web3Service.getCoinBase()
-    // .subscribe(resp=>{
-    //   this.coinBase = resp
-    // })
+    this.web3Service.getCoinBase()
+    .subscribe(resp=>{
+    this.coinBase = resp
+    })
+
   }
 
 
   login(){
-  //  this.apiService.getSpecificResource('auth', this.coinBase)
-  //  .subscribe(resp=>{
-  //    this.challenge =resp
-  //    console.log('what is the resp ', this.challenge)
-  //    this.web3Service.signTransaction(this.challenge)
-  //    .subscribe(resp=>{
+    
+   this.apiService.getSpecificResource('auth', this.coinBase)
+   .subscribe(resp=>{
+     this.challenge =resp
+     console.log('what is the resp ', this.challenge)
+     this.web3Service.signTransaction(this.challenge)
+     .subscribe(resp=>{
 
-  //      this.apiService.getTokenResource('auth',resp.nounce, resp.sign)
-  //      .subscribe(resp=>console.log('am i geting token ', resp))
-  //    })
+       this.apiService.getTokenResource('auth',resp.nounce, resp.sign)
+       .subscribe(resp=>console.log('am i geting token ', resp))
+     })
 
-  //  })
-  //   this.close();
+   })
+    this.close();
 
   }
   close(){
