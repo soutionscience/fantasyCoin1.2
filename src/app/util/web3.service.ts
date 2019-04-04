@@ -3,6 +3,7 @@ import contract from 'truffle-contract';
 import {Subject, Observable} from 'rxjs';
 declare let require: any;
 const Web3 = require('web3');
+// const web3= Web3();
 
 
 declare let window: any;
@@ -18,30 +19,44 @@ export class Web3Service {
   public accountsObservable = new Subject<string[]>();
 
   constructor() {
-    window.addEventListener('load', (event) => {
-      this.bootstrapWeb3();
+    // window.addEventListener('load', (event) => {
+     this.checkAndInstatiateWeb3();
+      this.checkMetamask();
       this.getSingleAccount();
-      // this.checkMetamask();
+     
 
-    });
+    // });
   }
-
-  public bootstrapWeb3() {
-    // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+  checkAndInstatiateWeb3 = () => {
+    // console.log('what is in json??' , campaignFactory)
+     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
     if (typeof window.web3 !== 'undefined') {
+
+
+      console.warn(
+       'using metamsk detected'
+      );
       // Use Mist/MetaMask's provider
-      this.web3 = new Web3(window.web3.currentProvider);
-
+      this.web3 = new Web3(Web3.givenProvider);
+      // account = this.getCoinBaseHere();
+      // console.log('coinbase ', account)
+      return this.web3;
     } else {
-      console.log('No web3? You should consider trying MetaMask!');
 
-      // Hack to provide backwards compatibility for Truffle, which uses web3js 0.20.x
-      // Web3.providers.HttpProvider.prototype.sendAsync = Web3.providers.HttpProvider.prototype.send;
+      // const provider = new Web3.providers.HttpProvider(
+      //   'https://rinkeby.infura.io/orDImgKRzwNrVCDrAk5Q'
+      // );
+      // this.web3 = new Web3(provider);
+      console.warn(
+        'No web3 detected'
+      );
       // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-      // this.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+      // needs to be changed to better fall back plan
+      // this.web3 = new Web3();
+
+      return null;
     }
 
-    setInterval(() => 1000);
   }
 
   checkMetamask():Observable<any>{
@@ -89,20 +104,22 @@ export class Web3Service {
 
  signTransaction(nounce):Observable<any>{
   // nounce= this.web3.utils.toHex( nounce.challenge)
-  // console.log('nounce ', nounce)
-  nounce = nounce.challenge;
+
+  let nounceValue = nounce[1].value
+  let from = account
+  
    
    return Observable.create(observer=>{
-    let from = account
-    console.log('TCL: Web3Service -> nounce', nounce)
-    this.web3.eth.personal.sign(nounce, from, (err, result)=>{
-			console.log("TCL: Web3Service -> from", from)
+  
+  
+    this.web3.eth.personal.sign(nounceValue, from,(err, result)=>{
+		
       if(err){ console.log('error signing the token');
             observer.next(err)}
             else{
               console.log('SIGNED ', result)
               let signedObject={
-                nounce: nounce,
+                nounce: nounceValue,
                 sign: result
               }
             observer.next(signedObject)

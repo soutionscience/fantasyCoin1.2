@@ -1,34 +1,43 @@
+<div class="creatForm" *ngIf="showCreate">
 <div class="create">
   <div class="myTitle">
     <p class="has-text-primary">Create Account</p>
+ 
   </div>
   <div class="separator">
 
     </div>
+    
   <div class="myText">
     <p>
         Your email address is used to send you crucial and account related updates.
         Your nickname is public and is how other users will identify you.
     </p>
   </div>
-<form class="form">
+</div>
+<div class="spinner button is-loading is-large" *ngIf="showLoading"></div>
+
+<div class="creationForm" *ngIf="showForm">
+<form class="form" [formGroup]="CreatAccountForm">
     <div class="field">
         <!-- <label class="label">Name</label> -->
         <div class="control">
-          <input class="input is-medium" type="text" placeholder="e.g Alex Smith">
+          <input class="input is-medium" type="email" placeholder="e.g AlexSmith@email.com"
+           formControlName="email">
         </div>
       </div>
 
       <div class="field">
         <!-- <label class="label">Email</label> -->
         <div class="control">
-          <input class="input is-medium" type="email" placeholder="e.g. alexsmith@gmail.com">
+          <input class="input is-medium" type="text" placeholder="e.g. The one"
+           formControlName="userName">
         </div>
       </div>
 
       <div class="field is-grouped create_button">
           <div class="column">
-            <button class="button is-primary is-large is-centered" (click)="createAccount()" [disabled]="CreatAccountForm.invalid">Create</button>
+            <button type="button" class="button is-primary is-large is-centered" (click)="submit()" [disabled]="CreatAccountForm.invalid">Create</button>
           </div>
       </div>
 
@@ -42,3 +51,25 @@
     <p>by signing up you agree to our terms of service and privacy policy</p>
   </div>
 </div>
+</div>
+
+
+<div class="signIN" *ngIf="showSignIn">
+    <div class="myTitle">
+        <p class="has-text-primary">Sign in</p>
+     
+      </div>
+      <div class="separator">
+    
+        </div>
+        
+      <div class="myText">
+        <p>
+            Almost there! As a final step your wallet will ask you to digitally sign in to link it with Fantasy Coin. Click the button to proceed.
+        </p>
+      </div>
+      <button type="button" class="button is-primary" (click)="signIn()"> Sign in</button>
+    </div>
+
+
+

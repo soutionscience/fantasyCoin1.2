@@ -38,8 +38,7 @@ export class LoginMetamaskComponent implements OnInit {
      console.log('what is the resp ', this.challenge)
      this.web3Service.signTransaction(this.challenge)
      .subscribe(resp=>{
-
-       this.apiService.getTokenResource('auth',resp.nounce, resp.sign)
+        this.apiService.getTokenResource('auth',resp.nounce, resp.sign)
        .subscribe(resp=>console.log('am i geting token ', resp))
      })
 
