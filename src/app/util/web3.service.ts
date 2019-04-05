@@ -102,24 +102,27 @@ export class Web3Service {
   })
  }
 
- signTransaction(nounce):Observable<any>{
+ signTransaction(nonce):Observable<any>{
   // nounce= this.web3.utils.toHex( nounce.challenge)
+  console.log('received ', nonce)
 
-  let nounceValue = nounce[1].value
+  let nonceValue = nonce.nonce
+  console.log('signing nounce ', nonceValue)
+
   let from = account
   
    
    return Observable.create(observer=>{
   
   
-    this.web3.eth.personal.sign(nounceValue, from,(err, result)=>{
+    this.web3.eth.personal.sign(this.web3.utils.fromUtf8(`I am signing my one-time nonce: ${nonceValue}`), from,(err, result)=>{
 		
       if(err){ console.log('error signing the token');
             observer.next(err)}
             else{
               console.log('SIGNED ', result)
               let signedObject={
-                nounce: nounceValue,
+                nonce: nonceValue,
                 sign: result
               }
             observer.next(signedObject)

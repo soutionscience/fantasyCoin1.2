@@ -3,6 +3,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Web3Service } from '../../util/web3.service';
 import { ApiServiceService } from '../../util/api-service.service';
+import { User } from '../../shared/user.model'
+
 
 @Component({
   selector: 'app-create-account',
@@ -15,7 +17,9 @@ export class CreateAccountComponent implements OnInit {
   showForm: Boolean;
   showSignIn: Boolean;
   showLoading: Boolean
-  showCreate: Boolean
+  showCreate: Boolean;
+  registered: Boolean;
+  user:User[];
 
 
   constructor(private dialogRef: MatDialogRef<CreateAccountComponent>,
@@ -26,13 +30,27 @@ export class CreateAccountComponent implements OnInit {
   ngOnInit() {
 
     this.showForm = true;
-    this.showLoading = false;
-    this.showSignIn= true;
+    this.showLoading = true;
+    this.showSignIn= false;
     this.showCreate= false;
     this.getBaseAccount();
     this.createForm();
    
+    // this.decideForm()
+   
   }
+  // decideForm(){ //check if user is registerd and show appropriate form
+  //   console.log('get decide form')
+  //   this.showLoading = true;
+  //   console.log('register ',this.registered)
+  //   if(this.registered){
+  //     this.showSignIn = true;
+  //   }
+  //   else{
+  //     this.showCreate= true
+  //   }
+
+  // }
 
   createAccount(){
   this.getBaseAccount; //get account address
@@ -44,14 +62,15 @@ export class CreateAccountComponent implements OnInit {
   createForm(){
     this.CreatAccountForm =this.fb.group({
       email: ['', [Validators.required]],
-      userName: ['', [Validators.required]]
+      username: ['', [Validators.required]]
     })
 
   }
   getBaseAccount(){
  this.web3Service.getCoinBase()
 .subscribe(resp=>{
-   this.AccountId = resp
+   this.AccountId = resp;
+   this.checkifRegister(this.AccountId)
   
 })
   }
@@ -66,17 +85,34 @@ export class CreateAccountComponent implements OnInit {
    })
   }
   signIn(){
-    this.apiService.getSpecificResource('auth', this.AccountId)
-    .subscribe(resp=>{
-    console.log('reso from server ', resp)
-      this.web3Service.signTransaction(resp)
+    // this.apiService.getSpecificResource('auth', this.AccountId)
+    // .subscribe(resp=>{
+    console.log('reso from server ', this.user)
+      this.web3Service.signTransaction(this.user)
       .subscribe(resp=>{
         console.log('signed by ', resp.account)
-        this.apiService.getTokenResource('auth', resp.nounce, resp.sign )
+        this.apiService.getTokenResource('auth', this.AccountId, resp.sign, resp.nonce )
         .subscribe(resp=>{
-          console.log('responce from signature ', resp)
+          localStorage.setItem('token', resp.token)
         })
-      })
+     
+    })
+    this.dialogRef.close()
+  }
+  checkifRegister(id){
+    // console.log('checking if registed', this.AccountId)
+    this.apiService.getSpecificResource('users', id)
+    .subscribe(resp=>{
+      this.showLoading= false
+      this.user = resp;
+      this.showSignIn = true
+      
+    },
+    error=>{
+      console.log('user NOT Found')
+      this.showLoading= false
+      this.showCreate = true
+
     })
   }
 }

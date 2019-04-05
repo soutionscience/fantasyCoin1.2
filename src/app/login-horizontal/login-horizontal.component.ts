@@ -5,6 +5,7 @@ import { InstallMetamaskComponent } from '../dialogs/install-metamask/install-me
 import {CreateAccountComponent} from '../dialogs/create-account/create-account.component'
 import { Web3Service } from '../util/web3.service';
 import { MatDialog } from '@angular/material';
+import { ApiServiceService } from '../util/api-service.service';
 
 @Component({
   selector: 'app-login-horizontal',
@@ -12,10 +13,13 @@ import { MatDialog } from '@angular/material';
   styleUrls: ['./login-horizontal.component.scss']
 })
 export class LoginHorizontalComponent implements OnInit {
+  coinBase: Number;
 
-  constructor(private web3Service: Web3Service, private dialog: MatDialog) { }
+  constructor(private web3Service: Web3Service, private dialog: MatDialog,
+    private apiService: ApiServiceService) { }
 
   ngOnInit() {
+  this.getCoinBase();
   }
   login(){
     this.web3Service.checkMetamask()
@@ -37,5 +41,9 @@ export class LoginHorizontalComponent implements OnInit {
     })
   
   }
+  
+  getCoinBase(){
+ this.web3Service.getCoinBase().subscribe(resp=> this.coinBase = resp)
+}
 
 }
