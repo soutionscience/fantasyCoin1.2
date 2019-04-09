@@ -22,6 +22,8 @@ import { LoginMetamaskComponent } from './dialogs/login-metamask/login-metamask.
 import { InstallMetamaskComponent } from './dialogs/install-metamask/install-metamask.component';
 import { CreateAccountComponent } from './dialogs/create-account/create-account.component';
 import { Web3Service } from './util/web3.service';
+import { AuthService } from './util/auth.service';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [ RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
@@ -42,7 +44,7 @@ import { Web3Service } from './util/web3.service';
     RestangularModule.forRoot(restangularConfigFactory),
     MatDialogModule
   ],
-  providers: [Web3Service],
+  providers: [Web3Service, AuthService, AuthGuard],
   entryComponents: [RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
      LoginMetamaskComponent, InstallMetamaskComponent],
   bootstrap: [AppComponent]

@@ -7,6 +7,7 @@ import { LogosComponent } from '../logos/logos.component';
 import { BannerComponent } from '../banner/banner.component';
 import { BrandingComponent } from '../branding/branding.component';
 import { LoginHorizontalComponent } from '../login-horizontal/login-horizontal.component';
+import { AuthGuard } from '../auth.guard';
 
 const routes : Routes =[{
   path: '', component: WelcomeComponent, children:[

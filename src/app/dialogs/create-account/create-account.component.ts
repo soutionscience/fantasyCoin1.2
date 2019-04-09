@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Web3Service } from '../../util/web3.service';
 import { ApiServiceService } from '../../util/api-service.service';
 import { User } from '../../shared/user.model'
+import { AuthService } from '../../util/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -25,7 +27,9 @@ export class CreateAccountComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<CreateAccountComponent>,
     private fb: FormBuilder,
     private web3Service: Web3Service,
-    private apiService: ApiServiceService) { }
+    private apiService: ApiServiceService,
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
 
@@ -80,6 +84,7 @@ export class CreateAccountComponent implements OnInit {
     this.CreatAccountForm.value.address = this.AccountId;
     this.apiService.postResource('users', this.CreatAccountForm.value)
    .subscribe(resp=>{
+     this.user = resp
      this.showCreate = false;
      this.showSignIn = true;
    })
@@ -93,7 +98,8 @@ export class CreateAccountComponent implements OnInit {
         console.log('signed by ', resp.account)
         this.apiService.getTokenResource('auth', this.AccountId, resp.sign, resp.nonce )
         .subscribe(resp=>{
-          localStorage.setItem('token', resp.token)
+         this.authService.setToken(resp.token)
+         this.router.navigate(['/teams'])
         })
      
     })

@@ -77,21 +77,21 @@
             </a>
           </p>
           <p class="control">
-            <a (click)="login()" class="button is-info">
-              <span class="icon">
+            <a (click)="logOut()" class="button is-info" *ngIf="authService.isLoggedIn()">
+              <!-- <span class="icon">
                 <i class="fas fa-user"></i>
-              </span>
-              <span>Login </span>
+              </span> -->
+              <span>Sign Out </span>
             </a>
           </p>
-          <p class="control">
+          <!-- <p class="control">
             <a (click)="testRPC()" class="button is-info">
               <span class="icon">
                 <i class="fas fa-user"></i>
               </span>
               <span>Test RPC </span>
             </a>
-          </p>
+          </p> -->
         </div>
       </div>
     </div>

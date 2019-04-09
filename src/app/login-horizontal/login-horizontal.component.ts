@@ -6,6 +6,7 @@ import {CreateAccountComponent} from '../dialogs/create-account/create-account.c
 import { Web3Service } from '../util/web3.service';
 import { MatDialog } from '@angular/material';
 import { ApiServiceService } from '../util/api-service.service';
+import { AuthService } from '../util/auth.service';
 
 @Component({
   selector: 'app-login-horizontal',
@@ -14,12 +15,16 @@ import { ApiServiceService } from '../util/api-service.service';
 })
 export class LoginHorizontalComponent implements OnInit {
   coinBase: Number;
+  showButton: Boolean;
 
   constructor(private web3Service: Web3Service, private dialog: MatDialog,
-    private apiService: ApiServiceService) { }
+    private apiService: ApiServiceService, private authService: AuthService) { }
 
   ngOnInit() {
   this.getCoinBase();
+  this.showButton = false;
+  this.checkIfToDisplayButton();
+
   }
   login(){
     this.web3Service.checkMetamask()
@@ -37,6 +42,7 @@ export class LoginHorizontalComponent implements OnInit {
       if(resp== 3){
         console.log('web3 not installed!!')
         this.dialog.open(InstallMetamaskComponent, {width: '600px' , height: 'auto'})
+       
       }
     })
   
@@ -44,6 +50,20 @@ export class LoginHorizontalComponent implements OnInit {
   
   getCoinBase(){
  this.web3Service.getCoinBase().subscribe(resp=> this.coinBase = resp)
+ console.log('coin base is ',this.coinBase)
 }
+checkIfToDisplayButton(){
+  this.web3Service.checkMetamask()
+    .subscribe(resp=>{
+    if(this.authService.isLoggedIn() ){ //web 3 installed unlocked and token key present
+      console.log('user is singed in ')  
+      this.showButton = false
 
+      }
+     else{
+       console.log('not signed in ', resp )
+        this.showButton = true;
+      }
+    })
+}
 }

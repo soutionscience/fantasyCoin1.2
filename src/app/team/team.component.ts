@@ -4,6 +4,7 @@ import { ApiServiceService } from '../util/api-service.service';
 // import { Web3Service } from '../services/web3.service';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { RemovePlayerComponent } from '../dialogs/remove-player/remove-player.component';
+import { Route } from '@angular/router';
 
 @Component({
   selector: 'app-team',
@@ -23,13 +24,15 @@ export class TeamComponent implements OnInit {
   mids: String[];
   attackers: String [];
   teams: String [];
-
   teamPlayers: String [];
   selected: Boolean;
+  showLoading: Boolean;
 
   constructor(private apiService: ApiServiceService,
   private ref: ChangeDetectorRef, private dialog:MatDialog) { }
   ngOnInit (){
+    console.log('init')
+    this.showLoading = true;
     this.getAllPlayers()
     this.getTeams();
     this.teamPlayers =[];
@@ -40,9 +43,12 @@ export class TeamComponent implements OnInit {
     this.apiService.getResource('players')
     .subscribe(resp=>{
       this.allPlayers = resp;
+      this.showLoading = false;
     
       this.filterBYPosition(this.allPlayers)
 
+    }, error=>{
+      console.log('loading error')
     })
   }
   selectTeam(t){
