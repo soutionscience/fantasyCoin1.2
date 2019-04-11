@@ -34,7 +34,7 @@
 
 </div>
 <div class="column">
-    <a class="button is-large is-fullwidth is-half is-primary" (click)="submit()" disabled="">
+    <a class="button is-large is-fullwidth is-half is-primary" (click)="submit()" disabled="incomplete" [ngClass]="{'is-loading': showLoading}">
 
       <span>Submit Team</span>
     </a>
