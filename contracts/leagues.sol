@@ -13,6 +13,7 @@ address public manager;
         bool complete;
         uint prizeMoney;
         uint maxPlayers;
+        uint playerNo;
         mapping(address=> bool) competitor;
     }
     
@@ -30,6 +31,7 @@ address public manager;
             manager: msg.sender,
             complete: false,
             maxPlayers: max,
+            playerNo: 0,
             prizeMoney: msg.value
         });
         
@@ -43,7 +45,7 @@ address public manager;
         require(!competitions[index].competitor[msg.sender]);
         // add msg sender to competition
         competitions[index].competitor[msg.sender]= true;
-        
+        competitions[index].playerNo+1;
     }
     
     //award winner using winner address
@@ -55,4 +57,9 @@ address public manager;
         
         
     }
+    function getCompetitionCount() public view returns(uint){
+        return competitions.length;
+    }
+        
+    
 }
