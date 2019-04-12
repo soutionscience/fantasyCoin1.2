@@ -12,7 +12,8 @@ import { AuthGuard } from '../auth.guard';
 const routes : Routes =[{
   path: '', component: WelcomeComponent, children:[
     {path: 'teams', loadChildren: './team.module#TeamModule'},
-    {path: 'leagues', loadChildren: './leagues.module#LeaguesModule'}
+    {path: 'leagues', loadChildren: './leagues.module#LeaguesModule'},
+   {path: 'compe', loadChildren: './compe.module#CompeModule'}
   ]
 }
 

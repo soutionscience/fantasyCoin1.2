@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LeaguesComponent } from '../leagues/leagues.component';
 import { Routes, RouterModule } from '@angular/router';
+import { CompeComponent } from '../compe/compe.component';
 
 const routes: Routes =[
-  {path:'', component: LeaguesComponent}
+  {path: '', component: CompeComponent}
 ]
 
 @NgModule({
-  declarations: [LeaguesComponent],
+  declarations: [CompeComponent],
+ 
   imports: [
-    CommonModule,
+   CommonModule,
     RouterModule.forChild(routes)
   ]
 })
-export class LeaguesModule { }
+export class CompeModule { }

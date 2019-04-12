@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import contract from 'truffle-contract';
 import {Subject, Observable} from 'rxjs';
+import { Factory } from '../shared/address';
+
 declare let require: any;
 const Web3 = require('web3');
 // const web3= Web3();
@@ -8,6 +10,8 @@ const Web3 = require('web3');
 
 declare let window: any;
 let account : string;
+let factoryJson = require('../../../build/contracts/LeagueFactory.json');
+let leagueJson = require('../../../build/contracts/League.json')
 
 @Injectable()
 export class Web3Service {
@@ -132,6 +136,69 @@ export class Web3Service {
 
    })
  }
+
+ // create contract instance
+ createContractInstance(addr, contractJson){
+   let instance;
+   let abi =contractJson.abi;
+   instance = new this.web3.eth.Contract(abi, addr);
+   console.log("TCL: createContractInstance -> instance ", instance )
+   return instance
+}
+// all depolyed getLeagues
+
+getAllLeagues(account, addr, gasToUse):Observable<any>{
+  return Observable.create(observer=>{
+    let instance = this.createContractInstance(addr, factoryJson);
+    let transactionObject = {
+      from: account,
+      gas: gasToUse
+    }
+    instance.methods.GetAllLeagues().call(transactionObject, (err, result) => {
+      if (err) {
+        
+        observer.error(err)
+      } else {
+
+        observer.next(result);
+        observer.complete()
+      }
+
+    })
+
+  })
+
+}
+//get all comeptions in this weeks league
+getAllCompetions(account, addr, gasToUse):Observable<any>{
+  console.log('getting')
+  return Observable.create(observer=>{
+    let instance = this.createContractInstance(addr, leagueJson);
+    let transactionObject = {
+      from: account,
+      gas: gasToUse
+    }
+    console.log('instance ', instance)
+   instance.methods.competitions(0).call(transactionObject, (err, result)=>{
+    if (err) {
+     
+      observer.error(err)
+    }else{
+
+      let obj ={
+        prizeMoney: this.web3.utils.fromWei(result.prizeMoney, 'ether'),
+        Title: "10 Ethereum weekend jackpot",
+        maxPlayers: result.maxPlayers
+
+      }
+     
+      observer.next(obj);
+      observer.complete()
+    }
+   })
+
+  })
+}
 
 
   

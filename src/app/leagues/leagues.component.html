@@ -1,0 +1,24 @@
+
+<div class="leagues">
+   <div class="container" *ngIf="showLoading">
+
+    <div class="column spinner button is-loading is-large"></div>
+   </div>
+  <div class="container">
+    <div class="competitions">
+      
+      <div class="box" *ngIf="!showLoading">
+         <div class="compe" *ngFor="let c of competitions">
+          <div class=" columns" >
+            <div class="column">{{c.Title}}</div>
+            <div class="column">Prize Money{{c.prizeMoney}}</div>
+            <div class="column">Maximum Players 1/{{c.maxPlayers}}</div>
+          </div>
+
+         </div>
+      </div>
+     
+    </div>
+  </div>
+
+</div> 

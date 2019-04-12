@@ -1,0 +1,2 @@
+export const Factory = "0x1a3c42488410d478210fc3d6cb48e27c36136a11"
+export const League ="0xC23138317A837aA9ECD75Eae220bD512BAa30017"
