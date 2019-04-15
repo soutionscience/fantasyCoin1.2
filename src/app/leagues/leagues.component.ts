@@ -25,7 +25,8 @@ export class LeaguesComponent implements OnInit {
   getAllLeagues(account){ //gets leagues and calls its competitons
     this.web3Service.getAllLeagues(account, Factory, this.gas)
     .subscribe(resp=> {this.leagueAddress= resp[0]
-                       this.getCompetions(this.leagueAddress)})// leagues address
+                       this.getCompetions(this.leagueAddress)
+                      })// leagues address
   }
 
   initAllCompetitons(){
@@ -47,5 +48,13 @@ export class LeaguesComponent implements OnInit {
    })
 
   }
+
+  getCompetitionCount(){
+    this.web3Service.getCompeCount(this.web3Service, this.web3Service).
+    subscribe(resp=>{
+      console.log('number of competitions ', resp)
+    })
+  }
+  
 
 }

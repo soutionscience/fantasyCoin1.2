@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import contract from 'truffle-contract';
-import {Subject, Observable} from 'rxjs';
+import {Subject, Observable, observable} from 'rxjs';
 import { Factory } from '../shared/address';
+import { ObserversModule } from '@angular/cdk/observers';
 
 declare let require: any;
 const Web3 = require('web3');
@@ -178,26 +179,63 @@ getAllCompetions(account, addr, gasToUse):Observable<any>{
       from: account,
       gas: gasToUse
     }
-    console.log('instance ', instance)
-   instance.methods.competitions(0).call(transactionObject, (err, result)=>{
-    if (err) {
+    instance.methods.getCompetitionCount().call(transactionObject,(err, result)=>{
+      if(err) throw err;
+      if(result<1){
+        console.log('no competitions in this league', result)
+      }else{
+        console.log('number of competioins is ', result)
+        for (let index = 0; index < result; index++) {
+          instance.methods.competitions(index).call(transactionObject, (err, result)=>{
+            if (err) {
      
-      observer.error(err)
-    }else{
+              observer.error(err)
+            }
+            else{
+          let obj ={
+                prizeMoney: this.web3.utils.fromWei(result.prizeMoney, 'ether'),
+                Title: "10 Ethereum weekend jackpot",
+                maxPlayers: result.maxPlayers
+        
+              }
+              observer.next(obj);
 
-      let obj ={
-        prizeMoney: this.web3.utils.fromWei(result.prizeMoney, 'ether'),
-        Title: "10 Ethereum weekend jackpot",
-        maxPlayers: result.maxPlayers
 
+            }
+            observer.complete()
+
+          })
+         
+          
+        }
       }
-     
-      observer.next(obj);
-      observer.complete()
-    }
-   })
+    })
+  
+  
 
   })
+}
+
+//get number of comepetitions running
+getCompeCount(acc, gas):Observable<any>{
+  return Observable.create(observer=>{
+    let transactionObject={
+      from: acc,
+      gas: gas
+
+    }
+    this.web3.methods.getCompetitionCount().call(transactionObject, (err, resp)=>{
+      if(err)
+      {
+      observer.error(err)
+    }else{
+   observer.next(resp);
+   observer.complete()
+    }
+    })
+
+  })
+
 }
 
 
