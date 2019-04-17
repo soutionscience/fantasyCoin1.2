@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import contract from 'truffle-contract';
 import {Subject, Observable, observable} from 'rxjs';
-import { Factory } from '../shared/address';
+import { Factory, League } from '../shared/address';
 import { ObserversModule } from '@angular/cdk/observers';
 
 declare let require: any;
@@ -179,6 +179,7 @@ getAllCompetions(account, addr, gasToUse):Observable<any>{
       from: account,
       gas: gasToUse
     }
+    let compe =[];
     instance.methods.getCompetitionCount().call(transactionObject,(err, result)=>{
       if(err) throw err;
       if(result<1){
@@ -186,6 +187,8 @@ getAllCompetions(account, addr, gasToUse):Observable<any>{
       }else{
         console.log('number of competioins is ', result)
         for (let index = 0; index < result; index++) {
+				
+          
           instance.methods.competitions(index).call(transactionObject, (err, result)=>{
             if (err) {
      
@@ -198,10 +201,11 @@ getAllCompetions(account, addr, gasToUse):Observable<any>{
                 maxPlayers: result.maxPlayers
         
               }
-              observer.next(obj);
+              compe.push(obj)
 
 
             }
+            observer.next(compe)
             observer.complete()
 
           })
@@ -216,22 +220,25 @@ getAllCompetions(account, addr, gasToUse):Observable<any>{
   })
 }
 
-//get number of comepetitions running
-getCompeCount(acc, gas):Observable<any>{
+
+
+joinCompe(acc, gas, index):Observable<any>{
   return Observable.create(observer=>{
     let transactionObject={
       from: acc,
       gas: gas
 
     }
-    this.web3.methods.getCompetitionCount().call(transactionObject, (err, resp)=>{
-      if(err)
-      {
-      observer.error(err)
-    }else{
-   observer.next(resp);
-   observer.complete()
-    }
+    let instance = this.createContractInstance(League, leagueJson);
+    instance.methods.joinCompetition(index).send(transactionObject, (err, resp)=>{
+      console.log('this works ', index)
+      if(err) {
+        observer.error(err)
+      }else{
+        console.log('this also works')
+     observer.next(resp);
+     observer.complete()
+      }
     })
 
   })

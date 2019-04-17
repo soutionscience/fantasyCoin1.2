@@ -8,7 +8,7 @@
     <div class="competitions">
       
       <div class="box" *ngIf="!showLoading">
-         <div class="compe" *ngFor="let c of competitions">
+         <div class="compe">
           <div class=" columns" >
               <table class="table  is-fullwidth is-striped">
                   <thead>
@@ -18,11 +18,12 @@
                       <th>Players</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody *ngFor="let c of competitions; let i = index;">
                     <tr>
                       <td>{{c.Title}}</td>
                       <td>{{c.prizeMoney}} Fantasy Coins</td>
-                      <td>{{c.maxPlayers}}</td>
+                      <td>{{c.playerNo}}/{{c.maxPlayers}}</td>
+                      <td><button class="button is-primary" (click)="joinCompe(i)">Join</button></td>
                     </tr>
                   </tbody>
               </table>

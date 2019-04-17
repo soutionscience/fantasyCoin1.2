@@ -42,18 +42,26 @@ export class LeaguesComponent implements OnInit {
 
    this.web3Service.getAllCompetions(this.coinBase, leagueAddress, this.gas)
    .subscribe(resp=>{
-     this.competitions.push(resp);
+     this.competitions=resp;
+     console.log("TCL: LeaguesComponent -> getCompetions -> this.competitions", this.competitions)
+     
      this.showLoading = false;
     this.ref.detectChanges()
    })
 
   }
 
-  getCompetitionCount(){
-    this.web3Service.getCompeCount(this.web3Service, this.web3Service).
-    subscribe(resp=>{
-      console.log('number of competitions ', resp)
-    })
+  // getCompetitionCount(){
+  //   this.web3Service.getCompeCount(this.web3Service, this.web3Service).
+  //   subscribe(resp=>{
+  //     console.log('number of competitions ', resp)
+  //   })
+  // }
+
+  joinCompe(index){
+    this.web3Service.joinCompe(this.coinBase,this.gas, index)
+    .subscribe(resp=> console.log('successfully joined league ',resp))
+
   }
   
 
