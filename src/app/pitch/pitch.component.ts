@@ -36,7 +36,8 @@ export class PitchComponent implements OnInit {
   }
   submit(){
     this.showLoading = true;
-    let userId = this.auth.getUserId()
+    let userId = this.auth.getUserId();
+    console.log('user id ', userId)
    this.apiService.postUserTeam('users', userId, 'players', this.teamPlayers).subscribe(resp=>{
      this.showLoading = false;
      this.router.navigate(['/leagues'])

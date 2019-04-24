@@ -20,10 +20,10 @@
                   </thead>
                   <tbody *ngFor="let c of competitions; let i = index;">
                     <tr>
-                      <td>{{c.Title}}</td>
+                      <td>{{c.name}}</td>
                       <td>{{c.prizeMoney}} Fantasy Coins</td>
-                      <td>{{c.playerNo}}/{{c.maxPlayers}}</td>
-                      <td><button class="button is-primary" (click)="joinCompe(i)">Join</button></td>
+                      <td>{{c.playerCount}}/{{c.maxPlayers}}</td>
+                      <td><button class="button is-primary" (click)="joinCompe(c.etherId)">Join</button></td>
                     </tr>
                   </tbody>
               </table>

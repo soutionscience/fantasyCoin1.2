@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Restangular} from 'ngx-restangular'
 import { Observable } from 'rxjs';
+import { League } from '../shared/address';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,9 @@ export class ApiServiceService {
   postResource(apiRoute, team): Observable<any[]>{
    return this.restangular.all(apiRoute).post(team);
   }
-  postUserTeam(apiRoute, id:string, item, message):Observable<any[]>{
-    return this.restangular.one(apiRoute, id).all(item).post(message)
+  postUserTeam(apiRoute, LeagueEtherId:string, item, message):Observable<any[]>{
+     return this.restangular.one(apiRoute, LeagueEtherId).all(item).post(message)
+  
   }
   
   getSpecificResource(apiRoute, id): Observable<any[]>{

@@ -1,6 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Web3Service } from '../util/web3.service';
 import { Factory } from '../shared/address';
+import { ApiServiceService } from '../util/api-service.service';
+import { AuthService } from '../util/auth.service';
 
 @Component({
   selector: 'app-leagues',
@@ -14,7 +16,9 @@ export class LeaguesComponent implements OnInit {
  showLoading: boolean;
  competitions: string  []
 
-  constructor(private web3Service: Web3Service, private ref: ChangeDetectorRef) { }
+  constructor(private web3Service: Web3Service, 
+    private ref: ChangeDetectorRef, private api: ApiServiceService,
+    private auth: AuthService) { }
 
   ngOnInit() {
     // this.showLoading = true
@@ -22,47 +26,27 @@ export class LeaguesComponent implements OnInit {
     this.initAllCompetitons();
   
   }
-  getAllLeagues(account){ //gets leagues and calls its competitons
-    this.web3Service.getAllLeagues(account, Factory, this.gas)
-    .subscribe(resp=> {this.leagueAddress= resp[0]
-                       this.getCompetions(this.leagueAddress)
-                      })// leagues address
-  }
-
   initAllCompetitons(){
     this.showLoading = true;
-    this.web3Service.getCoinBase() // returns coinbase  and uses it to  get all leagues
-    .subscribe(resp=>{
-      this.coinBase = resp
-      this.getAllLeagues(resp)
-    })
-
-  }
-  getCompetions(leagueAddress){ //get all competions in this week's league
-
-   this.web3Service.getAllCompetions(this.coinBase, leagueAddress, this.gas)
+   this.api.getResource('leagues')
    .subscribe(resp=>{
-     this.competitions=resp;
-     console.log("TCL: LeaguesComponent -> getCompetions -> this.competitions", this.competitions)
-     
+     console.log('leagues ', resp);
+     this.competitions = resp;
      this.showLoading = false;
-    this.ref.detectChanges()
    })
-
   }
 
-  // getCompetitionCount(){
-  //   this.web3Service.getCompeCount(this.web3Service, this.web3Service).
-  //   subscribe(resp=>{
-  //     console.log('number of competitions ', resp)
-  //   })
+
+joinCompe(index){
+  //   this.web3Service.joinCompe(this.coinBase,this.gas, index)
+  //   .subscribe(resp=> console.log('successfully joined league ',resp))
+
   // }
+  console.log('posting to league ', index)
+  this.api.postUserTeam('leagues', index, 'users', {"userId": this.auth.getUserId()})
+  .subscribe(resp=>{
+    console.log('entered league ', resp)
+  })
 
-  joinCompe(index){
-    this.web3Service.joinCompe(this.coinBase,this.gas, index)
-    .subscribe(resp=> console.log('successfully joined league ',resp))
-
-  }
-  
-
+}
 }
