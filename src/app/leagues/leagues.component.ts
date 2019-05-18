@@ -28,7 +28,7 @@ export class LeaguesComponent implements OnInit {
   }
   initAllCompetitons(){
     this.showLoading = true;
-   this.api.getResource('leagues')
+   this.api.getResource('competitions')
    .subscribe(resp=>{
      console.log('leagues ', resp);
      this.competitions = resp;
@@ -43,9 +43,10 @@ joinCompe(index){
 
   // }
   console.log('posting to league ', index)
-  this.api.postUserTeam('leagues', index, 'users', {"userId": this.auth.getUserId()})
+  this.api.postUserTeam('competitions', index, 'teams', {"userId": this.auth.getUserId()})
   .subscribe(resp=>{
-    console.log('entered league ', resp)
+    console.log('entered competitions ', resp);
+    // this.web3Service
   })
 
 }

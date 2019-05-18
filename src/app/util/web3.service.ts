@@ -104,6 +104,7 @@ export class Web3Service {
  getSingleAccount(){
  this.web3.eth.getAccounts((err, resp)=>{
    account = resp[0];
+   
   })
  }
 
