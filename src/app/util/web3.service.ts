@@ -13,6 +13,7 @@ declare let window: any;
 let account : string;
 let factoryJson = require('../../../build/contracts/LeagueFactory.json');
 let leagueJson = require('../../../build/contracts/League.json')
+let compeJson = require('../../../build/contracts/Competitions.json')
 
 @Injectable()
 export class Web3Service {
@@ -223,16 +224,16 @@ getAllCompetions(account, addr, gasToUse):Observable<any>{
 
 
 
-joinCompe(acc, gas, index):Observable<any>{
+joinCompe(acc, gas, compeId):Observable<any>{
   return Observable.create(observer=>{
     let transactionObject={
-      from: acc,
+      from: account,
       gas: gas
 
     }
-    let instance = this.createContractInstance(League, leagueJson);
-    instance.methods.joinCompetition(index).send(transactionObject, (err, resp)=>{
-      console.log('this works ', index)
+    let instance = this.createContractInstance(compeId, compeJson);
+    instance.methods.joinCompetition().send(transactionObject, (err, resp)=>{
+      console.log('this works ', compeId)
       if(err) {
         observer.error(err)
       }else{

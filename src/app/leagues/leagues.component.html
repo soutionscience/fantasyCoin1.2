@@ -18,8 +18,9 @@
                       <th>Players</th>
                     </tr>
                   </thead>
-                  <tbody *ngFor="let c of competitions; let i = index;">
-                    <tr>
+                  <tbody *ngIf="noCompetitions">{{noCompetitions}}</tbody>
+                  <tbody  *ngIf="!noCompetitions">
+                    <tr *ngFor="let c of competitions; let i = index;">
                       <td>{{c.name}}</td>
                       <td>{{c.prizeMoney}} Fantasy Coins</td>
                       <td>{{c.playerCount}}/{{c.maxPlayers}}</td>

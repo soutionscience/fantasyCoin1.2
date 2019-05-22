@@ -98,7 +98,7 @@ export class CreateAccountComponent implements OnInit {
         console.log('signed by ', resp.account)
         this.apiService.getTokenResource('auth', this.AccountId, resp.sign, resp.nonce )
         .subscribe(resp=>{
-         this.authService.setToken(resp.token, resp.userName, resp.userId)
+         this.authService.setToken(resp.token, resp.userName, resp.userId, this.user)
          this.router.navigate(['/teams'])
         })
      

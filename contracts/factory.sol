@@ -1,9 +1,11 @@
 pragma solidity ^0.5.0;
 
 import "./leagues.sol";
+import "./Competitions.sol";
 
 contract LeagueFactory {
    League []  public  deployedLeagues;
+//   Competitions [] public deployedCompetitions;
 
 
   function deployLeague() public{
@@ -11,7 +13,7 @@ contract LeagueFactory {
         deployedLeagues.push(newLeague);
         
     }
-    function GetAllLeagues() public view returns (League [] memory){
+  function GetAllLeagues() public view returns (League[] memory){
         return deployedLeagues;
     }
     function deleteAllLeagues() public {

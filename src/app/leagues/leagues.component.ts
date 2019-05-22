@@ -14,7 +14,9 @@ export class LeaguesComponent implements OnInit {
  leagueAddress: string;
  gas: string = '1000000'
  showLoading: boolean;
- competitions: string  []
+ competitions: string  [];
+ noCompetitions: string;
+ 
 
   constructor(private web3Service: Web3Service, 
     private ref: ChangeDetectorRef, private api: ApiServiceService,
@@ -24,13 +26,14 @@ export class LeaguesComponent implements OnInit {
     // this.showLoading = true
     this.competitions =[];
     this.initAllCompetitons();
+    
   
   }
   initAllCompetitons(){
     this.showLoading = true;
    this.api.getResource('competitions')
    .subscribe(resp=>{
-     console.log('leagues ', resp);
+     if(resp.length == 0) this.noCompetitions = "Sorry there are no competitions running at the moment, please try again later"
      this.competitions = resp;
      this.showLoading = false;
    })
@@ -46,7 +49,10 @@ joinCompe(index){
   this.api.postUserTeam('competitions', index, 'teams', {"userId": this.auth.getUserId()})
   .subscribe(resp=>{
     console.log('entered competitions ', resp);
-    // this.web3Service
+      this.web3Service.joinCompe(this.coinBase,this.gas, index)
+    .subscribe(resp=> console.log('successfully joined league ',resp))
+
+  
   })
 
 }

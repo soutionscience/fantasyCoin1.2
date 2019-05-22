@@ -13,7 +13,8 @@ const routes : Routes =[{
   path: '', component: WelcomeComponent, children:[
     {path: 'teams', loadChildren: './team.module#TeamModule'},
     {path: 'leagues', loadChildren: './leagues.module#LeaguesModule'},
-   {path: 'compe', loadChildren: './compe.module#CompeModule'}
+   {path: 'compe', loadChildren: './compe.module#CompeModule'},
+   {path: 'my-team', loadChildren: './user-team-page.module#UserTeamPageModule'}
   ]
 }
 
