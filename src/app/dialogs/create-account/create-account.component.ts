@@ -57,7 +57,7 @@ export class CreateAccountComponent implements OnInit {
   // }
 
   createAccount(){
-  this.getBaseAccount; //get account address
+  this.getBaseAccount(); //get account address
     this.close();
   }
   close(){
@@ -71,9 +71,11 @@ export class CreateAccountComponent implements OnInit {
 
   }
   getBaseAccount(){
+    console.log('base account')
  this.web3Service.getCoinBase()
 .subscribe(resp=>{
    this.AccountId = resp;
+   console.log('base account ', this.AccountId)
    this.checkifRegister(this.AccountId)
   
 })
@@ -95,10 +97,12 @@ export class CreateAccountComponent implements OnInit {
     console.log('reso from server ', this.user)
       this.web3Service.signTransaction(this.user)
       .subscribe(resp=>{
-        console.log('signed by ', resp.account)
+        console.log('signed by ', resp.account);
+      
         this.apiService.getTokenResource('auth', this.AccountId, resp.sign, resp.nonce )
         .subscribe(resp=>{
-         this.authService.setToken(resp.token, resp.userName, resp.userId, this.user)
+          
+         this.authService.setToken(resp.token, resp.userName, resp.userId, resp, resp.address)
          this.router.navigate(['/teams'])
         })
      
@@ -106,7 +110,7 @@ export class CreateAccountComponent implements OnInit {
     this.dialogRef.close()
   }
   checkifRegister(id){
-    // console.log('checking if registed', this.AccountId)
+    console.log('checking if registed', this.AccountId)
     this.apiService.getSpecificResource('users', id)
     .subscribe(resp=>{
       this.showLoading= false

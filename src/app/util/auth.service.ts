@@ -8,16 +8,18 @@ export class AuthService {
   storageKey: string = 'fantasy-coin-jwt'
   userName: string= 'userName'
   userId: string="userid"
-  user: string= 'user'
+  user: string= 'user';
+  userAdress: string ='address'
 
   constructor(private router: Router) { }
 
-  setToken(token: string, userName: string, userId: string, user: any){
+  setToken(token: string, userName: string, userId: string, user: any, address: string){
 
     localStorage.setItem(this.storageKey, token)
     localStorage.setItem(this.userName, userName)
     localStorage.setItem(this.userId, userId)
-    localStorage.setItem(this.user, JSON.stringify(user))
+    localStorage.setItem(this.userAdress, address)
+    // localStorage.setItem(this.user, JSON.stringify(user))
   }
   getToken(){
    return localStorage.getItem(this.storageKey)
@@ -34,6 +36,9 @@ return this.getToken() !== null;
   }
   getUserObj(){
     return localStorage.getItem(this.user)
+  }
+  getUserAdress(){
+    return localStorage.getItem(this.userAdress)
   }
   logOut(){
     localStorage.removeItem (this.storageKey);

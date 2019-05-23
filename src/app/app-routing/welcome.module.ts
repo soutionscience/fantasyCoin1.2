@@ -8,6 +8,8 @@ import { BannerComponent } from '../banner/banner.component';
 import { BrandingComponent } from '../branding/branding.component';
 import { LoginHorizontalComponent } from '../login-horizontal/login-horizontal.component';
 import { AuthGuard } from '../auth.guard';
+import { PitchComponent } from '../pitch/pitch.component';
+import { TeamModule } from './team.module';
 
 const routes : Routes =[{
   path: '', component: WelcomeComponent, children:[
@@ -21,10 +23,13 @@ const routes : Routes =[{
 ]
 
 @NgModule({
-  declarations: [WelcomeComponent, MenuComponent, LogosComponent, BannerComponent, BrandingComponent, LoginHorizontalComponent],
+  declarations: [WelcomeComponent, MenuComponent, LogosComponent,
+    BannerComponent, BrandingComponent, LoginHorizontalComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    
+
   ]
 })
 export class WelcomeModule { }

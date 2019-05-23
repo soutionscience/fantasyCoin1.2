@@ -24,6 +24,7 @@ import { CreateAccountComponent } from './dialogs/create-account/create-account.
 import { Web3Service } from './util/web3.service';
 import { AuthService } from './util/auth.service';
 import { AuthGuard } from './auth.guard';
+import { PitchComponent } from './pitch/pitch.component';
 
 @NgModule({
   declarations: [ RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,

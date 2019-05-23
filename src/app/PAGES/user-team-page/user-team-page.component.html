@@ -2,12 +2,13 @@
   <div class="container">
     <div class="columns">
       <div class="column is-one-quarter">
-        <div class="card">
+        <div class="card" *ngIf="user">
           <nav class="panel">
             <div class="panel-heading is-primary">{{userName}}</div>
             <div class="panel-block info">
               <p> <b>Information</b> </p>
             </div>
+           
             <div class="panel-block">
                 <p>Fantasy Coins: <b class="coins">{{user.balance}}</b> </p>
               </div>
@@ -19,7 +20,7 @@
       </div>
       <div class="column">
         <div class="myInfo">
-          <div class="columns">
+          <div class="columns" *ngIf="user">
             <div class="column is-half">
               <div class="c">
                 <div class="content">
@@ -43,6 +44,9 @@
         <div class="card myTeam">
          <div class="panel">
             <div class="panel-heading is-primary">My Team</div>
+         </div>
+         <div class="panel-block">
+        <app-user-team *ngIf="userTeam" [userTeam] ="userTeam"></app-user-team>
          </div>
         </div>
       </div>
