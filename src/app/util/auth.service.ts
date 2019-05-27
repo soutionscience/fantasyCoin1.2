@@ -42,6 +42,9 @@ return this.getToken() !== null;
   }
   logOut(){
     localStorage.removeItem (this.storageKey);
+    localStorage.removeItem(this.userName)
+    localStorage.removeItem(this.userId)
+    localStorage.removeItem(this.userAdress)
     this.router.navigate(['/'])
 
 

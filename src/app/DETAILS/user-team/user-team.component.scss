@@ -3,6 +3,7 @@
     color: white;
     padding: 0px;
     text-align: center;
+    width: 100%;
 }
 .points{
     background: blue;
@@ -11,8 +12,20 @@
     text-align: center;
 }
 .details{
-    margin: 4px;
-    padding: 4px;
-    padding: 2px;
+    // margin: 4px;
+    // padding: 4px;
+    // padding: 2px;
     border: rgb(160, 158, 158) solid 1px
+}
+.card-image{
+    padding: 4px;
+    text-align: center;
+    padding-left: 25%;
+}
+.card-footer-item{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.players{
+    text-align: center;
 }

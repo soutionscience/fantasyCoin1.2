@@ -1,26 +1,42 @@
 pragma solidity ^0.5.0;
 
-import "./leagues.sol";
 import "./Competitions.sol";
+contract League {
 
-contract LeagueFactory {
-   League []  public  deployedLeagues;
-//   Competitions [] public deployedCompetitions;
+Competitions [] public deployedCompetitions;
 
-
-  function deployLeague() public{
-        League newLeague = new League(msg.sender);
-        deployedLeagues.push(newLeague);
+address public manager;
+    //restrictor
+    modifier restricted(){
+        require(msg.sender == manager);
+        _;
+    }
+   
+  
+   constructor(address creator ) public{
+        manager = creator;
         
     }
-  function GetAllLeagues() public view returns (League[] memory){
-        return deployedLeagues;
+    //create Competition
+   
+    //deploy competitions
+    function deployCompetition( uint maximumPlayers,
+    string memory compeName)public payable{
+        //Competitions compe = new Competitions(maximumPlayers,  compeName, msg.value, msg.sender);
+       Competitions compe = (new Competitions).value(address(this).balance)(maximumPlayers,  compeName, msg.value, msg.sender);
+        deployedCompetitions.push(compe);
+        
     }
-    function deleteAllLeagues() public {
-         delete deployedLeagues;
-         assert(deployedLeagues.length == 0);
+    function getCompetitions()public view returns(Competitions[] memory){
+        return deployedCompetitions;
     }
-       
-  constructor() public {
-  }
+ 
+    function getCompetitionCount() public view returns(uint){
+        return  deployedCompetitions.length;
+    }
+    function getAllCompetitions() public view returns(Competitions [] memory){
+        return  deployedCompetitions;
+    }
+        
+    
 }

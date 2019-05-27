@@ -1,17 +1,43 @@
 <div class="pitch">
 
 
-  <div class="columns is-multiline">
+  <div class="columns is-multiline is-centered">
     <div class="column is-one-quarter" *ngFor="let p of userTeam">
-      <div class="player">
-     <div class="image">
+    <div class="card">
+        <div class="card-image">
+            <figure class="image is-96x96 media-center">
+                <img [src]= "'../../assets/images/kits/' + p.team_code + '.png' "
+                alt="">
+            </figure>
+          </div>
+          <div class="card-content"></div>
+          <footer class="card-footer">
+              <p class="name">{{p.web_name}}</p>
+              </footer>
+            <footer class="card-footer">
+              <p class="card-footer-item">points:</p>
+              <p class="card-footer-item points">{{p.pointsWeek}}</p>
+
+              </footer>
+    </div>
+
+
+
+      <!-- <div class="player">
+     <div class="card">
        <img [src]= "'../../assets/images/kits/' + p.team_code + '.png' "
-       alt="" height="2px" width="2px"> </div>
-     <div class="details columns" >
-       <p class="name column is-half">{{p.web_name}}</p>
-       <p class="points column is-half">{{p.pointsWeek}}</p>
+       alt="" height="50" width="50"> </div>
+      
+     <div class="details" >
+       
+       <div class="columns">
+          <p class="name column ">{{p.web_name}}</p>
+          <p class="points column is-one-quarter">{{p.pointsWeek}}</p>
+       </div>
+     
       </div>
-     </div>
+
+     </div> -->
     </div>
   </div>
  

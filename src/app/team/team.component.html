@@ -43,7 +43,7 @@
                                     <tr class="is-hoverable" [ngClass]="checkIfPlayerisSelected(g)? 'is-selected':'not-selected'"  (click)="selectPlayer(g)" *ngFor="let g of SpecialKeepers">
                                       <td class="jersey"></td>
                                       <td>{{g.web_name}}</td>
-                                      <td>{{g.pointsTotal}}</td>
+                                      <td>{{g.pointsWeek}}</td>
                                       <td>{{g.pointsWeek}}</td>
                                     </tr>
                                   </table>
@@ -64,7 +64,7 @@
                                <tr class="is-hoverable" [ngClass]="checkIfPlayerisSelected(d)? 'is-selected':'not-selected'" (click)="selectPlayer(d)" *ngFor="let d of SpecialDefs">
                                  <td class="jersey"></td>
                                  <td>{{d.web_name}}</td>
-                                 <td>{{d.pointsTotal}}</td>
+                                 <td>{{d.pointsWeek}}</td>
                                  <td>{{d.now_cost}}</td>
                                </tr>
                              </table>
@@ -85,7 +85,7 @@
                                <tr class="is-hoverable" [ngClass]="checkIfPlayerisSelected(d)? 'is-selected':'not-selected'" (click)="selectPlayer(d)" *ngFor="let d of SpecialMids">
                                  <td class="jersey"></td>
                                  <td>{{d.web_name}}</td>
-                                 <td>{{d.pointsTotal}}</td>
+                                 <td>{{d.pointsWeek}}</td>
                                  <td>{{d.now_cost}}</td>
                                </tr>
                              </table>
@@ -109,8 +109,9 @@
                            <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                              <tr class="is-hoverable" [ngClass]="checkIfPlayerisSelected(d)? 'is-selected':'not-selected'" (click)="selectPlayer(d)" *ngFor="let d of SpecialAttacks">
                                <td class="jersey" ></td>
+                              
                                <td>{{d.web_name}}</td>
-                               <td>{{d.pointsTotal}}</td>
+                               <td>{{d.pointsWeek}}</td>
                                <td>{{d.now_cost}}</td>
                              </tr>
                            </table>
