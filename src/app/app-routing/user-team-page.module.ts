@@ -4,13 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserTeamPageComponent } from '../PAGES/user-team-page/user-team-page.component';
 import { UserInfoComponent } from '../DETAILS/user-info/user-info.component';
 import { UserTeamComponent } from '../DETAILS/user-team/user-team.component';
+import { UserLeagueComponent } from '../DETAILS/user-league/user-league.component';
 
 const routes: Routes =[
   {path:'', component: UserTeamPageComponent}
 ]
 
 @NgModule({
-  declarations: [UserTeamPageComponent, UserInfoComponent, UserTeamComponent],
+  declarations: [UserTeamPageComponent, UserInfoComponent, UserTeamComponent, UserLeagueComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes)
