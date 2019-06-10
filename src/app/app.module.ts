@@ -25,10 +25,12 @@ import { Web3Service } from './util/web3.service';
 import { AuthService } from './util/auth.service';
 import { AuthGuard } from './auth.guard';
 import { PitchComponent } from './pitch/pitch.component';
+import { BetaComponent } from './dialogs/beta/beta.component';
+import { WarningBetaComponent } from './dialogs/warning-beta/warning-beta.component';
 
 @NgModule({
   declarations: [ RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
-    LoginMetamaskComponent, InstallMetamaskComponent],
+    LoginMetamaskComponent, InstallMetamaskComponent, BetaComponent, WarningBetaComponent],
   imports: [
     BrowserAnimationsModule,
     CommonModule,
@@ -47,7 +49,7 @@ import { PitchComponent } from './pitch/pitch.component';
   ],
   providers: [Web3Service, AuthService, AuthGuard],
   entryComponents: [RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
-     LoginMetamaskComponent, InstallMetamaskComponent],
+     LoginMetamaskComponent, InstallMetamaskComponent, WarningBetaComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

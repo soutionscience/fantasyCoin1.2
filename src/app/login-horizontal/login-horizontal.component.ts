@@ -14,7 +14,7 @@ import { AuthService } from '../util/auth.service';
   styleUrls: ['./login-horizontal.component.scss']
 })
 export class LoginHorizontalComponent implements OnInit {
-  coinBase: Number;
+  coinBase: String;
   showButton: Boolean;
 
   constructor(private web3Service: Web3Service, private dialog: MatDialog,
@@ -27,7 +27,7 @@ export class LoginHorizontalComponent implements OnInit {
 
   }
   login(){
-    this.web3Service.checkMetamask()
+    this.web3Service.checkMetamask(this.coinBase)
     .subscribe(resp=>{
     if(resp ==1){
         console.log('web3 installed but not unlocked')
@@ -54,7 +54,7 @@ export class LoginHorizontalComponent implements OnInit {
 }
 
 checkIfToDisplayButton(){
-  this.web3Service.checkMetamask()
+  this.web3Service.checkMetamask(this.coinBase)
     .subscribe(resp=>{
     if(this.authService.isLoggedIn() ){ //web 3 installed unlocked and token key present
       console.log('user is singed in ')  

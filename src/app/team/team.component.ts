@@ -37,6 +37,7 @@ export class TeamComponent implements OnInit {
     this.getTeams();
     this.teamPlayers =[];
     this.selected = false;
+    this.ref.detectChanges()
 
   }
   getAllPlayers(){ // and filter by position and rank

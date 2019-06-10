@@ -19,24 +19,28 @@ let compeJson = require('../../../build/contracts/Competitions.json')
 export class Web3Service {
   private web3: any;
   private accounts: string[];
-  private account: string;
+  private account: any;
   public ready = false;
 
   public accountsObservable = new Subject<string[]>();
 
   constructor() {
     // window.addEventListener('load', (event) => {
-     this.checkAndInstatiateWeb3();
-      this.checkMetamask();
-      this.getSingleAccount();
+    //  this.checkAndInstatiateWeb3();
+    //   this.checkMetamask();
+    //   this.getSingleAccount();
+    this.checkAndInstatiateWeb3()
+    this.getCoinBase().subscribe((resp)=>{
+      this.account = resp
+     // this.checkMetamask(this.account).subscribe()
+    })
+    
      
 
     // });
   }
   checkAndInstatiateWeb3 = () => {
-    // console.log('what is in json??' , campaignFactory)
-     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
-    if (typeof window.web3 !== 'undefined') {
+ if (typeof window.web3 !== 'undefined') {
 
 
       console.warn(
@@ -46,14 +50,10 @@ export class Web3Service {
       this.web3 = new Web3(Web3.givenProvider);
       // account = this.getCoinBaseHere();
       // console.log('coinbase ', account)
+     // this.getSingleAccount()
       return this.web3;
     } else {
-
-      // const provider = new Web3.providers.HttpProvider(
-      //   'https://rinkeby.infura.io/orDImgKRzwNrVCDrAk5Q'
-      // );
-      // this.web3 = new Web3(provider);
-      console.warn(
+  console.warn(
         'No web3 detected'
       );
       // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
@@ -65,10 +65,10 @@ export class Web3Service {
 
   }
 
-  checkMetamask():Observable<any>{
+  checkMetamask(account):Observable<any>{
     return Observable.create(observer=>{
       if(typeof window.web3 !== 'undefined'){ //web 3 installed
-        // let accounts = this.getCoinBaseHere()
+      
         console.log('what is in accounts? ', account)
 
         if(account){ // if account is unlocked return 2
@@ -102,9 +102,10 @@ export class Web3Service {
     })
   }
 
- getSingleAccount(){
- this.web3.eth.getAccounts((err, resp)=>{
-   account = resp[0];
+ getSingleAccount(web3){
+web3.eth.getAccounts((err, resp)=>{
+   //this.account = resp[0];
+   return resp;
    
   })
  }
@@ -116,7 +117,7 @@ export class Web3Service {
   let nonceValue = nonce.nonce
   console.log('signing nounce ', nonceValue)
 
-  let from = account
+  let from = this.account
   
    
    return Observable.create(observer=>{

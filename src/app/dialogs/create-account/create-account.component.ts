@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, NgZone } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Web3Service } from '../../util/web3.service';
@@ -29,7 +29,9 @@ export class CreateAccountComponent implements OnInit {
     private web3Service: Web3Service,
     private apiService: ApiServiceService,
     private authService: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private ref: ChangeDetectorRef,
+    private zone: NgZone) { }
 
   ngOnInit() {
 
@@ -65,7 +67,7 @@ export class CreateAccountComponent implements OnInit {
   }
   createForm(){
     this.CreatAccountForm =this.fb.group({
-      email: ['', [Validators.required]],
+      email: ['', [Validators.email, Validators.required]],
       username: ['', [Validators.required]]
     })
 
@@ -81,14 +83,18 @@ export class CreateAccountComponent implements OnInit {
 })
   }
   submit(){
+ 
     this.showLoading = true;
+    this.ref.detectChanges()
     this.showForm=false;
     this.CreatAccountForm.value.address = this.AccountId;
     this.apiService.postResource('users', this.CreatAccountForm.value)
    .subscribe(resp=>{
+     console.log('resp from server ', resp)
      this.user = resp
      this.showCreate = false;
      this.showSignIn = true;
+     this.ref.detectChanges()
    })
   }
   signIn(){
@@ -103,7 +109,8 @@ export class CreateAccountComponent implements OnInit {
         .subscribe(resp=>{
           
          this.authService.setToken(resp.token, resp.userName, resp.userId, resp, resp.address)
-         this.router.navigate(['/teams'])
+         // use zone to take care of issue with ngOninit not firring after navigate
+        this.zone.run(()=>this.router.navigateByUrl('/teams'))// use 
         })
      
     })
@@ -122,6 +129,7 @@ export class CreateAccountComponent implements OnInit {
       console.log('user NOT Found')
       this.showLoading= false
       this.showCreate = true
+      this.ref.detectChanges();
 
     })
   }

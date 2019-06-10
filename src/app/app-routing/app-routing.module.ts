@@ -13,7 +13,7 @@ const routes : Routes=[
   declarations: [AppComponent],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})
   ],
   exports:[
     RouterModule, AppComponent

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WelcomeComponent } from '../welcome/welcome.component';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule , CanActivate} from '@angular/router';
 import { MenuComponent } from '../menu/menu.component';
 import { LogosComponent } from '../logos/logos.component';
 import { BannerComponent } from '../banner/banner.component';
@@ -10,13 +10,16 @@ import { LoginHorizontalComponent } from '../login-horizontal/login-horizontal.c
 import { AuthGuard } from '../auth.guard';
 import { PitchComponent } from '../pitch/pitch.component';
 import { TeamModule } from './team.module';
+import { FooterComponent } from '../footer/footer.component';
 
 const routes : Routes =[{
   path: '', component: WelcomeComponent, children:[
+    {path: '', loadChildren:'./home.module#HomeModule'},
     {path: 'teams', loadChildren: './team.module#TeamModule'},
-    {path: 'leagues', loadChildren: './leagues.module#LeaguesModule'},
+    {path: 'leagues', loadChildren: './leagues.module#LeaguesModule', canActivate:[AuthGuard]},
    {path: 'compe', loadChildren: './compe.module#CompeModule'},
-   {path: 'my-team', loadChildren: './user-team-page.module#UserTeamPageModule'}
+   {path: 'my-team', loadChildren: './user-team-page.module#UserTeamPageModule'},
+   {path: 'login', loadChildren:'./login.module#LoginModule'}
   ]
 }
 
@@ -24,7 +27,7 @@ const routes : Routes =[{
 
 @NgModule({
   declarations: [WelcomeComponent, MenuComponent, LogosComponent,
-    BannerComponent, BrandingComponent, LoginHorizontalComponent],
+    BannerComponent, BrandingComponent, LoginHorizontalComponent, FooterComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
