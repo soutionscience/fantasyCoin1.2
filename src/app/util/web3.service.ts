@@ -33,8 +33,10 @@ export class Web3Service {
     this.getCoinBase().subscribe((resp)=>{
       this.account = resp
      // this.checkMetamask(this.account).subscribe()
-    })
+     this.checkAccountChange(this.account)
     
+    })
+  
      
 
     // });
@@ -63,6 +65,20 @@ export class Web3Service {
       return null;
     }
 
+  }
+  checkAccountChange(myaccount){ // check to see if account has changed/ network is ok
+    //let account = this.web3.accounts[0]
+if(myaccount){
+    myaccount = myaccount.toLowerCase()
+    this.web3.currentProvider.publicConfigStore.on('update', function(responce){
+      let newAccount = responce.selectedAddress;
+       console.log('responce has ',newAccount, ' and accounts ', myaccount)
+      if(newAccount !== myaccount){
+        console.log('reload page')
+        window.location.reload()
+      }
+    });
+  }
   }
 
   checkMetamask(account):Observable<any>{
