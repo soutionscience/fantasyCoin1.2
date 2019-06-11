@@ -5,6 +5,7 @@ import { ApiServiceService } from '../util/api-service.service';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { RemovePlayerComponent } from '../dialogs/remove-player/remove-player.component';
 import { Route } from '@angular/router';
+import { DataService } from '../util/data.service';
 
 @Component({
   selector: 'app-team',
@@ -29,7 +30,8 @@ export class TeamComponent implements OnInit {
   showLoading: Boolean;
 
   constructor(private apiService: ApiServiceService,
-  private ref: ChangeDetectorRef, private dialog:MatDialog) { }
+  private ref: ChangeDetectorRef, private dialog:MatDialog,
+  private data: DataService) { }
   ngOnInit (){
     console.log('init')
     this.showLoading = true;
