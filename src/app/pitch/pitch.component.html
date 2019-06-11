@@ -19,16 +19,41 @@
       </div>
     </div>
 <div class="pitch">
+<div *ngIf="!teamPlayers" class="empty">
+  <img src="../../assets/images/design/add.png" alt="" height="auto" width="150px">
+</div>
 
 
  <div class="columns is-multiline">
-   <div class="column is-one-quarter" *ngFor="let p of teamPlayers">
-     <div class="player">
-    <div class="image">
-      <img [src]= "'../../assets/images/kits/' + p.team_code + '.png' "
-      alt="" height="5px" width="5px"> </div>
-    <div class="name">{{p.web_name}}</div>
-    </div>
+   <div class="column is-one-quarter is-centered" *ngFor="let p of teamPlayers">
+      <div class="card">
+          <header class="card-header">
+              <p class="card-header-title">
+                {{p.web_name |slice: 0:10}}
+              </p>
+              <a (click)="removePlayer(p)" class="card-header-icon" aria-label="more options">
+                <span class="icon">
+                    <i  class="material-icons">
+                        cancel</i>
+                </span>
+              </a>
+            </header>
+          <div class="card-image">
+              <figure class="image is-96x96 media-center">
+                  <img [src]= "'../../assets/images/kits/' + p.team_code + '.png' "
+                  alt="">
+              </figure>
+            </div>
+            <div class="card-content"></div>
+            <footer class="card-footer">
+                <p class="name">{{p.web_name}}</p>
+                </footer>
+              <footer class="card-footer">
+                <p class="card-footer-item">points:</p>
+                <p class="card-footer-item points">{{p.pointsWeek}}</p>
+  
+                </footer>
+      </div>
    </div>
  </div>
 

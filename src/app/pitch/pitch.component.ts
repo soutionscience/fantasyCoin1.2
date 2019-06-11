@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { ApiServiceService } from '../util/api-service.service';
 import { AuthService } from '../util/auth.service';
 import { Router } from '@angular/router';
-import { injectComponentFactoryResolver } from '@angular/core/src/render3';
+import { MatDialogRef, MatDialog } from '@angular/material';
+import { RemovePlayerComponent } from '../dialogs/remove-player/remove-player.component';
+//import { faCoffee } from '@fortawesome/free-solid-svg-core';
 
 @Component({
   selector: 'app-pitch',
@@ -15,7 +17,9 @@ export class PitchComponent implements OnInit {
   incomplete: Boolean
 
   constructor(private apiService: ApiServiceService, private auth: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private dialog: MatDialog,
+    private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.showLoading = false;
@@ -47,6 +51,20 @@ export class PitchComponent implements OnInit {
 
 
 
+  }
+  removePlayer(g){
+    console.log('clicking')
+    this.dialog.open(RemovePlayerComponent,{width: '350px', height: 'auto', data:{
+      player: g
+    }}).afterClosed().subscribe(p=>{
+      if(p == 'remove'){
+        let index = this.teamPlayers.indexOf(g)
+        this.teamPlayers.splice(g, 1); //remove player
+        console.log(this.teamPlayers.length)
+        this.ref.detectChanges();
+      }
+    })
+    
   }
 
 }

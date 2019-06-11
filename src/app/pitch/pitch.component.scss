@@ -2,21 +2,12 @@
     padding: 4px;
     margin: 4px;
 }
-.name{
-    background-color: white;
 
-}
-.player{
-
-    // border: blue solid 1px;
-}
 .confirm{
     margin-top: 4px;
 }
 
-.choose{
-    // margin: 8px;
-}
+
 .myTitle{
   background-image: url('../../assets/images/background.png');
   color: white;
@@ -31,4 +22,39 @@
 height: 50px;
 margin: 2px;
 margin-right:2px;
+}
+
+.card-image{
+    padding: 4px;
+    text-align: center;
+    padding-left: 25%;
+}
+.card-footer-item{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.players{
+    text-align: center;
+}
+.name{
+    background: rgb(35, 209, 96);
+    color: white;
+    padding: 0px;
+    text-align: center;
+    width: 100%;
+}
+.points{
+    background: blue;
+    color: white;
+    padding: 0px;
+    text-align: center;
+}
+.details{
+    // margin: 4px;
+    // padding: 4px;
+    // padding: 2px;
+    border: rgb(160, 158, 158) solid 1px
+}
+.material-icons{
+    color: red;
 }
