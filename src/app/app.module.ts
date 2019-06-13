@@ -11,7 +11,8 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatToolbarModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSnackBarModule
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { RestangularModule } from 'ngx-restangular';
@@ -45,7 +46,8 @@ import { WarningBetaComponent } from './dialogs/warning-beta/warning-beta.compon
     ReactiveFormsModule,
     HttpClientModule,
     RestangularModule.forRoot(restangularConfigFactory),
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [Web3Service, AuthService, AuthGuard],
   entryComponents: [RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,

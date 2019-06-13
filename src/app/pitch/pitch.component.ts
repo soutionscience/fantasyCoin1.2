@@ -16,6 +16,7 @@ export class PitchComponent implements OnInit {
   @Input() teamPlayers: any [];
   showLoading: Boolean
   incomplete: Boolean
+  buttonText: String
 
   constructor(private apiService: ApiServiceService, private auth: AuthService,
     private router: Router,
@@ -26,20 +27,24 @@ export class PitchComponent implements OnInit {
   ngOnInit() {
     this.showLoading = false;
     this.incomplete = true
-    console.log('team players ', this.teamPlayers)
+    console.log('team players ', this.teamPlayers);
+    this.buttonText ='incomplete'
   }
   completeTeam(){
     console.log(this.teamPlayers)
 
   }
   complete(){
-    if(this.teamPlayers.length<=11){
+    if(this.playerData.getPlayers().length<=11){
       this.incomplete = true
       return true
     }else{
-      this.incomplete = false
+      this.buttonText = 'submit'
+      this.incomplete = false;
+      this.ref.detectChanges()
       return false
     }
+    
   }
   submit(){
     this.showLoading = true;

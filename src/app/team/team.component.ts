@@ -6,6 +6,7 @@ import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { RemovePlayerComponent } from '../dialogs/remove-player/remove-player.component';
 import { Route } from '@angular/router';
 import { DataService } from '../util/data.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-team',
@@ -32,7 +33,8 @@ export class TeamComponent implements OnInit {
 
   constructor(private apiService: ApiServiceService,
   private ref: ChangeDetectorRef, private dialog:MatDialog,
-  private data: DataService) { }
+  private data: DataService,
+  private matSnackBar: MatSnackBar) { }
   ngOnInit (){
     console.log('init')
     this.showLoading = true;
@@ -125,8 +127,9 @@ export class TeamComponent implements OnInit {
 
   }
   selectPlayer(g){// select players to add to team
-   if(this.teamPlayers.length>= 11){
-    //  console.log('team already full')
+   if(this.data.getPlayers().length>= 11){
+      console.log('team already full');
+      this.setStatus('you have already selected 11 players')
 
    }else{
     if(this.data.checkIfAlreadyInTeam(g)){ //check if player is in team and start dialog to remove
@@ -169,5 +172,9 @@ export class TeamComponent implements OnInit {
     }else{
     return false;
     }
+  }
+
+  setStatus(status) {
+    this.matSnackBar.open(status, null, {duration: 4000});
   }
 }
