@@ -4,6 +4,7 @@ import { AuthService } from '../util/auth.service';
 import { Router } from '@angular/router';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { RemovePlayerComponent } from '../dialogs/remove-player/remove-player.component';
+import { DataService } from '../util/data.service';
 //import { faCoffee } from '@fortawesome/free-solid-svg-core';
 
 @Component({
@@ -19,11 +20,13 @@ export class PitchComponent implements OnInit {
   constructor(private apiService: ApiServiceService, private auth: AuthService,
     private router: Router,
     private dialog: MatDialog,
+    private playerData: DataService,
     private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.showLoading = false;
     this.incomplete = true
+    console.log('team players ', this.teamPlayers)
   }
   completeTeam(){
     console.log(this.teamPlayers)
@@ -59,7 +62,9 @@ export class PitchComponent implements OnInit {
     }}).afterClosed().subscribe(p=>{
       if(p == 'remove'){
         let index = this.teamPlayers.indexOf(g)
-        this.teamPlayers.splice(g, 1); //remove player
+        //this.teamPlayers.splice(g, 1); //remove player
+        this.playerData.removePlayers(g);
+        this.teamPlayers = this.playerData.getPlayers()
         console.log(this.teamPlayers.length)
         this.ref.detectChanges();
       }

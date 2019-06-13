@@ -26,6 +26,7 @@ export class TeamComponent implements OnInit {
   attackers: String [];
   teams: String [];
   teamPlayers: String [];
+  testPlayers: String [];
   selected: Boolean;
   showLoading: Boolean;
 
@@ -38,6 +39,7 @@ export class TeamComponent implements OnInit {
     this.getAllPlayers()
     this.getTeams();
     this.teamPlayers =[];
+    this.testPlayers =[];
     this.selected = false;
     this.ref.detectChanges()
 
@@ -55,7 +57,7 @@ export class TeamComponent implements OnInit {
     })
   }
   selectTeam(t){
-    console.log('what is in t? ', t)
+
     this.apiService.getTeams('players', t).subscribe(resp=>{
       this.allPlayers = resp;
       this.filterByTeam(this.allPlayers)
@@ -124,17 +126,19 @@ export class TeamComponent implements OnInit {
   }
   selectPlayer(g){// select players to add to team
    if(this.teamPlayers.length>= 11){
-     console.log('team already full')
+    //  console.log('team already full')
 
    }else{
-    if(this.teamPlayers.indexOf(g)> -1){ //check if player is in team and start dialog to remove
-       console.log('already in team')
+    if(this.data.checkIfAlreadyInTeam(g)){ //check if player is in team and start dialog to remove
+      
       this.dialog.open(RemovePlayerComponent,{width: '350px', height: 'auto', data:{
         player: g
       }}).afterClosed().subscribe((p)=>{
        if(p == 'remove'){
-         let index = this.teamPlayers.indexOf(g)
-         this.teamPlayers.splice(g, 1); //remove player
+         let index = this.teamPlayers.indexOf(g);
+
+        //  this.teamPlayers.splice(g, 1); //remove player
+        //  this.data.removePlayers(g)
          console.log(this.teamPlayers.length)
          this.ref.detectChanges();
        }
@@ -143,7 +147,12 @@ export class TeamComponent implements OnInit {
 
 
     }else{
-      this.teamPlayers.push(g);
+      
+      this.data.addPlayers(g)
+      this.teamPlayers=this.data.getPlayers()
+     
+      // this.teamPlayers.push(me)
+   
     }
 
   }
@@ -153,7 +162,9 @@ export class TeamComponent implements OnInit {
 
   }
   checkIfPlayerisSelected(p){
-    if(this.teamPlayers.indexOf(p)> -1){
+    let team = this.data.getPlayers()
+    //if(this.teamPlayers.indexOf(p)> -1){
+      if(team.indexOf(p)>-1){
       return true;
     }else{
     return false;
