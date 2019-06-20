@@ -12,6 +12,7 @@
   background-image: url('../../assets/images/background.png');
   color: white;
   margin-bottom: 8px;
+  padding: 4px;
 
 }
 .column {
@@ -57,4 +58,15 @@ margin-right:2px;
 }
 .material-icons{
     color: red;
+}
+.money{
+    background-image: url('../../assets/images/background.png');
+    align-content: center;
+    margin-left: 2px;
+    text-align: center;
+    min-height: 50px;
+    padding: 4px;
+}
+.coins{
+    color:gold;
 }

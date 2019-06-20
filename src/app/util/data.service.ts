@@ -8,6 +8,7 @@ export class DataService {
   players: string ='players'
   userPlayers: any [] =[]
   userPlayerId: any []=[]
+   userBalance: Number
 
   constructor() { }
   addPlayers(player){
@@ -36,5 +37,14 @@ export class DataService {
       console.log('in team, remove')
      return true;
     }
+  }
+  setUserBalance(balance){
+
+  }
+  reduceUserBalance(amount){
+
+  }
+  addUserBalance(amount){
+
   }
 }

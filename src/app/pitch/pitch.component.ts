@@ -14,9 +14,11 @@ import { DataService } from '../util/data.service';
 })
 export class PitchComponent implements OnInit {
   @Input() teamPlayers: any [];
+  @Input()user: any [];
   showLoading: Boolean
   incomplete: Boolean
   buttonText: String
+  playerCount: Number
 
   constructor(private apiService: ApiServiceService, private auth: AuthService,
     private router: Router,
@@ -27,16 +29,20 @@ export class PitchComponent implements OnInit {
   ngOnInit() {
     this.showLoading = false;
     this.incomplete = true
-    console.log('team players ', this.teamPlayers);
-    this.buttonText ='incomplete'
+    //console.log('team players ', this.teamPlayers);
+    this.buttonText ='';
+    this.playerCount = this.teamPlayers.length
+    console.log('what us in user? ', this.user)
   }
   completeTeam(){
-    console.log(this.teamPlayers)
+    this.playerCount = this.teamPlayers.length
+    //this.ref.detectChanges()
+    return true;
 
   }
   complete(){
     if(this.playerData.getPlayers().length<=11){
-      this.incomplete = true
+      this.buttonText ='incomplete'
       return true
     }else{
       this.buttonText = 'submit'
@@ -44,6 +50,7 @@ export class PitchComponent implements OnInit {
       this.ref.detectChanges()
       return false
     }
+
     
   }
   submit(){

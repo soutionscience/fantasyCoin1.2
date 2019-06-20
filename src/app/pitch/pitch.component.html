@@ -5,16 +5,32 @@
 
     <div class="headings">
       <div class="columns">
-        <div class="column is-half">
-         <div class="box">
-           <p class="subtitle -3">100</p>
+        <div class="column is-one-quarter ">
+         <div class="money has-text-white">
+           <p>fantasy coins</p>
+           <p class="coins"> $ 100</p>
          </div>
         </div>
-        <div class="column is-half">
-            <div class="box">
-              <p class="subtitle -3">100</p>
-            </div>
+        <div class="column is-one-quarter">
+            <div class="money has-text-white">
+                <p>Players Selected</p>
+                <div>
+                  <span *ngIf="completeTeam()">{{playerCount}}/11</span>
+                  <!-- <p>/11</p> -->
+                </div>
+                
+              </div>
            </div>
+           <div class="column is-one-quarter ">
+              <div class="money has-text-white">
+               <button class="button">Reset</button>
+                </div>
+           </div>
+           <div class="column is-one-quarter">
+               <div class="box has-background-danger" >
+                 <p class="subtitle -3 has-text-white">100</p>
+               </div>
+              </div>
 
       </div>
     </div>
@@ -61,9 +77,10 @@
 
 </div>
 <div class="column">
-    <button class="button is-large is-fullwidth is-half is-primary" (click)="submit()" [disabled]="complete()" [ngClass]="{'is-loading': showLoading}">
+    <button class="button is-large is-fullwidth is-half is-primary" (click)="submit()"
+     [ngClass]="{'is-loading': showLoading}">
 
-      <span>{{buttonText}}</span>
+      <span>Submit</span>
     </button>
 
 </div>
