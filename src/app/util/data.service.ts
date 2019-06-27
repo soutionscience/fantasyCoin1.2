@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TokenService } from './token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class DataService {
   userPlayerId: any []=[]
    userBalance: Number
 
-  constructor() { }
+  constructor(private tokenService: TokenService) { }
   addPlayers(player){
     this.userPlayers.push(player)
     this.userPlayerId.push(player._id)
@@ -39,6 +40,8 @@ export class DataService {
     }
   }
   setUserBalance(balance){
+  this.tokenService.getTokenBalance('takatak')
+  .subscribe()
 
   }
   reduceUserBalance(amount){

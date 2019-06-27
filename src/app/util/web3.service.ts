@@ -3,6 +3,7 @@ import contract from 'truffle-contract';
 import {Subject, Observable, observable} from 'rxjs';
 import { Factory, League } from '../shared/address';
 import { ObserversModule } from '@angular/cdk/observers';
+import { TokenService } from './token.service';
 
 declare let require: any;
 const Web3 = require('web3');
@@ -75,6 +76,7 @@ if(myaccount){
        console.log('responce has ',newAccount, ' and accounts ', myaccount)
       if(newAccount !== myaccount){
         console.log('reload page')
+        //this.tokenService.getTokenBalance(myaccount).subscribe()
         window.location.reload()
       }
     });

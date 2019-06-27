@@ -28,10 +28,11 @@ import { AuthGuard } from './auth.guard';
 import { PitchComponent } from './pitch/pitch.component';
 import { BetaComponent } from './dialogs/beta/beta.component';
 import { WarningBetaComponent } from './dialogs/warning-beta/warning-beta.component';
+import { LoadingComponent } from './dialogs/loading/loading.component';
 
 @NgModule({
   declarations: [ RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
-    LoginMetamaskComponent, InstallMetamaskComponent, BetaComponent, WarningBetaComponent],
+    LoginMetamaskComponent, InstallMetamaskComponent, BetaComponent, WarningBetaComponent, LoadingComponent],
   imports: [
     BrowserAnimationsModule,
     CommonModule,

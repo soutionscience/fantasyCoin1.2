@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { RemovePlayerComponent } from '../dialogs/remove-player/remove-player.component';
 import { DataService } from '../util/data.service';
+import { TokenService } from '../util/token.service';
 //import { faCoffee } from '@fortawesome/free-solid-svg-core';
 
 @Component({
@@ -18,12 +19,14 @@ export class PitchComponent implements OnInit {
   showLoading: Boolean
   incomplete: Boolean
   buttonText: String
-  playerCount: Number
+  playerCount: Number;
+  tokenCount: Number
 
   constructor(private apiService: ApiServiceService, private auth: AuthService,
     private router: Router,
     private dialog: MatDialog,
     private playerData: DataService,
+    private tokenService: TokenService,
     private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
@@ -31,8 +34,17 @@ export class PitchComponent implements OnInit {
     this.incomplete = true
     //console.log('team players ', this.teamPlayers);
     this.buttonText ='';
-    this.playerCount = this.teamPlayers.length
-    console.log('what us in user? ', this.user)
+    this.playerCount = this.teamPlayers.length;
+    this.getTokenCount()
+    console.log('token count ', this.tokenCount)
+   
+  }
+  getTokenCount(){
+    let userAddress = this.auth.getUserAdress()
+     this.tokenService.getTokenBalance(userAddress)
+     .subscribe(resp=>this.tokenCount = resp);
+     this.ref.detectChanges();
+    
   }
   completeTeam(){
     this.playerCount = this.teamPlayers.length
@@ -75,6 +87,7 @@ export class PitchComponent implements OnInit {
       if(p == 'remove'){
         let index = this.teamPlayers.indexOf(g)
         //this.teamPlayers.splice(g, 1); //remove player
+        this.tokenService.addTokenCount(g.now_cost)
         this.playerData.removePlayers(g);
         this.teamPlayers = this.playerData.getPlayers()
         console.log(this.teamPlayers.length)

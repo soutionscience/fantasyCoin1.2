@@ -6,6 +6,7 @@ import { ApiServiceService } from '../../util/api-service.service';
 import { User } from '../../shared/user.model'
 import { AuthService } from '../../util/auth.service';
 import { Router } from '@angular/router';
+import { TokenService } from '../../util/token.service';
 
 
 @Component({
@@ -31,10 +32,13 @@ export class CreateAccountComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private ref: ChangeDetectorRef,
-    private zone: NgZone) { }
+    private zone: NgZone, 
+    private tokenService: TokenService) { }
+
+    // called when user has account but is not signed in
 
   ngOnInit() {
-
+    // console.log('hitting  create account')
     this.showForm = true;
     this.showLoading = true;
     this.showSignIn= false;
@@ -65,6 +69,8 @@ export class CreateAccountComponent implements OnInit {
   close(){
     this.dialogRef.close()
   }
+
+  // form for creatring new account
   createForm(){
     this.CreatAccountForm =this.fb.group({
       email: ['', [Validators.email, Validators.required]],
@@ -72,12 +78,12 @@ export class CreateAccountComponent implements OnInit {
     })
 
   }
-  getBaseAccount(){
-    console.log('base account')
+// gets base accoun and determins which form to show to user 
+getBaseAccount(){
+ 
  this.web3Service.getCoinBase()
 .subscribe(resp=>{
    this.AccountId = resp;
-   console.log('base account ', this.AccountId)
    this.checkifRegister(this.AccountId)
   
 })
@@ -90,7 +96,7 @@ export class CreateAccountComponent implements OnInit {
     this.CreatAccountForm.value.address = this.AccountId;
     this.apiService.postResource('users', this.CreatAccountForm.value)
    .subscribe(resp=>{
-     console.log('resp from server ', resp)
+     //console.log('resp from server ', resp)
      this.user = resp
      this.showCreate = false;
      this.showSignIn = true;
@@ -98,26 +104,28 @@ export class CreateAccountComponent implements OnInit {
    })
   }
   signIn(){
-    // this.apiService.getSpecificResource('auth', this.AccountId)
-    // .subscribe(resp=>{
+// signs user in with new Authtoken
     console.log('reso from server ', this.user)
       this.web3Service.signTransaction(this.user)
       .subscribe(resp=>{
         console.log('signed by ', resp.account);
-      
         this.apiService.getTokenResource('auth', this.AccountId, resp.sign, resp.nonce )
         .subscribe(resp=>{
-          
-         this.authService.setToken(resp.token, resp.userName, resp.userId, resp, resp.address)
-         // use zone to take care of issue with ngOninit not firring after navigate
+        this.authService.setToken(resp.token, resp.userName, resp.userId, resp, resp.address);
+        this.tokenService.getTokenBalance(this.AccountId).subscribe(resp=>{
+          this.showLoading = true;
+          console.log('responce ni ', resp);
+             // use zone to take care of issue with ngOninit not firring after navigate
         this.zone.run(()=>this.router.navigateByUrl('/teams'))// use 
+        })
+      
         })
      
     })
     this.dialogRef.close()
   }
   checkifRegister(id){
-    console.log('checking if registed', this.AccountId)
+    //console.log('checking if registed', this.AccountId)
     this.apiService.getSpecificResource('users', id)
     .subscribe(resp=>{
       this.showLoading= false

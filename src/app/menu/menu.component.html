@@ -71,10 +71,10 @@
           </p> -->
           <p class="control">
             <a class="button is-primary" >
-              <span class="icon">
+              <!-- <span class="icon">
                 <i class="fas fa-user"></i>
-              </span>
-              <span *ngIf="accountBal">Welcome: {{user}} </span>
+              </span> -->
+              <span *ngIf="authService.isLoggedIn()">Welcome: {{userName}} | {{tokenService.getTokenCount()}} fantasy coins</span>
             </a>
           </p>
           <p class="control">

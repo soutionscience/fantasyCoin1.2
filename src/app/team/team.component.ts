@@ -7,6 +7,7 @@ import { RemovePlayerComponent } from '../dialogs/remove-player/remove-player.co
 import { Route } from '@angular/router';
 import { DataService } from '../util/data.service';
 import { MatSnackBar } from '@angular/material';
+import { TokenService } from '../util/token.service';
 
 @Component({
   selector: 'app-team',
@@ -34,7 +35,8 @@ export class TeamComponent implements OnInit {
   constructor(private apiService: ApiServiceService,
   private ref: ChangeDetectorRef, private dialog:MatDialog,
   private data: DataService,
-  private matSnackBar: MatSnackBar) { }
+  private matSnackBar: MatSnackBar,
+  private tokenService: TokenService) { }
   ngOnInit (){
     console.log('init')
     this.showLoading = true;
@@ -140,8 +142,12 @@ export class TeamComponent implements OnInit {
        if(p == 'remove'){
          let index = this.teamPlayers.indexOf(g);
 
-        //  this.teamPlayers.splice(g, 1); //remove player
-        //  this.data.removePlayers(g)
+         //this.teamPlayers.splice(index, 1); //remove player
+          
+        this.data.removePlayers(g)
+        this.tokenService.addTokenCount(g.now_cost);
+        this.teamPlayers=this.data.getPlayers()
+     
          console.log(this.teamPlayers.length)
          this.ref.detectChanges();
        }
@@ -150,7 +156,8 @@ export class TeamComponent implements OnInit {
 
 
     }else{
-      
+      console.log('now costs ', g)
+       this.tokenService.reduceTokenCount(g.now_cost)
       this.data.addPlayers(g)
       this.teamPlayers=this.data.getPlayers()
      

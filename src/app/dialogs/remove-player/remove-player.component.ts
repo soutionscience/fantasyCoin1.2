@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, Output, EventEmitter} from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DataService } from '../../util/data.service';
+import { TokenService } from '../../util/token.service';
 // import { EventEmitter } from 'events';
 
 @Component({
@@ -16,7 +17,8 @@ export class RemovePlayerComponent implements OnInit {
 
   constructor(private dialogRef: MatDialogRef<RemovePlayerComponent>,
     @Inject(MAT_DIALOG_DATA)public data: any,
-    private teamData: DataService) { }
+    private teamData: DataService,
+    private tokenService: TokenService) { }
 
   ngOnInit() {
     console.log('what is this> ', this.data.player)
