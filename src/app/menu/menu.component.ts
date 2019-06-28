@@ -22,7 +22,7 @@ export class MenuComponent implements OnInit {
     .subscribe(resp=>{
       this.accountBal = this.tokenService.getTokenCount();
 
-    console.log('account balance ', this.accountBal)
+    //console.log('account balance ', this.accountBal)
 
     })
   

@@ -22,7 +22,7 @@ export class CreateAccountComponent implements OnInit {
   showLoading: Boolean
   showCreate: Boolean;
   registered: Boolean;
-  user:User[];
+  user:User[]
 
 
   constructor(private dialogRef: MatDialogRef<CreateAccountComponent>,

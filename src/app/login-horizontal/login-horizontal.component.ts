@@ -30,17 +30,17 @@ export class LoginHorizontalComponent implements OnInit {
     this.web3Service.checkMetamask(this.coinBase)
     .subscribe(resp=>{
     if(resp ==1){
-        console.log('web3 installed but not unlocked')
+        //console.log('web3 installed but not unlocked')
         this.dialog.open(UnlockMetamaskComponent)
       }
       if(resp == 2){
-        console.log('web3 installed and unlocked');
+       // console.log('web3 installed and unlocked');
         // this.dialog.open(CreateAccountComponent, {width: '350px', height: 'auto'})
         this.dialog.open(CreateAccountComponent, {width: '350px', height: 'auto'})
   
       }
       if(resp== 3){
-        console.log('web3 not installed!!')
+      //  console.log('web3 not installed!!')
         this.dialog.open(InstallMetamaskComponent, {width: '600px' , height: 'auto'})
        
       }
@@ -50,19 +50,19 @@ export class LoginHorizontalComponent implements OnInit {
   
   getCoinBase(){
  this.web3Service.getCoinBase().subscribe(resp=> this.coinBase = resp)
- console.log('coin base is ',this.coinBase)
+// console.log('coin base is ',this.coinBase)
 }
 
 checkIfToDisplayButton(){
   this.web3Service.checkMetamask(this.coinBase)
     .subscribe(resp=>{
     if(this.authService.isLoggedIn() ){ //web 3 installed unlocked and token key present
-      console.log('user is singed in ')  
+      //console.log('user is singed in ')  
       this.showButton = false
 
       }
      else{
-       console.log('not signed in ', resp )
+       //console.log('not signed in ', resp )
         this.showButton = true;
       }
     })

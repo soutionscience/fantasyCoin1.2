@@ -1,0 +1,105 @@
+<div class="feedback">
+  <div class="container">
+    
+    <div class="box">
+        <section class="hero is-link">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                 Feedback / Comments
+                </h1>
+                <h2 class="subtitle">
+                  Your feedback is very important to us
+                </h2>
+              </div>
+            </div>
+          </section>
+    </div>
+    <div class="columns">
+      <div class="column is-half">
+        <div class="box myform">
+            <div class="spinner button is-loading is-large is-link" *ngIf="showLoading"></div>
+            <div class="thank-you" *ngIf="showThankYou"><p class="text">Thank you for your feedback {{feedback.username}}</p>
+            <div class="done">
+              <button class="button is-link" (click)="done()">done</button>
+            </div></div>
+          <form class="form" [formGroup]="feedbackForm" *ngIf="showForm">
+              <div class="field">
+                  <label class="label">username</label>
+                  <div class="control">
+                    <input class="input" type="text" placeholder="Text input" formControlName="username">
+                  </div>
+                </div>
+                 <div *ngIf="!auth.isLoggedIn" class="field">
+                  <label class="label">Email</label>
+                  <div class="control has-icons-left has-icons-right">
+                    <input class="input" type="email" placeholder="Email input" formControlName="email">
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-envelope"></i>
+                    </span>
+                    <span class="icon is-small is-right">
+                      <i class="fas fa-exclamation-triangle"></i>
+                    </span>
+                  </div>
+                  
+                </div>
+                
+                <div class="field">
+                    <label class="label">Subject</label>
+                    <div class="control has-icons-left has-icons-right">
+                      <input class="input is-success" type="text" placeholder="Text input" formControlName="title">
+                      <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                      </span>
+                      <span class="icon is-small is-right">
+                        <i class="fas fa-check"></i>
+                      </span>
+                    </div>
+                   
+                  </div>
+                
+                <div class="field">
+                  <label class="label">Message</label>
+                  <div class="control">
+                    <textarea class="textarea" placeholder="Textarea" formControlName="message"></textarea>
+                  </div>
+                </div>
+                
+                <!-- <div class="field">
+                  <div class="control">
+                    <label class="checkbox">
+                      <input type="checkbox">
+                      I agree to the <a href="#">terms and conditions</a>
+                    </label>
+                  </div>
+                </div> -->
+              <div class="field is-grouped">
+                  <div class="control">
+                    <button class="button is-link" (click)="submit()">Submit</button>
+                  </div>
+                  <!-- <div class="control">
+                    <button class="button is-text">Cancel</button>
+                  </div> -->
+                </div>
+
+          </form>
+          
+            </div>
+        </div>
+        
+    
+      <div class="column">
+        
+          <div *ngIf="showOffer" class="notification is-danger">
+              <button class="delete" (click) = "close()">close</button>
+              <strong>Earn</strong> Fantasy coins by giving us feedback!!<br/>
+              we are commited to making sure you have the best experience using our platform. <br/>
+              During the <strong>Beta</strong> stage we will rewarding our users for giving us contructive
+              feedback about their experience using this platform, bugs and features they want added.
+
+
+            </div>
+      </div>
+    </div>
+  </div>
+

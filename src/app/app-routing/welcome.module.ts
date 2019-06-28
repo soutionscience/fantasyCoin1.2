@@ -19,7 +19,8 @@ const routes : Routes =[{
     {path: 'leagues', loadChildren: './leagues.module#LeaguesModule', canActivate:[AuthGuard]},
    {path: 'compe', loadChildren: './compe.module#CompeModule'},
    {path: 'my-team', loadChildren: './user-team-page.module#UserTeamPageModule'},
-   {path: 'login', loadChildren:'./login.module#LoginModule'}
+   {path: 'login', loadChildren:'./login.module#LoginModule',},
+   {path: 'feedback', loadChildren: './feedback.module#FeedbackModule'}
   ]
 }
 

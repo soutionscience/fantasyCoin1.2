@@ -73,9 +73,9 @@ if(myaccount){
     myaccount = myaccount.toLowerCase()
     this.web3.currentProvider.publicConfigStore.on('update', function(responce){
       let newAccount = responce.selectedAddress;
-       console.log('responce has ',newAccount, ' and accounts ', myaccount)
+       //console.log('responce has ',newAccount, ' and accounts ', myaccount)
       if(newAccount !== myaccount){
-        console.log('reload page')
+      //  console.log('reload page')
         //this.tokenService.getTokenBalance(myaccount).subscribe()
         window.location.reload()
       }
@@ -87,7 +87,7 @@ if(myaccount){
     return Observable.create(observer=>{
       if(typeof window.web3 !== 'undefined'){ //web 3 installed
       
-        console.log('what is in accounts? ', account)
+        //console.log('what is in accounts? ', account)
 
         if(account){ // if account is unlocked return 2
 
@@ -110,7 +110,7 @@ if(myaccount){
 
   }
   getCoinBase():Observable<any>{
-    console.log('calling get accounts')
+   // console.log('calling get accounts')
     return Observable.create(observer=>{
       this.web3.eth.getAccounts((err, resp)=>{
         if(err) observer.next(err)
@@ -130,10 +130,10 @@ web3.eth.getAccounts((err, resp)=>{
 
  signTransaction(nonce):Observable<any>{
   // nounce= this.web3.utils.toHex( nounce.challenge)
-  console.log('received ', nonce)
+ // console.log('received ', nonce)
 
   let nonceValue = nonce.nonce
-  console.log('signing nounce ', nonceValue)
+//  console.log('signing nounce ', nonceValue)
 
   let from = this.account
   
@@ -146,7 +146,7 @@ web3.eth.getAccounts((err, resp)=>{
       if(err){ console.log('error signing the token');
             observer.next(err)}
             else{
-              console.log('SIGNED ', result)
+             // console.log('SIGNED ', result)
               let signedObject={
                 nonce: nonceValue,
                 sign: result
@@ -164,7 +164,7 @@ web3.eth.getAccounts((err, resp)=>{
    let instance;
    let abi =contractJson.abi;
    instance = new this.web3.eth.Contract(abi, addr);
-   console.log("TCL: createContractInstance -> instance ", instance )
+   //console.log("TCL: createContractInstance -> instance ", instance )
    return instance
 }
 // all depolyed getLeagues
@@ -193,7 +193,7 @@ getAllLeagues(account, addr, gasToUse):Observable<any>{
 }
 //get all comeptions in this weeks league
 getAllCompetions(account, addr, gasToUse):Observable<any>{
-  console.log('getting')
+
   return Observable.create(observer=>{
     let instance = this.createContractInstance(addr, leagueJson);
     let transactionObject = {
@@ -204,9 +204,9 @@ getAllCompetions(account, addr, gasToUse):Observable<any>{
     instance.methods.getCompetitionCount().call(transactionObject,(err, result)=>{
       if(err) throw err;
       if(result<1){
-        console.log('no competitions in this league', result)
+        //console.log('no competitions in this league', result)
       }else{
-        console.log('number of competioins is ', result)
+        //console.log('number of competioins is ', result)
         for (let index = 0; index < result; index++) {
 				
           
@@ -252,11 +252,11 @@ joinCompe(acc, gas, compeId):Observable<any>{
     }
     let instance = this.createContractInstance(compeId, compeJson);
     instance.methods.joinCompetition().send(transactionObject, (err, resp)=>{
-      console.log('this works ', compeId)
+     // console.log('this works ', compeId)
       if(err) {
         observer.error(err)
       }else{
-        console.log('this also works')
+      //  console.log('this also works')
      observer.next(resp);
      observer.complete()
       }
