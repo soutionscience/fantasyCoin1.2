@@ -23,7 +23,7 @@
            </div>
            <div class="column is-one-quarter ">
               <div class="money has-text-white">
-               <button class="button">Reset</button>
+               <button class="button" (click)="reset()">Reset</button>
                 </div>
            </div>
            <div class="column is-one-quarter">
@@ -77,8 +77,10 @@
 
 </div>
 <div class="column">
-    <button class="button is-large is-fullwidth is-half is-primary" (click)="submit()"
-     [ngClass]="{'is-loading': showLoading}">
+    <button 
+    class="button is-large is-fullwidth is-half is-primary" (click)="submit()"
+     [ngClass]="{'is-loading': showLoading}"
+     [disabled]="!tokenService.enoughTokens() || playerData.checkTeamsize()">
 
       <span>Submit</span>
     </button>

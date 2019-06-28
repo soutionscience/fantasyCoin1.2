@@ -28,7 +28,7 @@ export class TokenService {
          observer.next(err)
         }else{
          this.userBalance = resp;
-         console.log("TCL: TokenService -> constructor -> resp", resp)
+         
          
          observer.next(resp);
          observer.complete()
@@ -38,18 +38,26 @@ export class TokenService {
  
   }
   getTokenCount(){
-    console.log('found token count ', this.userBalance)
+   
     return this.userBalance
   }
   removeTokenCount(){
     this.userBalance =0;
   }
   reduceTokenCount(playerCost){
-    console.log('player cost ', playerCost)
+    
     this.userBalance= this.userBalance- playerCost
   }
   addTokenCount(playerCost){
     this.userBalance = this.userBalance + playerCost
+  }
+  enoughTokens(){
+    // console.log('is it enough?, ', this.userBalance)
+    if(this.userBalance < 0){
+      return false;
+    }else{
+      return true;
+    }
   }
 
 }

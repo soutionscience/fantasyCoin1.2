@@ -148,7 +148,7 @@ export class TeamComponent implements OnInit {
         this.tokenService.addTokenCount(g.now_cost);
         this.teamPlayers=this.data.getPlayers()
      
-         console.log(this.teamPlayers.length)
+       
          this.ref.detectChanges();
        }
 

@@ -18,6 +18,8 @@ export class DataService {
     //localStorage.setItem(this.players, JSON.stringify(this.userPlayers));
   }
   getPlayers(){
+    console.log('team size', this.userPlayers.length)
+    console.log('user player ', this.userPlayers)
     return this.userPlayers
   }
   removePlayers(id){
@@ -44,10 +46,15 @@ export class DataService {
   .subscribe()
 
   }
-  reduceUserBalance(amount){
-
+  checkTeamsize(){
+    if(this.userPlayers.length=11){
+      return true
+    }else{
+      return false;
+    }
   }
-  addUserBalance(amount){
-
+  reset(){
+    this.userPlayers = [];
   }
+  
 }

@@ -21,6 +21,9 @@ export class ApiServiceService {
   postResource(apiRoute, team): Observable<any[]>{
    return this.restangular.all(apiRoute).post(team);
   }
+  // postSpecific(apiRoute, resource, item): Observable<any[]>{
+  //   return this.restangular.one(apiRoute, resource).post()
+  // }
   postUserTeam(apiRoute, LeagueEtherId:string, item, message):Observable<any[]>{
      return this.restangular.one(apiRoute, LeagueEtherId).all(item).post(message)
   

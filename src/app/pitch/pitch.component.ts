@@ -68,13 +68,18 @@ export class PitchComponent implements OnInit {
   submit(){
     this.showLoading = true;
     let userId = this.auth.getUserId();
-    console.log('user id ', userId)
-   this.apiService.postUserTeam('users', userId, 'players', this.teamPlayers).subscribe(resp=>{
-     this.showLoading = false;
-     this.router.navigate(['/leagues'])
-
-
-   })
+    console.log('user id ', userId);
+    let tokenCount = this.tokenService.getTokenCount()
+    this.apiService.postUserTeam('users', userId, 'coins', {amount: tokenCount} ).subscribe(resp=>
+      {
+        this.apiService.postUserTeam('users', userId, 'players', this.teamPlayers).subscribe(resp=>{
+          this.showLoading = false;
+          this.router.navigate(['/leagues'])
+     
+     
+        })
+      })
+ 
 
 
 
@@ -95,6 +100,9 @@ export class PitchComponent implements OnInit {
       }
     })
     
+  }
+  reset(){
+    this.playerData.reset()
   }
 
 }
