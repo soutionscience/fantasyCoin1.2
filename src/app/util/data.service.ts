@@ -9,7 +9,7 @@ export class DataService {
   players: string ='players'
   userPlayers: any [] =[]
   userPlayerId: any []=[]
-   userBalance: Number
+  userBalance: Number
 
   constructor(private tokenService: TokenService) { }
   addPlayers(player){
@@ -18,8 +18,7 @@ export class DataService {
     //localStorage.setItem(this.players, JSON.stringify(this.userPlayers));
   }
   getPlayers(){
-    console.log('team size', this.userPlayers.length)
-    console.log('user player ', this.userPlayers)
+  
     return this.userPlayers
   }
   removePlayers(id){
@@ -47,7 +46,7 @@ export class DataService {
 
   }
   checkTeamsize(){
-    if(this.userPlayers.length=11){
+    if(this.userPlayers.length==11){
       return true
     }else{
       return false;

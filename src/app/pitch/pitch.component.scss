@@ -45,7 +45,7 @@ margin-right:2px;
     width: 100%;
 }
 .points{
-    background: blue;
+    background-image: url('../../assets/images/background.png');
     color: white;
     padding: 0px;
     text-align: center;
@@ -69,4 +69,16 @@ margin-right:2px;
 }
 .coins{
     color:gold;
+    background-image: url('../../assets/images/background.png');
+}
+.card-footer-item{
+    min-width: 4px;
+}
+.card-footer{
+background-image: url('../../assets/images/background.png');
+}
+.lable{
+    background: white;
+    color:black;
+    font-weight: bold;
 }

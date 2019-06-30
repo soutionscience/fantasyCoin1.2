@@ -17,10 +17,11 @@ const routes : Routes =[{
     {path: '', loadChildren:'./home.module#HomeModule'},
     {path: 'teams', loadChildren: './team.module#TeamModule'},
     {path: 'leagues', loadChildren: './leagues.module#LeaguesModule', canActivate:[AuthGuard]},
-   {path: 'compe', loadChildren: './compe.module#CompeModule'},
+   {path: 'transfers', loadChildren: './transfer.module#TransferModule'},
    {path: 'my-team', loadChildren: './user-team-page.module#UserTeamPageModule'},
    {path: 'login', loadChildren:'./login.module#LoginModule',},
-   {path: 'feedback', loadChildren: './feedback.module#FeedbackModule'}
+   {path: 'feedback', loadChildren: './feedback.module#FeedbackModule'},
+   {path: 'rankings', loadChildren: './ranking.module#RankingModule'}
   ]
 }
 

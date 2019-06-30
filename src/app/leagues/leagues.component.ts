@@ -10,12 +10,13 @@ import { AuthService } from '../util/auth.service';
   styleUrls: ['./leagues.component.scss']
 })
 export class LeaguesComponent implements OnInit {
- coinBase: string;
- leagueAddress: string;
- gas: string = '1000000'
- showLoading: boolean;
- competitions: string  [];
- noCompetitions: string;
+ coinBase: String;
+ leagueAddress: String;
+ gas: String = '1000000'
+ competitions: String  [];
+ noCompetitions: String;
+ showLoading: Boolean;
+ dissabled: Boolean
  
 
   constructor(private web3Service: Web3Service, 
@@ -23,9 +24,11 @@ export class LeaguesComponent implements OnInit {
     private auth: AuthService) { }
 
   ngOnInit() {
-    // this.showLoading = true
+    this.showLoading =false
+    this.dissabled = false
     this.competitions =[];
     this.initAllCompetitons();
+    this.coinBase = this.auth.getUserAdress()
     
   
   }
@@ -41,11 +44,8 @@ export class LeaguesComponent implements OnInit {
 
 
 joinCompe(index){
-  //   this.web3Service.joinCompe(this.coinBase,this.gas, index)
-  //   .subscribe(resp=> console.log('successfully joined league ',resp))
-
-  // }
-  console.log('posting to league ', index)
+  this.showLoading = true;
+  this.dissabled = true
   this.api.postUserTeam('competitions', index, 'teams', {"userId": this.auth.getUserId()})
   .subscribe(resp=>{
     console.log('entered competitions ', resp);

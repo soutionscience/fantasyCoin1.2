@@ -66,8 +66,10 @@
                 <p class="name">{{p.web_name}}</p>
                 </footer>
               <footer class="card-footer">
-                <p class="card-footer-item">points:</p>
+                <p class="card-footer-item lable">points:</p>
                 <p class="card-footer-item points">{{p.pointsWeek}}</p>
+                <p class="card-footer-item lable">costs</p>
+                <p class="card-footer-item coins">${{p.now_cost}}</p>
   
                 </footer>
       </div>
@@ -80,7 +82,7 @@
     <button 
     class="button is-large is-fullwidth is-half is-primary" (click)="submit()"
      [ngClass]="{'is-loading': showLoading}"
-     [disabled]="!tokenService.enoughTokens() || playerData.checkTeamsize()">
+     [disabled]="!tokenService.enoughTokens() || !playerData.checkTeamsize()">
 
       <span>Submit</span>
     </button>

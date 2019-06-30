@@ -129,6 +129,7 @@ export class TeamComponent implements OnInit {
 
   }
   selectPlayer(g){// select players to add to team
+    let length  = this.data.getPlayers()
    if(this.data.getPlayers().length>= 11){
       console.log('team already full');
       this.setStatus('you have already selected 11 players')

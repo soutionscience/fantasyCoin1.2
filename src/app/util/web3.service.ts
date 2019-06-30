@@ -244,9 +244,10 @@ getAllCompetions(account, addr, gasToUse):Observable<any>{
 
 
 joinCompe(acc, gas, compeId):Observable<any>{
+  console.log('acc ', acc)
   return Observable.create(observer=>{
     let transactionObject={
-      from: account,
+      from: acc,
       gas: gas
 
     }
