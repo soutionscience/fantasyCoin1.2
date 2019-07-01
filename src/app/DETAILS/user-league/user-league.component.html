@@ -1,3 +1,23 @@
-<p>
-  user-league works!
-</p>
+<div class="user-league">
+  <div class="box">
+    <p class="subtitle">weekendLeague</p>
+   <table class="table">
+  <thead>
+       <tr>
+         <th>#</th>
+         <th>Username</th>
+         <th>Points</th>
+         <!-- <th>teamCost</th> -->
+       </tr>
+     </thead>
+     <tbody>
+      
+    <tr *ngFor="let users of league.teams; let i = index" [ngClass]="{'is-selected': users._id == auth.getUserId()}">
+      <td>{{i+1}}</td>
+       <td>{{users.username}}</td>
+       <td>{{users.teamPoints}}</td>
+    </tr>
+     </tbody>
+   </table>
+  </div>
+</div>

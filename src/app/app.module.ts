@@ -28,6 +28,7 @@ import { AuthGuard } from './auth.guard';
 import { PitchComponent } from './pitch/pitch.component';
 import { BetaComponent } from './dialogs/beta/beta.component';
 import { WarningBetaComponent } from './dialogs/warning-beta/warning-beta.component';
+import { UserLeagueComponent } from './DETAILS/user-league/user-league.component';
 //import { LoadingComponent } from './dialogs/loading/loading.component';
 //import { BuyMoreComponent } from './dialogs/buy-more/buy-more.component';
 
@@ -54,6 +55,7 @@ import { WarningBetaComponent } from './dialogs/warning-beta/warning-beta.compon
   providers: [Web3Service, AuthService, AuthGuard],
   entryComponents: [RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
      LoginMetamaskComponent, InstallMetamaskComponent, WarningBetaComponent],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [AppComponent]
 })
 export class AppModule { }

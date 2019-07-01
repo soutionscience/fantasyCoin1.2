@@ -11,12 +11,13 @@ import { AuthGuard } from '../auth.guard';
 import { PitchComponent } from '../pitch/pitch.component';
 import { TeamModule } from './team.module';
 import { FooterComponent } from '../footer/footer.component';
+import { UserLeagueComponent } from '../DETAILS/user-league/user-league.component';
 
 const routes : Routes =[{
   path: '', component: WelcomeComponent, children:[
-    {path: '', loadChildren:'./home.module#HomeModule'},
-    {path: 'teams', loadChildren: './team.module#TeamModule'},
-    {path: 'leagues', loadChildren: './leagues.module#LeaguesModule', canActivate:[AuthGuard]},
+   {path: '', loadChildren:'./home.module#HomeModule'},
+   {path: 'teams', loadChildren: './team.module#TeamModule'},
+   {path: 'leagues', loadChildren: './leagues.module#LeaguesModule', canActivate:[AuthGuard]},
    {path: 'transfers', loadChildren: './transfer.module#TransferModule'},
    {path: 'my-team', loadChildren: './user-team-page.module#UserTeamPageModule'},
    {path: 'login', loadChildren:'./login.module#LoginModule',},

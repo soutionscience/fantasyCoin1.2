@@ -16,6 +16,7 @@
                       <th>Competion</th>
                       <th>Prize</th>
                       <th>Players</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody *ngIf="noCompetitions">{{noCompetitions}}</tbody>
@@ -24,7 +25,15 @@
                       <td>{{c.name}}</td>
                       <td>{{c.prizeMoney}} Fantasy Coins</td>
                       <td>{{c.playerCount}}/{{c.maxPlayers}}</td>
-                      <td><button class="button is-primary" (click)="joinCompe(c.etherId)">Join</button></td>
+                      <td class="field is-grouped"> <div class="control">
+                          <button class="button is-primary" (click)="joinCompe(c.etherId)" [disabled]= "checkIfJoined(i)">{{joinButtonText}}</button>
+                      </div>
+                        <div class="control">
+                            <button class="button is-link" *ngIf="checkIfJoined(i)" (click)="view(c._id)">View</button>
+                        </div>
+                        
+                      </td>
+                      <td></td>
                     </tr>
                   </tbody>
               </table>
@@ -38,6 +47,15 @@
       </div>
      
     </div>
+    <div class="columns">
+      <div class="column is-one-quarter">
+          <div class="user-league">
+              <app-user-league [league]="leagueTeam" *ngIf="leagueTeam"></app-user-league>
+          </div>
+      </div>
+    </div>
+
   </div>
+
 
 </div> 

@@ -17,6 +17,7 @@ export class InstallMetamaskComponent implements OnInit {
 
   ngOnInit() {
     this.detect()
+    console.log('what is button link? ', this.buttonLink)
   }
   detect(){
     let browser;

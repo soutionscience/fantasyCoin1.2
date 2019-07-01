@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TokenService } from './token.service';
+import { ApiServiceService } from './api-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class DataService {
   userPlayerId: any []=[]
   userBalance: Number
 
-  constructor(private tokenService: TokenService) { }
+  constructor(private tokenService: TokenService, private api: ApiServiceService) { }
   addPlayers(player){
     this.userPlayers.push(player)
     this.userPlayerId.push(player._id)

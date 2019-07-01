@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { AuthService } from '../../util/auth.service';
 
 @Component({
   selector: 'app-user-league',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-league.component.scss']
 })
 export class UserLeagueComponent implements OnInit {
+  @Input() league: String [];
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit() {
+    console.log('leagues ', this.league)
+    console.log('authSerive ', this.auth.getUserId())
   }
 
 }
