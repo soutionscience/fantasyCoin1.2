@@ -28,6 +28,10 @@ export class ApiServiceService {
      return this.restangular.one(apiRoute, LeagueEtherId).all(item).post(message)
   
   }
+  getUserTeam(apiRoute, LeagueEtherId:string, item):Observable<any[]>{
+    return this.restangular.one(apiRoute, LeagueEtherId).all(item).getList()
+
+  }
   
   getSpecificResource(apiRoute, id): Observable<any[]>{
     return this.restangular.one(apiRoute, id).get()

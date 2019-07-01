@@ -10,7 +10,8 @@ export class DataService {
   players: string ='players'
   userPlayers: any [] =[]
   userPlayerId: any []=[]
-  userBalance: Number
+  userBalance: Number;
+  userTeam: String [];
 
   constructor(private tokenService: TokenService, private api: ApiServiceService) { }
   addPlayers(player){
@@ -55,6 +56,14 @@ export class DataService {
   }
   reset(){
     this.userPlayers = [];
+  }
+
+  // transfers
+
+  setUserTeam(team){
+    this.userTeam =  team;
+    console.log('my team ', this.userTeam)
+
   }
   
 }
