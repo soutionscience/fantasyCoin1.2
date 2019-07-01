@@ -1,3 +1,58 @@
 .transfer{
     color: black
 }
+.name{
+    background: rgb(35, 209, 96);
+    color: white;
+    padding: 0px;
+    text-align: center;
+    width: 100%;
+}
+.points{
+   
+    color: white;
+    padding: 0px;
+    text-align: center;
+}
+.details{
+    // margin: 4px;
+    // padding: 4px;
+    // padding: 2px;
+    border: rgb(160, 158, 158) solid 1px
+}
+.card-image{
+    padding: 4px;
+    text-align: center;
+    padding-left: 25%;
+}
+.card-footer-item{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.players{
+    text-align: center;
+}
+.coins{
+    color:gold;
+    //background-image: url('../../../assets/images/background.png')
+}
+.card-footer-item{
+    min-width: 4px;
+}
+.card-footer{
+    background-image: url('../../../assets/images/background.png')
+}
+.lable{
+    background: white;
+    color:black;
+    font-weight: bold;
+}
+
+.money{
+    background-image: url('../../../assets/images/background.png');
+    align-content: center;
+    margin-left: 2px;
+    text-align: center;
+    min-height: 50px;
+    padding: 4px;
+}

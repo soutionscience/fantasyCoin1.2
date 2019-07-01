@@ -5,7 +5,66 @@
       <div class="column is-one-quarter"></div>
       <div class="column">
         <div class="box">
-          test me a working
+          <div class="columns">
+            <div class="column is-one-quarter">
+              <div class="money has-text-white">
+                <p>Fantasy Coins</p>
+
+              </div>
+            </div>
+            <div class="column is-one-quarter">
+                <div class="money has-text-white">
+                  <p>Fantasy Coins</p>
+  
+                </div>
+              </div>
+              <div class="column is-one-quarter">
+                  <div class="money has-text-white">
+                    <p>Team Value</p>
+    
+                  </div>
+                </div>
+                <div class="column is-one-quarter">
+                    <div class="money has-text-white">
+                      <p>Players selected</p>
+      
+                    </div>
+                  </div>
+          </div>
+        </div>
+
+        <div class="box">
+            <div class="pitch">
+              <div class="columns is-multiline is-centered">
+                  <div class="column is-one-quarter" *ngFor="let p of userTeam">
+                  <div class="card" (click)="removePlayer(p)">
+                      <div class="card-image">
+                          <figure class="image is-96x96 media-center">
+                              <img [src]= "'../../assets/images/kits/' + p.team_code + '.png' "
+                              alt="">
+                          </figure>
+                        </div>
+                        <div class="card-content"></div>
+                        <footer class="card-footer">
+                            <p class="name">{{p.web_name}}</p>
+                            </footer>
+                          <footer class="card-footer">
+                              <p class="card-footer-item lable">points:</p>
+                              <p class="card-footer-item points">{{p.pointsWeek}}</p>
+                              <p class="card-footer-item lable">costs</p>
+                              <p class="card-footer-item coins">${{p.now_cost}}</p>
+              
+                            </footer>
+                  </div>
+              
+              
+              
+               
+                  </div>
+                </div>
+               
+               </div>
+              
         </div>
       </div>
     </div>

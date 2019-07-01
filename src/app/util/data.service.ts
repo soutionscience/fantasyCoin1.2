@@ -62,8 +62,16 @@ export class DataService {
 
   setUserTeam(team){
     this.userTeam =  team;
-    console.log('my team ', this.userTeam)
+    
 
   }
-  
+  getUserTeam(){
+    return this.userTeam
+  }
+  removePlayerFromTeam(id){
+    console.log('removing in service ', id);
+    let index = this.userTeam.indexOf(id);
+    console.log('index are you removing ', index)
+     this.userTeam.splice(index, 1)
+  }
 }
