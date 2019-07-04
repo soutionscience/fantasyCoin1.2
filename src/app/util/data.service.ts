@@ -62,8 +62,6 @@ export class DataService {
 
   setUserTeam(team){
     this.userTeam =  team;
-    
-
   }
   getUserTeam(){
     return this.userTeam

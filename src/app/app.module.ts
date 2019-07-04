@@ -29,6 +29,7 @@ import { PitchComponent } from './pitch/pitch.component';
 import { BetaComponent } from './dialogs/beta/beta.component';
 import { WarningBetaComponent } from './dialogs/warning-beta/warning-beta.component';
 import { UserLeagueComponent } from './DETAILS/user-league/user-league.component';
+//import { SelectorComponent } from './DETAILS/selector/selector.component';
 //import { LoadingComponent } from './dialogs/loading/loading.component';
 //import { BuyMoreComponent } from './dialogs/buy-more/buy-more.component';
 

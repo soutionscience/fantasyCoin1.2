@@ -2,32 +2,35 @@
 
   <div class="container">
     <div class="columns">
-      <div class="column is-one-quarter"></div>
+      <div class="column is-one-quarter">
+        <app-selector></app-selector>
+      </div>
       <div class="column">
         <div class="box">
           <div class="columns">
             <div class="column is-one-quarter">
-              <div class="money has-text-white">
+              <div class="money has-text-white" *ngIf="user">
                 <p>Fantasy Coins</p>
+                {{user.balance}}
 
               </div>
             </div>
             <div class="column is-one-quarter">
                 <div class="money has-text-white">
-                  <p>Fantasy Coins</p>
+                  <p>Players Selected</p>
   
                 </div>
               </div>
               <div class="column is-one-quarter">
-                  <div class="money has-text-white">
+                  <div class="money has-text-white" *ngIf="user">
                     <p>Team Value</p>
-    
+                   {{user.teamValue}}
                   </div>
                 </div>
                 <div class="column is-one-quarter">
-                    <div class="money has-text-white">
-                      <p>Players selected</p>
-      
+                    <div class="money reset has-text-white">
+                      
+                      <button class="button"> reset</button>
                     </div>
                   </div>
           </div>
