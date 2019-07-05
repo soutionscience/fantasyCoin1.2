@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {Routes, RouterModule} from '@angular/router'
 import { AppComponent } from '../app.component';
 import { PitchComponent } from '../pitch/pitch.component';
+import { TeamComponent } from '../team/team.component';
 
 const routes : Routes=[
   {path: '', loadChildren: './welcome.module#WelcomeModule'}

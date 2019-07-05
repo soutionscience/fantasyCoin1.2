@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { Generic } from '../shared/generic.model';
 import { ApiServiceService } from '../util/api-service.service';
 // import { Web3Service } from '../services/web3.service';
@@ -9,6 +9,7 @@ import { DataService } from '../util/data.service';
 import { MatSnackBar } from '@angular/material';
 import { TokenService } from '../util/token.service';
 
+
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
@@ -16,6 +17,9 @@ import { TokenService } from '../util/token.service';
 })
 export class TeamComponent implements OnInit {
   /// this component displays team and sends selected team to server
+
+   @Output() playerSelected = new EventEmitter(); 
+
   allPlayers: String []
   specialPlayers: String[];
   SpecialKeepers: String [];
@@ -38,7 +42,7 @@ export class TeamComponent implements OnInit {
   private matSnackBar: MatSnackBar,
   private tokenService: TokenService) { }
   ngOnInit (){
-    console.log('init')
+  //  console.log('init')
     this.showLoading = true;
     this.getAllPlayers()
     this.getTeams();
@@ -144,7 +148,7 @@ export class TeamComponent implements OnInit {
          let index = this.teamPlayers.indexOf(g);
 
          //this.teamPlayers.splice(index, 1); //remove player
-          
+        
         this.data.removePlayers(g)
         this.tokenService.addTokenCount(g.now_cost);
         this.teamPlayers=this.data.getPlayers()
@@ -158,9 +162,11 @@ export class TeamComponent implements OnInit {
 
     }else{
       console.log('now costs ', g)
+      this.playerSelected.emit(g)  
        this.tokenService.reduceTokenCount(g.now_cost)
-      this.data.addPlayers(g)
+       this.data.addPlayers(g)
       this.teamPlayers=this.data.getPlayers()
+      console.log('team players ', this.teamPlayers)
      
       // this.teamPlayers.push(me)
    

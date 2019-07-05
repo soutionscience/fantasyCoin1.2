@@ -1,17 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TeamComponent } from '../team/team.component';
-import { Routes, RouterModule, Router } from '@angular/router';
 import { PitchComponent } from '../pitch/pitch.component';
 
-
-
-
 @NgModule({
-  declarations: [],
+  declarations: [TeamComponent, PitchComponent],
   imports: [
-    CommonModule,
-   // RouterModule.forChild(routes)
-  ]
+    CommonModule
+  ],
+  exports: [TeamComponent, PitchComponent]
 })
-export class TeamModule { }
+export class SharedModule { }

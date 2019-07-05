@@ -23,6 +23,9 @@ export class DataService {
   
     return this.userPlayers
   }
+  getUserPlayerSize(){
+    return this.userPlayers.length;
+  }
   removePlayers(id){
     console.log('removing in service ', id);
     let index = this.userPlayers.indexOf(id);

@@ -28,14 +28,14 @@ import { AuthGuard } from './auth.guard';
 import { PitchComponent } from './pitch/pitch.component';
 import { BetaComponent } from './dialogs/beta/beta.component';
 import { WarningBetaComponent } from './dialogs/warning-beta/warning-beta.component';
-import { UserLeagueComponent } from './DETAILS/user-league/user-league.component';
-//import { SelectorComponent } from './DETAILS/selector/selector.component';
-//import { LoadingComponent } from './dialogs/loading/loading.component';
-//import { BuyMoreComponent } from './dialogs/buy-more/buy-more.component';
+
+ import { TeamComponent } from './team/team.component';
+import { BuyMoreComponent } from './dialogs/buy-more/buy-more.component';
+
 
 @NgModule({
   declarations: [ RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
-    LoginMetamaskComponent, InstallMetamaskComponent, BetaComponent, WarningBetaComponent],
+    LoginMetamaskComponent, InstallMetamaskComponent, BetaComponent, WarningBetaComponent, BuyMoreComponent],
   imports: [
     BrowserAnimationsModule,
     CommonModule,

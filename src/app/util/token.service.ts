@@ -28,6 +28,7 @@ export class TokenService {
          observer.next(err)
         }else{
          this.userBalance = resp;
+         //console.log('resp ya token ni? ',resp)
          
          
          observer.next(resp);
