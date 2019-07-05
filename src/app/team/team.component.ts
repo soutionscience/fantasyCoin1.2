@@ -140,7 +140,7 @@ export class TeamComponent implements OnInit {
 
    }else{
     if(this.data.checkIfAlreadyInTeam(g)){ //check if player is in team and start dialog to remove
-      
+    console.log('checking if already in team ', this.data.checkIfAlreadyInTeam(g))
       this.dialog.open(RemovePlayerComponent,{width: '350px', height: 'auto', data:{
         player: g
       }}).afterClosed().subscribe((p)=>{
@@ -150,7 +150,7 @@ export class TeamComponent implements OnInit {
          //this.teamPlayers.splice(index, 1); //remove player
         
         this.data.removePlayers(g)
-        this.tokenService.addTokenCount(g.now_cost);
+        this.tokenService.addTokenCount(parseInt(g.now_cost));
         this.teamPlayers=this.data.getPlayers()
      
        

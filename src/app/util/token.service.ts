@@ -12,7 +12,7 @@ let tokenContract = require('../../../build/contracts/fantasyCoinV3.json')
   providedIn: 'root'
 })
 export class TokenService {
-  userBalance: any
+  userBalance: number
 
   constructor(private web3Service: Web3Service) { }
 
@@ -27,7 +27,7 @@ export class TokenService {
         if(err){
          observer.next(err)
         }else{
-         this.userBalance = resp;
+         this.userBalance =  parseInt(resp);
          //console.log('resp ya token ni? ',resp)
          
          
@@ -45,12 +45,13 @@ export class TokenService {
   removeTokenCount(){
     this.userBalance =0;
   }
-  reduceTokenCount(playerCost){
+  reduceTokenCount(playerCost: number){
     
-    this.userBalance= this.userBalance- playerCost
+    this.userBalance-= playerCost
   }
   addTokenCount(playerCost){
-    this.userBalance = this.userBalance + playerCost
+    console.log('player cons ', playerCost)
+    this.userBalance += playerCost
   }
   enoughTokens(){
     // console.log('is it enough?, ', this.userBalance)

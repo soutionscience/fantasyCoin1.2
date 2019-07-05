@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TransferComponent } from '../PAGES/transfer/transfer.component';
 import { Routes, RouterModule } from '@angular/router';
 import { SelectorComponent } from '../DETAILS/selector/selector.component';
+import { SharedModule } from './shared.module';
 
 
 const routes: Routes=[
@@ -12,7 +13,8 @@ const routes: Routes=[
   declarations: [TransferComponent, SelectorComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedModule
   ]
 })
 export class TransferModule { }

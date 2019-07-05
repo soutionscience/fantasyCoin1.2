@@ -10,8 +10,10 @@ export class DataService {
   players: string ='players'
   userPlayers: any [] =[]
   userPlayerId: any []=[]
+  userPlayersOldId: any []=[];
   userBalance: Number;
   userTeam: String [];
+  
 
   constructor(private tokenService: TokenService, private api: ApiServiceService) { }
   addPlayers(player){
@@ -19,7 +21,7 @@ export class DataService {
     this.userPlayerId.push(player._id)
     //localStorage.setItem(this.players, JSON.stringify(this.userPlayers));
   }
-  getPlayers(){
+  getPlayers(){ //returns all user players
   
     return this.userPlayers
   }
@@ -34,14 +36,13 @@ export class DataService {
     // localStorage.setItem(this.players, JSON.stringify(this.userPlayers));
   }
   checkIfAlreadyInTeam(player){
-    console.log('user players ', this.userPlayerId)
-    console.log('check ', this.userPlayerId.indexOf(player._id))
+  
     if(this.userPlayerId.indexOf(player._id)== -1 ){
-      console.log('not in team add')
+      // console.log('not in team add')
       return false;
 
     }else{
-      console.log('in team, remove')
+      // console.log('in team, remove')
      return true;
     }
   }
@@ -64,15 +65,23 @@ export class DataService {
   // transfers
 
   setUserTeam(team){
-    this.userTeam =  team;
+    team.forEach(element => {
+    this.userPlayerId.push(element._id)
+    this.userPlayersOldId.push(element._id)
+      
+    });
+    this.userPlayers = team;
   }
-  getUserTeam(){
-    return this.userTeam
-  }
-  removePlayerFromTeam(id){
-    console.log('removing in service ', id);
-    let index = this.userTeam.indexOf(id);
-    console.log('index are you removing ', index)
-     this.userTeam.splice(index, 1)
+  checkIfTransfers(){
+    
+    if(this.userPlayerId.sort().toString() == this.userPlayersOldId.sort().toString()){
+      console.log('no changes')
+      return false;
+       
+    }else{
+      console.log('some changes')
+      return true;
+    }
+
   }
 }

@@ -3,7 +3,7 @@
   <div class="container">
     <div class="columns">
       <div class="column is-one-quarter">
-        <app-selector></app-selector>
+       <app-team></app-team>
       </div>
       <div class="column">
         <div class="box">
@@ -11,13 +11,14 @@
             <div class="column is-one-quarter">
               <div class="money has-text-white" *ngIf="user">
                 <p>Fantasy Coins</p>
-                {{user.balance}}
+                {{tokenService.getTokenCount()}}
 
               </div>
             </div>
             <div class="column is-one-quarter">
                 <div class="money has-text-white">
                   <p>Players Selected</p>
+              <p>{{data.getUserPlayerSize()}}/11</p>
   
                 </div>
               </div>
@@ -35,12 +36,28 @@
                   </div>
           </div>
         </div>
+        <div *ngIf="!userTeam" >
+            <div class="column spinner button is-loading is-large"></div>
+        </div>
 
-        <div class="box">
+        <div class="box" *ngIf="userTeam">
+         
             <div class="pitch">
+            
               <div class="columns is-multiline is-centered">
                   <div class="column is-one-quarter" *ngFor="let p of userTeam">
                   <div class="card" (click)="removePlayer(p)">
+                      <header class="card-header">
+                          <p class="card-header-title">
+                            {{p.web_name |slice: 0:6}}
+                          </p>
+                          <a (click)="removePlayer(p)" class="card-header-icon" aria-label="more options">
+                            <span class="icon">
+                                <i  class="material-icons">
+                                    cancel</i>
+                            </span>
+                          </a>
+                        </header>
                       <div class="card-image">
                           <figure class="image is-96x96 media-center">
                               <img [src]= "'../../assets/images/kits/' + p.team_code + '.png' "
@@ -67,10 +84,23 @@
                 </div>
                
                </div>
-              
-        </div>
+        
       </div>
+      <div class="column">
+          <button 
+          class="button is-large is-fullwidth is-half is-primary" (click)="submit()"
+           [ngClass]="{'is-loading': showLoading}"
+           [disabled]="!tokenService.enoughTokens() || !data.checkTeamsize() || !data.checkIfTransfers()">
+      
+            <span>Submit</span>
+          </button>
+      
+      
+</div>
     </div>
-    
+   
+    </div>
+
   </div>
+ 
 </div>
