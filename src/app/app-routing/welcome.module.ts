@@ -16,7 +16,7 @@ import { TeamComponent } from '../team/team.component';
 
 const routes : Routes =[{
   path: '', component: WelcomeComponent, children:[
-   {path: 'home', loadChildren:'./home.module#HomeModule'},
+   {path: '', loadChildren:'./home.module#HomeModule'},
    {path: 'teams', loadChildren: './team.module#TeamModule'},
    {path: 'leagues', loadChildren: './leagues.module#LeaguesModule', canActivate:[AuthGuard]},
    {path: 'transfers', loadChildren: './transfer.module#TransferModule'},
