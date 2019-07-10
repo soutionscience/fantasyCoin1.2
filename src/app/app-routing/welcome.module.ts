@@ -13,13 +13,14 @@ import { TeamModule } from './team.module';
 import { FooterComponent } from '../footer/footer.component';
 import { UserLeagueComponent } from '../DETAILS/user-league/user-league.component';
 import { TeamComponent } from '../team/team.component';
+import { ActiveGuard } from '../active.guard';
 
 const routes : Routes =[{
   path: '', component: WelcomeComponent, children:[
    {path: '', loadChildren:'./home.module#HomeModule'},
    {path: 'teams', loadChildren: './team.module#TeamModule'},
    {path: 'leagues', loadChildren: './leagues.module#LeaguesModule', canActivate:[AuthGuard]},
-   {path: 'transfers', loadChildren: './transfer.module#TransferModule'},
+   {path: 'transfers', loadChildren: './transfer.module#TransferModule', canActivate:[ActiveGuard]},
    {path: 'my-team', loadChildren: './user-team-page.module#UserTeamPageModule'},
    {path: 'login', loadChildren:'./login.module#LoginModule'},
    {path: 'feedback', loadChildren: './feedback.module#FeedbackModule'},

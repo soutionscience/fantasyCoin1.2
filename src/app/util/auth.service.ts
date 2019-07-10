@@ -12,16 +12,20 @@ export class AuthService {
   userAdress: string ='address'
   mydate: string = 'mydate'
   newUser: string = 'newUser'
-  myDates: any [] =[]
+  myDates: any [] =[];
+  active: string;
+  userEmail: String
 
   constructor(private router: Router) { }
 
-  setToken(token: string, userName: string, userId: string, user: any, address: string){
+  setToken(token: string, userName: string, userId: string, user: any, address: string, active: string, email: String){
 
     localStorage.setItem(this.storageKey, token)
     localStorage.setItem(this.userName, userName)
     localStorage.setItem(this.userId, userId)
     localStorage.setItem(this.userAdress, address)
+    localStorage.setItem(this.active, active);
+    this.userEmail = email
     // localStorage.setItem(this.user, JSON.stringify(user))
   }
   getToken(){
@@ -30,7 +34,22 @@ export class AuthService {
   getUserId(){
     return localStorage.getItem(this.userId)
   }
-  isLoggedIn(){
+  getActiveStatus(){
+    return localStorage.getItem(this.active)
+  }
+  getUserEmail(){
+    return this.userEmail;
+  }
+  isActive(){
+  if(this.getActiveStatus() !== 'false'){
+    console.log('user is active')
+    return true
+  }else{
+    console.log('user is not active')
+    return false
+  }
+  }
+   isLoggedIn(){
 return this.getToken() !== null;
 
   }

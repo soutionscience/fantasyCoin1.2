@@ -25,6 +25,7 @@ import { CreateAccountComponent } from './dialogs/create-account/create-account.
 import { Web3Service } from './util/web3.service';
 import { AuthService } from './util/auth.service';
 import { AuthGuard } from './auth.guard';
+import {ActiveGuard} from './active.guard';
 import { PitchComponent } from './pitch/pitch.component';
 import { BetaComponent } from './dialogs/beta/beta.component';
 import { WarningBetaComponent } from './dialogs/warning-beta/warning-beta.component';
@@ -53,9 +54,9 @@ import { BuyMoreComponent } from './dialogs/buy-more/buy-more.component';
     MatDialogModule,
     MatSnackBarModule
   ],
-  providers: [Web3Service, AuthService, AuthGuard],
+  providers: [Web3Service, AuthService, AuthGuard, ActiveGuard],
   entryComponents: [RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
-     LoginMetamaskComponent, InstallMetamaskComponent, WarningBetaComponent],
+     LoginMetamaskComponent, InstallMetamaskComponent, WarningBetaComponent, BetaComponent],
   bootstrap: [AppComponent],
   exports: [AppComponent]
 })

@@ -111,10 +111,11 @@ getBaseAccount(){
         console.log('signed by ', resp.account);
         this.apiService.getTokenResource('auth', this.AccountId, resp.sign, resp.nonce )
         .subscribe(resp=>{
-        this.authService.setToken(resp.token, resp.userName, resp.userId, resp, resp.address);
+        this.authService.setToken(resp.token, resp.userName, resp.userId, resp, resp.address, resp.active, resp.email);
         this.tokenService.getTokenBalance(this.AccountId).subscribe(resp=>{
           this.showLoading = true;
           console.log('responce ni ', resp);
+          this.authService.isActive()
              // use zone to take care of issue with ngOninit not firring after navigate
         this.zone.run(()=>this.router.navigateByUrl('/transfers'))// use 
         })
