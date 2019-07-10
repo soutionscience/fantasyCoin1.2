@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-unlock-metamask',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UnlockMetamaskComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialogRef: MatDialogRef<UnlockMetamaskComponent>) { }
 
   ngOnInit() {
+    console.log('component whats up?')
+  }
+  close(kivici){
+    
+    this.dialogRef.close()
+    console.log('closing ', kivici)
+
   }
 
 }

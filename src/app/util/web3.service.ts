@@ -89,13 +89,13 @@ if(myaccount){
       
         //console.log('what is in accounts? ', account)
 
-        if(account){ // if account is unlocked return 2
+        if(account){ // if account then metamask is unlocked is unlocked return 2
 
           observer.next(2)
           observer.complete()
 
         }else{
-          observer.next(1)// no web3 installed
+          observer.next(1)// else not unlocked
           observer.complete()
 
         }
@@ -110,10 +110,11 @@ if(myaccount){
 
   }
   getCoinBase():Observable<any>{
-   // console.log('calling get accounts')
+    //console.log('calling get accounts')
     return Observable.create(observer=>{
       this.web3.eth.getAccounts((err, resp)=>{
         if(err) observer.next(err)
+      //  console.log('resp ', resp)
         observer.next(resp[0])
         observer.complete()
       })
@@ -126,6 +127,10 @@ web3.eth.getAccounts((err, resp)=>{
    return resp;
    
   })
+ }
+ getMyCoinBase(){
+   let account = this.web3.eth.getAccounts()
+   return account;
  }
 
  signTransaction(nonce):Observable<any>{

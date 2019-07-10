@@ -116,7 +116,7 @@ getBaseAccount(){
           this.showLoading = true;
           console.log('responce ni ', resp);
              // use zone to take care of issue with ngOninit not firring after navigate
-        this.zone.run(()=>this.router.navigateByUrl('/teams'))// use 
+        this.zone.run(()=>this.router.navigateByUrl('/transfers'))// use 
         })
       
         })

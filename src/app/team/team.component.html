@@ -1,6 +1,7 @@
 <div class="container" *ngIf="showLoading">
 
-      <div class="column spinner button is-loading is-large"></div>
+      <!-- <div class="column spinner button is-loading is-large"></div> -->
+      <!-- <div class="my-loading"></div> -->
 
 
 
@@ -39,7 +40,7 @@
       
                               </div>
                               <div class="panel-block is-small" >
-                                <div *ngIf="!SpecialKeepers" class="button is-large is-loading is-warning is-outlined">Loading</div>
+                                <div *ngIf="!SpecialKeepers" class="my-loading"></div>
                                   <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                                     <tr *ngIf="SpecialKeepers" class="is-size-7">
                                       <th class="jersey"></th>
@@ -67,7 +68,7 @@
       
                               </div>
                               <div class="panel-block is-small" >
-                                <div *ngIf="!SpecialDefs" class="button is-large is-loading is-primary is-danger">Loading</div>
+                                <div *ngIf="!SpecialDefs" class="my-loading"></div>
                              <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                                 <tr *ngIf="SpecialDefs" class="is-size-7">
                                     <th class="jersey"></th>
@@ -96,10 +97,11 @@
       
                               </div>
                               <div class="panel-block is-small"  >
-                                <div *ngIf="!SpecialMids" class="button is-large is-loading  is-danger is-outlined">Loading</div>
+                                <!-- <div *ngIf="!SpecialMids" class="button is-large is-loading  is-danger is-outlined">Loading</div> -->
+                                <div *ngIf="!SpecialMids" class="my-loading"></div>
                              <table class="table is-striped is-narrow is-hoverable is-fullwidth">
-                                <tr class="is-size-7">
-                                    <th *ngIf="SpecialMids" class="jersey"></th>
+                                <tr *ngIf="SpecialMids"  class="is-size-7 ">
+                                    <th class="jersey"></th>
                                     <th>Name</th>
                                     <th>Points</th>
                                     <th>$</th>
@@ -129,7 +131,7 @@
       
                             </div>
                             <div class="panel-block is-small">
-                              <div *ngIf="!SpecialAttacks" class="button is-large is-loading  is-info is-outlined">Loading</div>
+                              <div *ngIf="!SpecialMids" class="my-loading"></div>
                            <table class="table is-striped is-narrow is-hoverable is-fullwidth">
                               <tr *ngIf="SpecialAttacks" class="is-size-7">
                                   <th class="jersey"></th>
