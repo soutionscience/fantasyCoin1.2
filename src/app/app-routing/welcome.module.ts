@@ -18,14 +18,14 @@ import { ActiveGuard } from '../active.guard';
 const routes : Routes =[{
   path: '', component: WelcomeComponent, children:[
    {path: '', loadChildren:'./home.module#HomeModule'},
-   {path: 'teams', loadChildren: './team.module#TeamModule'},
-   {path: 'leagues', loadChildren: './leagues.module#LeaguesModule', canActivate:[AuthGuard]},
-   {path: 'transfers', loadChildren: './transfer.module#TransferModule', canActivate:[ActiveGuard]},
-   {path: 'my-team', loadChildren: './user-team-page.module#UserTeamPageModule'},
+   {path: 'teams', loadChildren: './team.module#TeamModule',  canActivate:[AuthGuard, ActiveGuard]},
+   {path: 'leagues', loadChildren: './leagues.module#LeaguesModule',  canActivate:[AuthGuard, AuthGuard]},
+   {path: 'transfers', loadChildren: './transfer.module#TransferModule', canActivate:[AuthGuard, ActiveGuard]},
+   {path: 'my-team', loadChildren: './user-team-page.module#UserTeamPageModule',canActivate:[AuthGuard, ActiveGuard]},
    {path: 'login', loadChildren:'./login.module#LoginModule'},
    {path: 'feedback', loadChildren: './feedback.module#FeedbackModule'},
-   {path: 'rankings', loadChildren: './ranking.module#RankingModule'},
-   {path: 'new-team', loadChildren: './new-team.module#NewTeamModule'}
+   {path: 'rankings', loadChildren: './ranking.module#RankingModule', canActivate:[AuthGuard, ActiveGuard]},
+   {path: 'new-team', loadChildren: './new-team.module#NewTeamModule', canActivate:[AuthGuard, ActiveGuard]}
   ]
 }
 

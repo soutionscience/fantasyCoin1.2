@@ -60,6 +60,7 @@ export class DataService {
   }
   reset(){
     this.userPlayers = [];
+    this.userPlayers.length = 0;
   }
 
   // transfers

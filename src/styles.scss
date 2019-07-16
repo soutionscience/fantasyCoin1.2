@@ -4,6 +4,7 @@
 
 .my-loading{
     background: url('./assets/images/gifs/logo/newLogo.png');
+    background-repeat: no-repeat;
     width: 60px;
     height: 45px;
     -webkit-animation: rotation 2s infinite linear;

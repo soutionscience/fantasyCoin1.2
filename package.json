@@ -28,6 +28,8 @@
     "@fortawesome/angular-fontawesome": "^0.4.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "bulma": "^0.7.4",
+    "bulma-extensions": "^6.2.7",
+    "bulma-pageloader": "^2.1.0",
     "core-js": "^2.5.7",
     "ethers": "^4.0.20",
     "hammerjs": "^2.0.8",

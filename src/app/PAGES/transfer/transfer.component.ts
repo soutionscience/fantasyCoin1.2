@@ -73,6 +73,12 @@ export class TransferComponent implements OnInit {
       })
  
   }
+  reset(){
+    this.data.reset();
+    this.userTeam=this.data.getPlayers()
+
+
+  }
  
  
 

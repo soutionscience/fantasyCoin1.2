@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { BetaComponent } from '../dialogs/beta/beta.component';
 import { WarningBetaComponent } from '../dialogs/warning-beta/warning-beta.component';
 import { checkAndUpdateBinding } from '@angular/core/src/view/util';
+import { LoaderService } from '../util/loader.service';
 
 @Component({
   selector: 'app-welcome',
@@ -13,13 +14,18 @@ import { checkAndUpdateBinding } from '@angular/core/src/view/util';
 })
 export class WelcomeComponent implements OnInit {
 
+  hasLoaded: Boolean
+
   constructor(private web3Service: Web3Service, private auth: AuthService,
-    private dialog: MatDialog, private ref: ChangeDetectorRef) { }
+    private dialog: MatDialog, private ref: ChangeDetectorRef,
+    private loader: LoaderService) { }
 
   ngOnInit() {
+    this.loader.checkIfReady()
     console.log('loading ..', this.auth.checkExpiration())
     this.ref.detectChanges()
-    this.checkIfNew()
+    this.checkIfNew();
+    this.hasLoaded = false;
   }
   checkIfNew(){
    setTimeout(()=>{if(this.auth.getNewUser()== null){
