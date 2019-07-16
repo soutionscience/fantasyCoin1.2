@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Web3Service } from '../util/web3.service';
 import { AuthService } from '../util/auth.service';
 import { MatDialog } from '@angular/material';
-import { BetaComponent } from '../dialogs/beta/beta.component';
+//import { BetaComponent } from '../dialogs/beta/beta.component';
 import { WarningBetaComponent } from '../dialogs/warning-beta/warning-beta.component';
 import { checkAndUpdateBinding } from '@angular/core/src/view/util';
 import { LoaderService } from '../util/loader.service';

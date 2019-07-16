@@ -28,7 +28,7 @@ import { MainnetGuard } from './GUARDS/mainnet.guard';
 import { AuthGuard } from './GUARDS/auth.guard';
 import {ActiveGuard} from './GUARDS/active.guard';
 import { PitchComponent } from './pitch/pitch.component';
-import { BetaComponent } from './dialogs/beta/beta.component';
+//import { BetaComponent } from './dialogs/beta/beta.component';
 import { WarningBetaComponent } from './dialogs/warning-beta/warning-beta.component';
 
  import { TeamComponent } from './team/team.component';
@@ -40,7 +40,7 @@ import { EarlyBetaComponent } from './dialogs/early-beta/early-beta.component';
 
 @NgModule({
   declarations: [ RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
-    LoginMetamaskComponent, InstallMetamaskComponent, BetaComponent, WarningBetaComponent, BuyMoreComponent, SignInComponent, EarlyBetaComponent],
+    LoginMetamaskComponent, InstallMetamaskComponent, WarningBetaComponent, BuyMoreComponent, SignInComponent, EarlyBetaComponent],
   imports: [
     BrowserAnimationsModule,
     CommonModule,
@@ -60,7 +60,7 @@ import { EarlyBetaComponent } from './dialogs/early-beta/early-beta.component';
   ],
   providers: [Web3Service, AuthService, AuthGuard, ActiveGuard, MainnetGuard],
   entryComponents: [RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
-     LoginMetamaskComponent, InstallMetamaskComponent, WarningBetaComponent, BetaComponent, SignInComponent,
+     LoginMetamaskComponent, InstallMetamaskComponent, WarningBetaComponent,SignInComponent,
     EarlyBetaComponent],
   bootstrap: [AppComponent],
   exports: [AppComponent]
