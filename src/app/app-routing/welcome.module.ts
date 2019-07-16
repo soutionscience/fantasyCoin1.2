@@ -27,6 +27,8 @@ const routes : Routes =[{
    {path: 'beta', loadChildren: './beta.module#BetaModule', canActivate: [AuthGuard]},
    {path: 'network', loadChildren: './mainnet.module#MainnetModule'},
    {path: 'feedback', loadChildren: './feedback.module#FeedbackModule'},
+   {path: 'markets', loadChildren: './market.module#MarketModule'},
+   {path:'howto', loadChildren: './howto.module#HowtoModule'},
    {path: 'rankings', loadChildren: './ranking.module#RankingModule', canActivate:[AuthGuard, ActiveGuard]},
    {path: 'new-team', loadChildren: './new-team.module#NewTeamModule', canActivate:[MainnetGuard,  AuthGuard, ActiveGuard]}
   ]
