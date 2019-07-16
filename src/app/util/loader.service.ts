@@ -38,7 +38,7 @@ export class LoaderService {
     this.api.getSpecificResource('users', id)
     .subscribe(resp=>{
       
-     this.dialog.open(CreateAccountComponent)
+     //this.dialog.open(CreateAccountComponent)
       
     },error=>{
       console.log('user NOT Found')

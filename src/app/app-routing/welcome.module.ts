@@ -19,10 +19,11 @@ const routes : Routes =[{
   path: '', component: WelcomeComponent, children:[
    {path: '', loadChildren:'./home.module#HomeModule'},
    {path: 'teams', loadChildren: './team.module#TeamModule',  canActivate:[AuthGuard, ActiveGuard]},
-   {path: 'leagues', loadChildren: './leagues.module#LeaguesModule',  canActivate:[AuthGuard, AuthGuard]},
-   {path: 'transfers', loadChildren: './transfer.module#TransferModule', canActivate:[AuthGuard, ActiveGuard]},
+   {path: 'leagues', loadChildren: './leagues.module#LeaguesModule',  canActivate:[ActiveGuard]},
+   {path: 'transfers', loadChildren: './transfer.module#TransferModule', canActivate:[ActiveGuard,AuthGuard]},
    {path: 'my-team', loadChildren: './user-team-page.module#UserTeamPageModule',canActivate:[AuthGuard, ActiveGuard]},
    {path: 'login', loadChildren:'./login.module#LoginModule'},
+   {path: 'beta', loadChildren: './beta.module#BetaModule', canActivate: [AuthGuard]},
    {path: 'feedback', loadChildren: './feedback.module#FeedbackModule'},
    {path: 'rankings', loadChildren: './ranking.module#RankingModule', canActivate:[AuthGuard, ActiveGuard]},
    {path: 'new-team', loadChildren: './new-team.module#NewTeamModule', canActivate:[AuthGuard, ActiveGuard]}

@@ -1,1 +1,2 @@
-<button class="button is-primary">Log in to continue</button>
+<button class="button is-primary"
+[ngClass]="{'is-loading': loading}" (click)="login()">Log in to continue</button>

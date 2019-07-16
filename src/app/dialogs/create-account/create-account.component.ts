@@ -22,7 +22,8 @@ export class CreateAccountComponent implements OnInit {
   showLoading: Boolean
   showCreate: Boolean;
   registered: Boolean;
-  user:User[]
+  user:User[];
+  loadingBall: Boolean;
 
 
   constructor(private dialogRef: MatDialogRef<CreateAccountComponent>,
@@ -45,6 +46,7 @@ export class CreateAccountComponent implements OnInit {
     this.showCreate= false;
     this.getBaseAccount();
     this.createForm();
+    this.ref.detectChanges()
    
     // this.decideForm()
    
@@ -65,7 +67,40 @@ export class CreateAccountComponent implements OnInit {
   createAccount(){
   this.getBaseAccount(); //get account address
     this.close();
+
+    
   }
+// gets base accoun and determins which form to show to user 
+getBaseAccount(){
+ 
+  this.web3Service.getCoinBase()
+ .subscribe(resp=>{
+    this.AccountId = resp;
+    this.checkifRegister(this.AccountId)
+   
+ })
+   }
+
+   checkifRegister(id){
+
+    console.log('checking if registed', this.AccountId)
+    this.apiService.getSpecificResource('users', id)
+    .subscribe(resp=>{
+      this.showLoading= false
+      this.user = resp;
+      this.showSignIn = true;
+      this.ref.detectChanges()
+      
+    },
+    error=>{
+      console.log('user NOT Found')
+      this.showLoading= false
+      this.showCreate = true
+      this.ref.detectChanges();
+
+    })
+  }
+
   close(){
     this.dialogRef.close()
   }
@@ -78,16 +113,7 @@ export class CreateAccountComponent implements OnInit {
     })
 
   }
-// gets base accoun and determins which form to show to user 
-getBaseAccount(){
- 
- this.web3Service.getCoinBase()
-.subscribe(resp=>{
-   this.AccountId = resp;
-   this.checkifRegister(this.AccountId)
-  
-})
-  }
+
   submit(){
  
     this.showLoading = true;
@@ -125,21 +151,5 @@ getBaseAccount(){
     })
     this.dialogRef.close()
   }
-  checkifRegister(id){
-    //console.log('checking if registed', this.AccountId)
-    this.apiService.getSpecificResource('users', id)
-    .subscribe(resp=>{
-      this.showLoading= false
-      this.user = resp;
-      this.showSignIn = true
-      
-    },
-    error=>{
-      console.log('user NOT Found')
-      this.showLoading= false
-      this.showCreate = true
-      this.ref.detectChanges();
 
-    })
-  }
 }

@@ -33,11 +33,12 @@ import { WarningBetaComponent } from './dialogs/warning-beta/warning-beta.compon
  import { TeamComponent } from './team/team.component';
 import { BuyMoreComponent } from './dialogs/buy-more/buy-more.component';
 import { SignInComponent } from './dialogs/sign-in/sign-in.component';
+import { EarlyBetaComponent } from './dialogs/early-beta/early-beta.component';
 
 
 @NgModule({
   declarations: [ RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
-    LoginMetamaskComponent, InstallMetamaskComponent, BetaComponent, WarningBetaComponent, BuyMoreComponent, SignInComponent],
+    LoginMetamaskComponent, InstallMetamaskComponent, BetaComponent, WarningBetaComponent, BuyMoreComponent, SignInComponent, EarlyBetaComponent],
   imports: [
     BrowserAnimationsModule,
     CommonModule,
@@ -57,7 +58,8 @@ import { SignInComponent } from './dialogs/sign-in/sign-in.component';
   ],
   providers: [Web3Service, AuthService, AuthGuard, ActiveGuard],
   entryComponents: [RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
-     LoginMetamaskComponent, InstallMetamaskComponent, WarningBetaComponent, BetaComponent, SignInComponent],
+     LoginMetamaskComponent, InstallMetamaskComponent, WarningBetaComponent, BetaComponent, SignInComponent,
+    EarlyBetaComponent],
   bootstrap: [AppComponent],
   exports: [AppComponent]
 })
