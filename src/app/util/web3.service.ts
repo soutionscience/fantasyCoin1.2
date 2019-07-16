@@ -22,6 +22,7 @@ export class Web3Service {
   private accounts: string[];
   private account: any;
   public ready = false;
+  netWorkType: String
 
   public accountsObservable = new Subject<string[]>();
 
@@ -66,6 +67,19 @@ export class Web3Service {
       return null;
     }
 
+  }
+
+  checkWe3NetWork(){
+    this.web3.eth.net.getNetworkType((err, netId) => {
+      if(err){
+        throw err;
+      }else{
+        this.netWorkType = netId;
+      }
+    })
+  }
+  getNetWorkType(){
+    return this.netWorkType
   }
   checkAccountChange(myaccount){ // check to see if account has changed/ network is ok
     //let account = this.web3.accounts[0]

@@ -23,6 +23,7 @@ export class LoaderService {
     this.registered = false;
     this.web3.getCoinBase()
     .subscribe(resp=>{
+      this.web3.checkWe3NetWork() //not sure about this implementation
       if(!resp){
        console.log('no responce'); // cannot get coinbase, either it's locked or not web3
        this.isLoaded = true;

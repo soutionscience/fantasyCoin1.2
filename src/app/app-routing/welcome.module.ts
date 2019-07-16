@@ -7,26 +7,28 @@ import { LogosComponent } from '../logos/logos.component';
 import { BannerComponent } from '../banner/banner.component';
 import { BrandingComponent } from '../branding/branding.component';
 import { LoginHorizontalComponent } from '../login-horizontal/login-horizontal.component';
-import { AuthGuard } from '../auth.guard';
 import { PitchComponent } from '../pitch/pitch.component';
 import { TeamModule } from './team.module';
 import { FooterComponent } from '../footer/footer.component';
 import { UserLeagueComponent } from '../DETAILS/user-league/user-league.component';
 import { TeamComponent } from '../team/team.component';
-import { ActiveGuard } from '../active.guard';
+import { ActiveGuard } from '../GUARDS/active.guard';
+import { MainnetGuard } from '../GUARDS/mainnet.guard';
+import { AuthGuard } from '../GUARDS/auth.guard';
 
 const routes : Routes =[{
   path: '', component: WelcomeComponent, children:[
    {path: '', loadChildren:'./home.module#HomeModule'},
    {path: 'teams', loadChildren: './team.module#TeamModule',  canActivate:[AuthGuard, ActiveGuard]},
    {path: 'leagues', loadChildren: './leagues.module#LeaguesModule',  canActivate:[ActiveGuard]},
-   {path: 'transfers', loadChildren: './transfer.module#TransferModule', canActivate:[ActiveGuard,AuthGuard]},
-   {path: 'my-team', loadChildren: './user-team-page.module#UserTeamPageModule',canActivate:[AuthGuard, ActiveGuard]},
+   {path: 'transfers', loadChildren: './transfer.module#TransferModule', canActivate:[ActiveGuard, MainnetGuard, AuthGuard]},
+   {path: 'my-team', loadChildren: './user-team-page.module#UserTeamPageModule',canActivate:[AuthGuard, MainnetGuard, ActiveGuard]},
    {path: 'login', loadChildren:'./login.module#LoginModule'},
    {path: 'beta', loadChildren: './beta.module#BetaModule', canActivate: [AuthGuard]},
+   {path: 'network', loadChildren: './mainnet.module#MainnetModule'},
    {path: 'feedback', loadChildren: './feedback.module#FeedbackModule'},
    {path: 'rankings', loadChildren: './ranking.module#RankingModule', canActivate:[AuthGuard, ActiveGuard]},
-   {path: 'new-team', loadChildren: './new-team.module#NewTeamModule', canActivate:[AuthGuard, ActiveGuard]}
+   {path: 'new-team', loadChildren: './new-team.module#NewTeamModule', canActivate:[MainnetGuard,  AuthGuard, ActiveGuard]}
   ]
 }
 

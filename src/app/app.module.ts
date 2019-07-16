@@ -24,8 +24,9 @@ import { InstallMetamaskComponent } from './dialogs/install-metamask/install-met
 import { CreateAccountComponent } from './dialogs/create-account/create-account.component';
 import { Web3Service } from './util/web3.service';
 import { AuthService } from './util/auth.service';
-import { AuthGuard } from './auth.guard';
-import {ActiveGuard} from './active.guard';
+import { MainnetGuard } from './GUARDS/mainnet.guard';
+import { AuthGuard } from './GUARDS/auth.guard';
+import {ActiveGuard} from './GUARDS/active.guard';
 import { PitchComponent } from './pitch/pitch.component';
 import { BetaComponent } from './dialogs/beta/beta.component';
 import { WarningBetaComponent } from './dialogs/warning-beta/warning-beta.component';
@@ -34,6 +35,7 @@ import { WarningBetaComponent } from './dialogs/warning-beta/warning-beta.compon
 import { BuyMoreComponent } from './dialogs/buy-more/buy-more.component';
 import { SignInComponent } from './dialogs/sign-in/sign-in.component';
 import { EarlyBetaComponent } from './dialogs/early-beta/early-beta.component';
+
 
 
 @NgModule({
@@ -56,7 +58,7 @@ import { EarlyBetaComponent } from './dialogs/early-beta/early-beta.component';
     MatDialogModule,
     MatSnackBarModule
   ],
-  providers: [Web3Service, AuthService, AuthGuard, ActiveGuard],
+  providers: [Web3Service, AuthService, AuthGuard, ActiveGuard, MainnetGuard],
   entryComponents: [RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
      LoginMetamaskComponent, InstallMetamaskComponent, WarningBetaComponent, BetaComponent, SignInComponent,
     EarlyBetaComponent],

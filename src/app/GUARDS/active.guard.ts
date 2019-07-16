@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './util/auth.service';
+import { AuthService } from '../util/auth.service';
 import { MatDialog } from '@angular/material';
-import {BetaComponent} from '../app/dialogs/beta/beta.component'
+
 
 @Injectable({
   providedIn: 'root'
