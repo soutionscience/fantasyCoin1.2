@@ -2,7 +2,7 @@
   <article class="message is-warning">
     <div class="message-header">
       <p>Hi <strong>{{userName}}</strong></p>
-      <a href="/" class="delete" aria-label="delete"></a>
+      <a (click)="close()" class="delete" aria-label="delete"></a>
     </div>
     <div class="message-body">
       Thank you for your interest in fantasy coin. We are in <strong>beta</strong> and are awarding <strong>free</strong> fantasy coins to <strong>selected</strong> users to <strong>test</strong> the platform. <br/>
@@ -13,12 +13,12 @@
     <div class="message-footer">
       <div class="field is-grouped is-grouped-centered">
         <p class="control">
-          <button class="button is-warning">
+          <button (click)="howToplay()" class="button is-warning">
            How to Play
           </button>
         </p>
         <p class="control">
-          <a class="button is-light" href="/">
+          <a class="button is-light" (click)="close()">
             Cancel
           </a>
         </p>
