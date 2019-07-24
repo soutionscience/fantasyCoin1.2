@@ -62,7 +62,7 @@ export class Web3Service {
       );
       // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
       // needs to be changed to better fall back plan
-      // this.web3 = new Web3();
+      this.web3 = new Web3();
 
       return null;
     }
@@ -101,7 +101,7 @@ if(myaccount){
     return Observable.create(observer=>{
       if(typeof window.web3 !== 'undefined'){ //web 3 installed
       
-        //console.log('what is in accounts? ', account)
+        console.log('what is in accounts? ', account)
 
         if(account){ // if account then metamask is unlocked is unlocked return 2
 
@@ -128,7 +128,7 @@ if(myaccount){
     return Observable.create(observer=>{
       this.web3.eth.getAccounts((err, resp)=>{
         if(err) observer.next(err)
-      //  console.log('resp ', resp)
+        console.log('get coinBase resp ', resp)
         observer.next(resp[0])
         observer.complete()
       })

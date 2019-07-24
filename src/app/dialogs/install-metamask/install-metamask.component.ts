@@ -23,6 +23,7 @@ export class InstallMetamaskComponent implements OnInit {
     let browser;
     this.browserDetect.detectBrowser()
     .subscribe(resp=>{
+      console.log('browser is ', resp)
 
       if(resp == 'isOpera'){
         this.buttonText = "Get Metamask from Opera Store"
@@ -45,9 +46,9 @@ export class InstallMetamaskComponent implements OnInit {
         this.buttonImage="fab fa-chrome"
       }
       if(resp == 'isSafari'){
-        this.buttonText = "Sorry Safari does not support Metamask at the momment. Please use chrome"
-        this.buttonLink=""
-        this.buttonImage="fab fa-safari"
+        this.buttonText = "Get Metamask from Chrome Store"
+        this.buttonLink="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en"
+        this.buttonImage="fab fa-chrome"
 
       }
     })

@@ -25,7 +25,7 @@ export class EarlyBetaComponent implements OnInit {
 
   }
   howToplay(){
-    this.router.navigate(['/howtoplay']);
+    this.router.navigate(['/howto']);
     this.dialogRef.close()
   }
 

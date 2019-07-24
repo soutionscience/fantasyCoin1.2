@@ -13,6 +13,7 @@ export class BrowserDetectionService {
 
   detectBrowser():Observable<any>{
     return Observable.create(observer=>{
+       console.log('what is window ', window)
       if((!! window['opr'] && !!window['opr'].addons) || !!window['opera'] || navigator.userAgent.indexOf(' OPR/') >= 0){
         observer.next('isOpera')
         observer.complete();
@@ -23,15 +24,18 @@ export class BrowserDetectionService {
         observer.complete()
 
       }
-      if(!window['safari'] || window['safari'].pushNotification){
-        observer.next('isSafari')
-        observer.complete()
-      }
+      //!!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime)
       if(!!window['chrome'] && !!window['chrome']['webstore']){
         observer.next('isChrome')
         observer.complete()
 
-      }else{
+      }
+      if(!window['safari'] || window['safari'].pushNotification){
+        console.log('actually safari?' )
+        observer.next('isSafari')
+        observer.complete()
+      }
+      else{
         observer.next('unKnown')
         observer.complete()
       }
