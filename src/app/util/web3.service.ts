@@ -44,7 +44,20 @@ export class Web3Service {
     // });
   }
   checkAndInstatiateWeb3 = () => {
- if (typeof window.web3 !== 'undefined') {
+    if(typeof window.ethereum !== 'undefined'){
+      console.log('modern browser');
+      this.web3 = new Web3(window.ethereum);
+
+      try{
+        window.ethereum.enable()
+        //window.location.reload()
+        
+      }catch(error){
+        console.log('user denied')
+      }
+
+    }
+ else if (typeof window.web3 !== 'undefined') {
 
 
       console.warn(

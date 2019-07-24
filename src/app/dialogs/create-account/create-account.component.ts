@@ -122,7 +122,7 @@ getBaseAccount(){
     this.CreatAccountForm.value.address = this.AccountId;
     this.apiService.postResource('users', this.CreatAccountForm.value)
    .subscribe(resp=>{
-     //console.log('resp from server ', resp)
+     console.log('resp from server ', resp)
      this.user = resp
      this.showCreate = false;
      this.showSignIn = true;
