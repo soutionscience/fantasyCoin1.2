@@ -7,6 +7,7 @@ import { User } from '../../shared/user.model'
 import { AuthService } from '../../util/auth.service';
 import { Router } from '@angular/router';
 import { TokenService } from '../../util/token.service';
+import { MatSnackBar } from '@angular/material';
 
 
 @Component({
@@ -24,6 +25,9 @@ export class CreateAccountComponent implements OnInit {
   registered: Boolean;
   user:User[];
   loadingBall: Boolean;
+  highlight: Boolean;
+  usernameWarning: Boolean;
+  emailWarning: Boolean;
 
 
   constructor(private dialogRef: MatDialogRef<CreateAccountComponent>,
@@ -34,7 +38,8 @@ export class CreateAccountComponent implements OnInit {
     private router: Router,
     private ref: ChangeDetectorRef,
     private zone: NgZone, 
-    private tokenService: TokenService) { }
+    private tokenService: TokenService,
+    private matSnackBar: MatSnackBar) { }
 
     // called when user has account but is not signed in
 
@@ -46,7 +51,12 @@ export class CreateAccountComponent implements OnInit {
     this.showCreate= false;
     this.getBaseAccount();
     this.createForm();
-    this.ref.detectChanges()
+    this.ref.detectChanges();
+    this.highlight = false;
+    this.usernameWarning = false;
+    this.emailWarning = false
+    
+  
    
     // this.decideForm()
    
@@ -115,7 +125,8 @@ getBaseAccount(){
   }
 
   submit(){
- 
+    this.emailWarning = false;
+    this.usernameWarning= false;
     this.showLoading = true;
     this.ref.detectChanges()
     this.showForm=false;
@@ -127,6 +138,24 @@ getBaseAccount(){
      this.showCreate = false;
      this.showSignIn = true;
      this.ref.detectChanges()
+   }, error=>{
+     if(error.data.error == 'username in use'){
+      this.setStatus("username already in use");
+      this.showCreate = true;
+      this.showLoading = false;
+      this.showForm=true;
+      this.usernameWarning = true;
+      this.CreatAccountForm.value.username ='';
+      this.ref.detectChanges();
+     }else if(error.data.error == 'email in use'){
+      this.setStatus("email already in use");
+      this.showCreate = true;
+      this.showLoading = false;
+      this.showForm=true;
+      this.emailWarning = true;
+      this.ref.detectChanges();
+     }
+     
    })
   }
   signIn(){
@@ -153,6 +182,10 @@ getBaseAccount(){
      
     })
     this.dialogRef.close()
+  }
+
+  setStatus(status){
+    this.matSnackBar.open(status, null, {duration: 1000, horizontalPosition: 'center', verticalPosition: 'bottom'})
   }
 
 }

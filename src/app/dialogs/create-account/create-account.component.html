@@ -26,6 +26,7 @@
           <input class="input is-medium" type="email" placeholder="e.g AlexSmith@email.com"
            formControlName="email" [email]="true">
         </div>
+        <p class="help is-danger" *ngIf="emailWarning">This email is already in use</p>
         <p class="help is-danger" *ngIf="CreatAccountForm.invalid">This email is invalid</p>
       </div>
 
@@ -35,6 +36,7 @@
           <input class="input is-medium" type="text" placeholder="e.g. The one"
            formControlName="username">
         </div>
+        <p class="help is-danger" *ngIf="usernameWarning">username is already in use</p>
         <p class="help is-danger" *ngIf="CreatAccountForm.invalid">Username is required</p>
       </div>
 
