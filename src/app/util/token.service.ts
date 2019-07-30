@@ -39,8 +39,8 @@ export class TokenService {
  
   }
   getTokenCount(){
-   
-    return this.userBalance
+  console.log('user balance  ', this.userBalance)   
+return this.userBalance
   }
   removeTokenCount(){
     this.userBalance =0;

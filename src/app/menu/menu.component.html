@@ -73,7 +73,7 @@
             </a>
           </p> -->
           <p class="control">
-            <span class="mytext" *ngIf="authService.isLoggedIn()">Welcome {{userName}}</span>
+            <button class="button mytext is-danger" *ngIf="authService.isLoggedIn()">Welcome {{userName}} </button>
             <a *ngIf="authService.isLoggedIn()" class="button is-primary" >
               <!-- <span class="icon">
                 <i class="fas fa-user"></i>

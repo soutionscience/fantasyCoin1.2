@@ -4,6 +4,7 @@ import {Subject, Observable, observable} from 'rxjs';
 import { Factory, League } from '../shared/address';
 import { ObserversModule } from '@angular/cdk/observers';
 import { TokenService } from './token.service';
+import { AuthService } from './auth.service';
 
 declare let require: any;
 const Web3 = require('web3');
@@ -23,19 +24,18 @@ export class Web3Service {
   private account: any;
   public ready = false;
   netWorkType: String
+ 
 
   public accountsObservable = new Subject<string[]>();
 
-  constructor() {
-    // window.addEventListener('load', (event) => {
-    //  this.checkAndInstatiateWeb3();
-    //   this.checkMetamask();
-    //   this.getSingleAccount();
+  constructor(private authService: AuthService) {
+  
     this.checkAndInstatiateWeb3()
     this.getCoinBase().subscribe((resp)=>{
       this.account = resp
      // this.checkMetamask(this.account).subscribe()
      this.checkAccountChange(this.account)
+     
     
     })
   
@@ -94,8 +94,15 @@ export class Web3Service {
   getNetWorkType(){
     return this.netWorkType
   }
+
+  loggoutUser(){
+    console.log('are you logging out?')
+    this.authService.logOut();
+
+  }
   checkAccountChange(myaccount){ // check to see if account has changed/ network is ok
     //let account = this.web3.accounts[0]
+    
 if(myaccount){
     myaccount = myaccount.toLowerCase()
     this.web3.currentProvider.publicConfigStore.on('update', function(responce){
@@ -104,11 +111,18 @@ if(myaccount){
       if(newAccount !== myaccount){
       //  console.log('reload page')
         //this.tokenService.getTokenBalance(myaccount).subscribe()
-        window.location.reload()
+        // this.authService.logOut()
+        this.loggoutUser()
+        window.location.reload();
+     
+        
       }
     });
   }
   }
+
+  // log out user
+
 
   checkMetamask(account):Observable<any>{
     return Observable.create(observer=>{
