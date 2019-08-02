@@ -7,13 +7,13 @@ import { AuthService } from '../../util/auth.service';
   styleUrls: ['./user-league.component.scss']
 })
 export class UserLeagueComponent implements OnInit {
-  @Input() league: String [];
+  @Input() league: any;
 
   constructor(private auth: AuthService) { }
 
   ngOnInit() {
-    console.log('leagues ', this.league)
-    console.log('authSerive ', this.auth.getUserId())
+    // console.log('leagues ', this.league)
+    // console.log('authSerive ', this.auth.getUserId())
   }
 
 }

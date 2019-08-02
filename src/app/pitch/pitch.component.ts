@@ -25,8 +25,8 @@ export class PitchComponent implements OnInit {
   constructor(private apiService: ApiServiceService, private auth: AuthService,
     private router: Router,
     private dialog: MatDialog,
-    private playerData: DataService,
-    private tokenService: TokenService,
+    public playerData: DataService,
+    public tokenService: TokenService,
     private ref: ChangeDetectorRef) { }
 
   ngOnInit() {

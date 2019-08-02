@@ -18,7 +18,7 @@ export class WelcomeComponent implements OnInit {
 
   constructor(private web3Service: Web3Service, private auth: AuthService,
     private dialog: MatDialog, private ref: ChangeDetectorRef,
-    private loader: LoaderService) { }
+    public loader: LoaderService) { }
 
   ngOnInit() {
     this.loader.checkIfReady()

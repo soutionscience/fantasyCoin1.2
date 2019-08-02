@@ -18,11 +18,11 @@ export class TransferComponent implements OnInit {
   user: any;
   showLoading: Boolean
 
-  constructor(private api: ApiServiceService, private data: DataService, 
+  constructor(private api: ApiServiceService, public data: DataService, 
     private auth: AuthService,
     private dialog: MatDialog,
     private ref: ChangeDetectorRef,
-    private tokenService: TokenService,
+    public tokenService: TokenService,
     private router: Router) { }
 
   ngOnInit() {

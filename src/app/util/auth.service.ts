@@ -24,7 +24,7 @@ export class AuthService {
     localStorage.setItem(this.userName, userName)
     localStorage.setItem(this.userId, userId)
     localStorage.setItem(this.userAdress, address)
-    localStorage.setItem(this.active, active);
+    //localStorage.setItem(this.active, active);
     this.userEmail = email
     // localStorage.setItem(this.user, JSON.stringify(user))
   }

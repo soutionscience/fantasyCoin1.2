@@ -16,7 +16,7 @@ export class MenuComponent implements OnInit {
   userName: String;
   coinBase: String;
 
-  constructor(private authService: AuthService, private tokenService: TokenService,
+  constructor(public authService: AuthService, private tokenService: TokenService,
     private ref: ChangeDetectorRef,
     private web3: Web3Service,
     private dialog: MatDialog) { }
