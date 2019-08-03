@@ -45,7 +45,7 @@ export class Web3Service {
   }
   checkAndInstatiateWeb3 = () => {
     if(typeof window.ethereum !== 'undefined'){
-      console.log('modern browser');
+     // console.log('modern browser');
       this.web3 = new Web3(window.ethereum);
 
       try{
@@ -53,7 +53,7 @@ export class Web3Service {
         //window.location.reload()
         
       }catch(error){
-        console.log('user denied')
+       // console.log('user denied')
       }
 
     }
@@ -96,7 +96,7 @@ export class Web3Service {
   }
 
   loggoutUser(){
-    console.log('are you logging out?')
+   // console.log('are you logging out?')
     this.authService.logOut();
 
   }
@@ -107,13 +107,13 @@ if(myaccount){
     myaccount = myaccount.toLowerCase()
     this.web3.currentProvider.publicConfigStore.on('update', function(responce){
       let newAccount = responce.selectedAddress;
-       //console.log('responce has ',newAccount, ' and accounts ', myaccount)
+      console.log('responce has ',newAccount, ' and accounts ', myaccount)
       if(newAccount !== myaccount){
-      //  console.log('reload page')
+        setTimeout(function(){  window.location.reload(); }, 500);
         //this.tokenService.getTokenBalance(myaccount).subscribe()
         // this.authService.logOut()
-        this.loggoutUser()
-        window.location.reload();
+        // this.loggoutUser()
+      
      
         
       }
@@ -128,7 +128,7 @@ if(myaccount){
     return Observable.create(observer=>{
       if(typeof window.web3 !== 'undefined'){ //web 3 installed
       
-        console.log('what is in accounts? ', account)
+        //console.log('what is in accounts? ', account)
 
         if(account){ // if account then metamask is unlocked is unlocked return 2
 
@@ -155,7 +155,7 @@ if(myaccount){
     return Observable.create(observer=>{
       this.web3.eth.getAccounts((err, resp)=>{
         if(err) observer.next(err)
-        console.log('get coinBase resp ', resp)
+        //console.log('get coinBase resp ', resp)
         observer.next(resp[0])
         observer.complete()
       })
@@ -189,7 +189,8 @@ web3.eth.getAccounts((err, resp)=>{
   
     this.web3.eth.personal.sign(this.web3.utils.fromUtf8(`I am signing my one-time nonce: ${nonceValue}`), from,(err, result)=>{
 		
-      if(err){ console.log('error signing the token');
+      if(err){ 
+        //console.log('error signing the token');
             observer.next(err)}
             else{
              // console.log('SIGNED ', result)
@@ -290,7 +291,7 @@ getAllCompetions(account, addr, gasToUse):Observable<any>{
 
 
 joinCompe(acc, gas, compeId):Observable<any>{
-  console.log('acc ', acc)
+  //console.log('acc ', acc)
   return Observable.create(observer=>{
     let transactionObject={
       from: acc,

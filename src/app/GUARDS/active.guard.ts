@@ -14,7 +14,7 @@ export class ActiveGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if(this.auth.isActive()){
-      console.log('is user active ? ', this.auth.isActive())
+     // console.log('is user active ? ', this.auth.isActive())
       return true
 
     }else{

@@ -49,8 +49,10 @@ export class LoginHorizontalComponent implements OnInit {
   }
   
   getCoinBase(){
- this.web3Service.getCoinBase().subscribe(resp=> {this.coinBase = resp; console.log('coinbase is ', this.coinBase)})
-console.log('coin base is ',this.coinBase)
+ this.web3Service.getCoinBase().subscribe(resp=> {this.coinBase = resp; 
+  //console.log('coinbase is ', this.coinBase)
+})
+//console.log('coin base is ',this.coinBase)
 }
 
 checkIfToDisplayButton(){

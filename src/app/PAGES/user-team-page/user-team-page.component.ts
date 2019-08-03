@@ -27,7 +27,7 @@ export class UserTeamPageComponent implements OnInit {
   }
   getUser(){
 let address = this.auth.getUserAdress();
-console.log('users ', address)
+//console.log('users ', address)
  this.api.getSpecificResource('users',address)
  .subscribe(resp=>{
    this.user = resp

@@ -39,7 +39,7 @@ export class TokenService {
  
   }
   getTokenCount(){
-  console.log('user balance  ', this.userBalance)   
+  //console.log('user balance  ', this.userBalance)   
 return this.userBalance
   }
   removeTokenCount(){
@@ -50,7 +50,7 @@ return this.userBalance
     this.userBalance-= playerCost
   }
   addTokenCount(playerCost){
-    console.log('player cons ', playerCost)
+   // console.log('player cons ', playerCost)
     this.userBalance += playerCost
   }
   enoughTokens(){

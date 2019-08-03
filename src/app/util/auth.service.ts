@@ -25,6 +25,7 @@ export class AuthService {
     localStorage.setItem(this.userId, userId)
     localStorage.setItem(this.userAdress, address)
     //localStorage.setItem(this.active, active);
+    this.active = active;
     this.userEmail = email
     // localStorage.setItem(this.user, JSON.stringify(user))
   }
@@ -34,18 +35,22 @@ export class AuthService {
   getUserId(){
     return localStorage.getItem(this.userId)
   }
+  setActiveStatus(status){
+    this.active = status;
+
+  }
   getActiveStatus(){
-    return localStorage.getItem(this.active)
+    return this.active
   }
   getUserEmail(){
     return this.userEmail;
   }
   isActive(){
   if(this.getActiveStatus() !== 'false'){
-    console.log('user is active')
+    //console.log('user is active')
     return true
   }else{
-    console.log('user is not active')
+   // console.log('user is not active')
     return false
   }
   }
@@ -62,7 +67,7 @@ return this.getToken() !== null;
   getUserAdress(){
     return localStorage.getItem(this.userAdress)
   }
-  logOut(){
+ public logOut(){
     localStorage.removeItem (this.storageKey);
     localStorage.removeItem(this.userName)
     localStorage.removeItem(this.userId)
@@ -85,10 +90,10 @@ localStorage.setItem(this.mydate, JSON.stringify(this.myDates))
 
 function confirmExporation(){
   var values = JSON.parse(localStorage.getItem('mydate'));
-  console.log('values ', values[0]);
+ // console.log('values ', values[0]);
   if (values[0] < new Date()) {
     localStorage.removeItem("mydate");
-    console.log('removed item')
+    //console.log('removed item')
     this.logout()
 }
 }

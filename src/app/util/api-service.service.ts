@@ -32,9 +32,13 @@ export class ApiServiceService {
     return this.restangular.one(apiRoute, LeagueEtherId).all(item).getList()
 
   }
+
   
   getSpecificResource(apiRoute, id): Observable<any[]>{
     return this.restangular.one(apiRoute, id).get()
+  }
+  getVerySpecificResource(apiRoute, id, item):Observable<any[]>{
+    return this.restangular.one(apiRoute, id).one(item).get()
   }
   getTokenResource(apiRoute,id, sign, nonce):Observable<any>{
     console.log('received ', apiRoute , id,'/', sign)

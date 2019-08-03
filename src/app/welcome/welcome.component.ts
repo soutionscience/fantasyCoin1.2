@@ -22,7 +22,7 @@ export class WelcomeComponent implements OnInit {
 
   ngOnInit() {
     this.loader.checkIfReady()
-    console.log('loading ..', this.auth.checkExpiration())
+    //console.log('loading ..', this.auth.checkExpiration())
     this.ref.detectChanges()
     this.checkIfNew();
     this.hasLoaded = false;
@@ -31,7 +31,14 @@ export class WelcomeComponent implements OnInit {
    setTimeout(()=>{if(this.auth.getNewUser()== null){
     this.dialog.open(WarningBetaComponent,{width: '450px', height: 'auto'})
    }}, 1000)
+  //  this.checkIfActive()
+ 
    }
-  
+
+   checkIfActive(){
+     //console.log('checking id active')
+   }
+
+
 
 }

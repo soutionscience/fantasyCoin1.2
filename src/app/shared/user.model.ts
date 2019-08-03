@@ -3,4 +3,5 @@ export interface User{
     admin: boolean;
     address: string;
     nounce: string
+    active: Boolean
 }
