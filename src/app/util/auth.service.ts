@@ -95,12 +95,13 @@ localStorage.setItem(this.mydate, JSON.stringify(this.myDates))
 
 
   confirmExporation(){
+    console.log('checking to see if expired')
     var values = JSON.parse(localStorage.getItem('mydate'));
-    console.log('values ', values[0]);
-    if (values[0] < new Date()) {
-      localStorage.removeItem("mydate");
-      console.log('removed item')
-      this.logOut()
+    var oldate  = new Date(values[0])
+    console.log('values ', oldate);
+    if (oldate < new Date()) {
+     localStorage.removeItem("mydate");
+    this.logOut()
   }
   }
 }

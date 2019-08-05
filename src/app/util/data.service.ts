@@ -13,10 +13,13 @@ export class DataService {
   userPlayersOldId: any []=[];
   userBalance: Number;
   userTeam: String [];
+  userPlayerMap:  Map<any, Boolean> =new Map()
   
 
   constructor(private tokenService: TokenService, private api: ApiServiceService) { }
   addPlayers(player){
+    this.userPlayerMap.set(player, true)
+    //console.log('added to map ', this.userPlayerMap)
     this.userPlayers.push(player)
     this.userPlayerId.push(player._id)
     //localStorage.setItem(this.players, JSON.stringify(this.userPlayers));
@@ -29,6 +32,7 @@ export class DataService {
     return this.userPlayers.length;
   }
   removePlayers(id){
+    this.userPlayerMap.delete(id)
     console.log('removing in service ', id);
     let index = this.userPlayers.indexOf(id);
     console.log('index are you removing ', index)
@@ -36,15 +40,17 @@ export class DataService {
     // localStorage.setItem(this.players, JSON.stringify(this.userPlayers));
   }
   checkIfAlreadyInTeam(player){
-  
-    if(this.userPlayerId.indexOf(player._id)== -1 ){
-       console.log('not in team add')
-      return false;
 
-    }else{
-      console.log('in team, remove')
-     return true;
-    }
+    return this.userPlayerMap.get(player)
+  
+    // if(this.userPlayerId.indexOf(player._id)== -1 ){
+    //   //  console.log('not in team add')
+    //   return false;
+
+    // }else{
+    //   // console.log('in team, remove')
+    //  return true;
+    // }
   }
   setUserBalance(balance){
   this.tokenService.getTokenBalance('takatak')

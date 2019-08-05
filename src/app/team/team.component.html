@@ -48,10 +48,13 @@
                                       <th>Points</th>
                                       <th>$</th>
                                     </tr>
-                                    <tr class="is-hoverable" [ngClass]="data.checkIfAlreadyInTeam(g)? 'is-selected':'selected'"  (click)="selectPlayer(g)" *ngFor="let g of SpecialKeepers">
+                                    <tr class="is-hoverable" 
+                                    [ngClass]="{'is-selected' :data.userPlayerMap.get(g)}"
+                                  
+                                    (click)="selectPlayer(g)" *ngFor="let g of SpecialKeepers">
                                       <td class="jersey"><img [src]= " '../../assets/images/logos/number/'+ g.team_code + '.png' "
                                         height="auto" width="15"></td>
-                                      <td><p class="is-size-7">{{g.web_name}}</p></td>
+                                      <td><p class="is-size-7">{{g.web_name}} kevici</p></td>
                                       <td><p class="is-size-7">${{g.pointsWeek}}</p></td>
                                       <td><p class="is-size-7">{{g.now_cost}}</p></td>
                                     </tr>
@@ -76,7 +79,7 @@
                                     <th>Points</th>
                                     <th>$</th>
                                   </tr>
-                               <tr class="is-hoverable" [ngClass]="data.checkIfAlreadyInTeam(d)? 'is-selected':'not-selected'" (click)="selectPlayer(d)" *ngFor="let d of SpecialDefs">
+                               <tr class="is-hoverable"  [ngClass]="{'is-selected' :data.userPlayerMap.get(d)}" (click)="selectPlayer(d)" *ngFor="let d of SpecialDefs">
                                   <td class="jersey"><img [src]= " '../../assets/images/logos/number/'+ d.team_code + '.png' "
                                     height="auto" width="15"></td>
                                
@@ -106,7 +109,7 @@
                                     <th>Points</th>
                                     <th>$</th>
                                   </tr> 
-                              <tr class="is-hoverable" [ngClass]="data.checkIfAlreadyInTeam(d)? 'is-selected':'not-selected'" (click)="selectPlayer(d)" *ngFor="let d of SpecialMids">
+                              <tr class="is-hoverable"  [ngClass]="{'is-selected' :data.userPlayerMap.get(d)}" (click)="selectPlayer(d)" *ngFor="let d of SpecialMids">
                                  
                                   <td class="jersey"><img [src]= " '../../assets/images/logos/number/'+ d.team_code + '.png' "
                                     height="auto" width="15"></td>
@@ -139,7 +142,7 @@
                                   <th>Points</th>
                                   <th>$</th>
                                 </tr> 
-                            <tr class="is-hoverable" [ngClass]="data.checkIfAlreadyInTeam(d)? 'is-selected':'not-selected'" (click)="selectPlayer(d)" *ngFor="let d of SpecialAttacks">
+                            <tr class="is-hoverable"  [ngClass]="{'is-selected' :data.userPlayerMap.get(d)}" (click)="selectPlayer(d)" *ngFor="let d of SpecialAttacks">
                                 <td class="jersey"><img [src]= " '../../assets/images/logos/number/'+ d.team_code + '.png' "
                                   height="auto" width="15"></td>
                               
