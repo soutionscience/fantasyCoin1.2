@@ -48,7 +48,7 @@
                                       <th>Points</th>
                                       <th>$</th>
                                     </tr>
-                                    <tr class="is-hoverable" [ngClass]="data.checkIfAlreadyInTeam(g)? 'is-selected':'not-selected'"  (click)="selectPlayer(g)" *ngFor="let g of SpecialKeepers">
+                                    <tr class="is-hoverable" [ngClass]="data.checkIfAlreadyInTeam(g)? 'is-selected':'selected'"  (click)="selectPlayer(g)" *ngFor="let g of SpecialKeepers">
                                       <td class="jersey"><img [src]= " '../../assets/images/logos/number/'+ g.team_code + '.png' "
                                         height="auto" width="15"></td>
                                       <td><p class="is-size-7">{{g.web_name}}</p></td>

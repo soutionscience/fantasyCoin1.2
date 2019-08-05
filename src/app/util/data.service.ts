@@ -38,11 +38,11 @@ export class DataService {
   checkIfAlreadyInTeam(player){
   
     if(this.userPlayerId.indexOf(player._id)== -1 ){
-      // console.log('not in team add')
+       console.log('not in team add')
       return false;
 
     }else{
-      // console.log('in team, remove')
+      console.log('in team, remove')
      return true;
     }
   }

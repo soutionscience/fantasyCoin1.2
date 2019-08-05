@@ -28,6 +28,7 @@ export class AuthService {
     this.active = active;
     this.userEmail = email
     // localStorage.setItem(this.user, JSON.stringify(user))
+    this.checkExpiration()
   }
   getToken(){
    return localStorage.getItem(this.storageKey)
@@ -82,23 +83,24 @@ return this.getToken() !== null;
   getNewUser(){
   return  localStorage.getItem(this.newUser)
   }
+
   checkExpiration(){
+    console.log('checking exploration')
   var myHour = new Date();
   myHour.setHours(myHour.getHours() + 1);
   this.myDates.push(myHour)
+  console.log('time' , this.myDates)
 localStorage.setItem(this.mydate, JSON.stringify(this.myDates))
-
-function confirmExporation(){
-  var values = JSON.parse(localStorage.getItem('mydate'));
- // console.log('values ', values[0]);
-  if (values[0] < new Date()) {
-    localStorage.removeItem("mydate");
-    //console.log('removed item')
-    this.logout()
-}
 }
 
-confirmExporation();
 
+  confirmExporation(){
+    var values = JSON.parse(localStorage.getItem('mydate'));
+    console.log('values ', values[0]);
+    if (values[0] < new Date()) {
+      localStorage.removeItem("mydate");
+      console.log('removed item')
+      this.logOut()
+  }
   }
 }

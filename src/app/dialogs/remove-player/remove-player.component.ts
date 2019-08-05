@@ -35,7 +35,9 @@ export class RemovePlayerComponent implements OnInit {
   }
 
   close(p){
+    console.log('removing', p)
     this.dialogRef.close(p);
+    this.ref.detectChanges();
   }
 
 }

@@ -29,17 +29,20 @@ export class LoaderService {
     .subscribe(resp=>{
       this.web3.checkWe3NetWork() //not sure about this implementation
       if(!resp){
-       console.log('no responce'); // cannot get coinbase, either it's locked or not web3
+      // console.log('no responce'); // cannot get coinbase, either it's locked or not web3
        this.isLoaded = true;
       }else{
-        console.log('what is in ', this.auth. getUserAdress())
+   
         if(this.auth.getUserAdress()){ // checks if the is  any user address stuff in browser
-          console.log('storage present')
-          if(this.auth.getUserAdress == resp){
+           
+          if(this.auth.getUserAdress() == resp){
+            this.auth.confirmExporation();
+            
             this.checkifRegister(resp)
             this.isLoaded = true;
 
           }else{
+            
             this.auth.logOut();
           }
 
