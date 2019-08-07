@@ -137,7 +137,8 @@ getBaseAccount(){
      this.user = resp
      this.showCreate = false;
      this.showSignIn = true;
-     this.ref.detectChanges()
+     this.ref.detectChanges();
+     this.apiService.postResource('messages', {"email": this.CreatAccountForm.value.email, "name": this.CreatAccountForm.value.username  }).subscribe()
    }, error=>{
      if(error.data.error == 'username in use'){
       this.setStatus("username already in use");
@@ -167,7 +168,7 @@ getBaseAccount(){
         this.apiService.getTokenResource('auth', this.AccountId, resp.sign, resp.nonce )
         .subscribe(resp=>{
         this.authService.setToken(resp.token, resp.userName, resp.userId, resp, resp.address, resp.active, resp.email);
-        this.apiService.postResource('messages', {"email": resp.email, "name": resp.userName  }).subscribe()
+        //this.apiService.postResource('messages', {"email": resp.email, "name": resp.userName  }).subscribe()
         this.tokenService.getTokenBalance(this.AccountId).subscribe(resp=>{
           this.showLoading = true;
          // console.log('responce ni ', resp);

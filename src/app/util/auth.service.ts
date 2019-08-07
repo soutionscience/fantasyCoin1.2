@@ -48,7 +48,7 @@ export class AuthService {
   }
   isActive(){
   if(this.getActiveStatus() !== 'false'){
-    //console.log('user is active')
+    console.log('user is active')
     return true
   }else{
    // console.log('user is not active')
