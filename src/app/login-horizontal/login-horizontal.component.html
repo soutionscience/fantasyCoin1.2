@@ -2,13 +2,13 @@
     
     <div class="field is-grouped">
         <div class="control">
-            <button class="button is-primary is-large is-focused" (click)="login()" *ngIf="showButton">Get Started!</button>
+            <button class="button is-primary is-large is-focused" (click)="login()" *ngIf="showButton">Get Started! </button>
         </div>
         <div class="control">
-            <button class="button is-link is-medium is-inverted" (click)="login()" *ngIf="!showButton">How to Play</button>
+            <button class="button is-link is-medium is-inverted" [routerLink]="[ '/howto']"  *ngIf="!showButton">How to Play</button>
         </div>
         <div class="control">
-            <button class="button is-link is-medium is-inverted" (click)="login()" *ngIf="!showButton">More</button>
+            <button class="button is-link is-medium is-inverted" [routerLink]="[ '/feedback']" *ngIf="!showButton">More</button>
         </div>
       </div>
   </div>
