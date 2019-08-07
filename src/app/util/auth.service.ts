@@ -13,22 +13,21 @@ export class AuthService {
   mydate: string = 'mydate'
   newUser: string = 'newUser'
   myDates: any [] =[];
-  active: string;
+  active: Boolean;
   userEmail: String
 
   constructor(private router: Router) { }
 
-  setToken(token: string, userName: string, userId: string, user: any, address: string, active: string, email: String){
+  setToken(token: string, userName: string, userId: string, user: any, address: string, active: Boolean, email: String){
 
     localStorage.setItem(this.storageKey, token)
     localStorage.setItem(this.userName, userName)
     localStorage.setItem(this.userId, userId)
     localStorage.setItem(this.userAdress, address)
-    //localStorage.setItem(this.active, active);
     this.active = active;
-    this.userEmail = email
-    // localStorage.setItem(this.user, JSON.stringify(user))
-    this.checkExpiration()
+    this.userEmail = email;
+    this.checkExpiration();
+    window.location.reload()
   }
   getToken(){
    return localStorage.getItem(this.storageKey)
@@ -37,6 +36,7 @@ export class AuthService {
     return localStorage.getItem(this.userId)
   }
   setActiveStatus(status){
+    console.log('are we calling set active status?')
     this.active = status;
 
   }
@@ -47,11 +47,11 @@ export class AuthService {
     return this.userEmail;
   }
   isActive(){
-  if(this.getActiveStatus() !== 'false'){
-    console.log('user is active')
+  if(this.active){
+    console.log('user is active ', this.active)
     return true
   }else{
-   // console.log('user is not active')
+   console.log('user is not active')
     return false
   }
   }
@@ -73,7 +73,8 @@ return this.getToken() !== null;
     localStorage.removeItem(this.userName)
     localStorage.removeItem(this.userId)
     localStorage.removeItem(this.userAdress)
-    this.router.navigate(['/'])
+    this.router.navigate(['/']).then(function(){window.location.reload()})
+
 
 
   }
@@ -85,7 +86,7 @@ return this.getToken() !== null;
   }
 
   checkExpiration(){
-    console.log('checking exploration')
+  console.log('checking exploration')
   var myHour = new Date();
   myHour.setHours(myHour.getHours() + 1);
   this.myDates.push(myHour)
