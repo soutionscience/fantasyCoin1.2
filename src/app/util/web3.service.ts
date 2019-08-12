@@ -86,6 +86,12 @@ export class Web3Service {
     }
 
   }
+  initializePortis(user){
+    this.web3 = new Web3(portis.provider);
+    console.log('are we getting email ', user.email)
+    portis.setDefaultEmail(user.email);
+    portis.showPortis();
+  }
 
   checkWe3NetWork(){
     this.web3.eth.net.getNetworkType((err, netId) => {

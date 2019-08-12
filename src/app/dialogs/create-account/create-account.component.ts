@@ -61,18 +61,7 @@ export class CreateAccountComponent implements OnInit {
     // this.decideForm()
    
   }
-  // decideForm(){ //check if user is registerd and show appropriate form
-  //   console.log('get decide form')
-  //   this.showLoading = true;
-  //   console.log('register ',this.registered)
-  //   if(this.registered){
-  //     this.showSignIn = true;
-  //   }
-  //   else{
-  //     this.showCreate= true
-  //   }
-
-  // }
+  
 
   createAccount(){
   this.getBaseAccount(); //get account address

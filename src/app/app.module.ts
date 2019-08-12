@@ -35,12 +35,13 @@ import { WarningBetaComponent } from './dialogs/warning-beta/warning-beta.compon
 import { BuyMoreComponent } from './dialogs/buy-more/buy-more.component';
 import { SignInComponent } from './dialogs/sign-in/sign-in.component';
 import { EarlyBetaComponent } from './dialogs/early-beta/early-beta.component';
+import { CreatePortisComponent } from './dialogs/create-portis/create-portis.component';
 
 
 
 @NgModule({
   declarations: [ RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
-    LoginMetamaskComponent, InstallMetamaskComponent, WarningBetaComponent, BuyMoreComponent, SignInComponent, EarlyBetaComponent],
+    LoginMetamaskComponent, InstallMetamaskComponent, WarningBetaComponent, BuyMoreComponent, SignInComponent, EarlyBetaComponent, CreatePortisComponent],
   imports: [
     BrowserAnimationsModule,
     CommonModule,
@@ -61,7 +62,7 @@ import { EarlyBetaComponent } from './dialogs/early-beta/early-beta.component';
   providers: [Web3Service, AuthService, AuthGuard, ActiveGuard, MainnetGuard],
   entryComponents: [RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
      LoginMetamaskComponent, InstallMetamaskComponent, WarningBetaComponent,SignInComponent,
-    EarlyBetaComponent],
+    EarlyBetaComponent, CreatePortisComponent],
   bootstrap: [AppComponent],
   exports: [AppComponent]
 })
