@@ -10,24 +10,36 @@
       </div>
       
     <div class="myText">
-      <p>
+      <p *ngIf="!showPortisText">
           Your email address is used to send you crucial and account related updates.
           Your nickname is public and is how other users will identify you.
       </p>
+ 
+    </div>
+    <div *ngIf="showPortisText">
+      <p>You’ll need a safe place to store all of your Players and Team.</p>
+      <p>The perfect place is in a secure wallet like Portis.</p>
+      <p>This will also act as your login to the game (no extra password needed)</p>
+      <div class="separator">
+  
+      </div>
+      <button class="button is-primary" (click)="loginWithPortis()" *ngIf="showButton">Login With Portis</button>
+      <progress class="progress is-small is-primary" max="100" *ngIf="showProgressBar">15%</progress>
+
     </div>
   </div>
   <div class="spinner button is-loading is-large" *ngIf="showLoading"></div>
   
-  <div class="creationForm" *ngIf="!showForm">
+  <div class="creationForm" *ngIf="showForm">
   <form class="form" [formGroup]="CreatAccountForm">
       <div class="field">
           <!-- <label class="label">Name</label> -->
           <div class="control">
             <input class="input is-medium" type="email" placeholder="e.g AlexSmith@email.com"
-             formControlName="email" [email]="true">
+             formControlName="email" [email]="true" >
           </div>
           <p class="help is-danger" *ngIf="emailWarning">This email is already in use</p>
-          <p class="help is-danger" *ngIf="CreatAccountForm.invalid">This email is invalid</p>
+          <p class="help is-danger">This email is invalid</p>
         </div>
   
         <div class="field">
