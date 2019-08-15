@@ -1,9 +1,14 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, NgZone } from '@angular/core';
 import { Web3Service } from '../../util/web3.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiServiceService } from '../../util/api-service.service';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialogRef } from '@angular/material';
 import { AuthService } from '../../util/auth.service';
+import { Router } from '@angular/router';
+import { TokenService } from '../../util/token.service';
+import { User } from 'src/app/shared/user.model';
+;
+import { SignerService } from '../../util/signer.service';
 
 @Component({
   selector: 'app-create-portis',
@@ -20,11 +25,18 @@ export class CreatePortisComponent implements OnInit {
   showProgressBar: Boolean;
   showButton: Boolean;
   emailValue: String;
+  userId: String;
+  user: User[];
 
   constructor(private web3: Web3Service, private fb: FormBuilder,
     private api: ApiServiceService, private matSnackBar: MatSnackBar, 
     private ref: ChangeDetectorRef,
-    private auth: AuthService) { }
+    private auth: AuthService,
+    private router: Router,
+    private zone: NgZone,
+    private dialogRef: MatDialogRef<CreatePortisComponent>,
+    private tokenService: TokenService,
+    private signService: SignerService) { }
 
   ngOnInit() {
     this.showLoading = false
@@ -41,6 +53,7 @@ export class CreatePortisComponent implements OnInit {
     this.web3.initializePortis();
     this.web3.checkIfPortisIsLoggedIn()
     .subscribe(resp=>{
+      this.userId = resp.address;
  if(this.auth.getUserAdress()){ // if user address is in browser
      if(this.auth.getUserAdress() == resp.address){ //check if useraddress is same 
        console.log('user address save is same us browser')
@@ -60,64 +73,72 @@ export class CreatePortisComponent implements OnInit {
     console.log('checking ', address)
     this.api.getSpecificResource('users', address)
     .subscribe(resp=>{
-      console.log('is user registered?')
+      console.log(' user is registered?')
 
     }, error=>{
-      this.CreatAccountForm.patchValue({email: userEmail})
-      this.showForm = true;
-      this.showPortisText = false;
+      //user is not registered
       this.showProgressBar = false;
-      this.ref.detectChanges();
-      this.api.postResource('users', this.CreatAccountForm.value)
-      .subscribe(resp=>{
+      this.showRegistrationForm(userEmail)
 
-      }, error=>{
-        if(error.data.error == 'username in use'){
-        this.setStatus("username already in use");
-        this.usernameWarning = true;
-        this.showLoading = false;
-        this.CreatAccountForm.value.username ='';
-        this.ref.detectChanges();
-
-        }else if(error.data.error == 'email in use'){
-        this.setStatus("email already in use");
-        this.showLoading = false;
-        this.emailWarning = true;
-        this.ref.detectChanges();
-
-        }
-      })
-     
     })
+     
+
 
   }
 
-  // submit(){
-  //   this.showLoading = true;
-  //   this.api.postResource('users', this.CreatAccountForm.value)
-  //   .subscribe(resp=>{
-  //     //console.log('resp from server ', resp);
-  //     this.web3.initializePortis(resp)
-  //     this.showLoading = false;
-  //   }, error=>{
-  //     if(error.data.error == 'username in use'){
-  //       this.setStatus("username already in use");
-  //       this.usernameWarning = true;
-  //       this.showLoading = false;
-  //       this.CreatAccountForm.value.username ='';
-  //       this.ref.detectChanges();
+  showRegistrationForm(userEmail){
+    this.CreatAccountForm.patchValue({email: userEmail})
+    this.showForm = true;
 
-  //     }else if(error.data.error == 'email in use'){
-  //       this.setStatus("email already in use");
-  //       this.showLoading = false;
-  //       this.emailWarning = true;
-  //       this.ref.detectChanges();
+  }
 
-  //     }
-  //   })
+  submit(){
+    this.showProgressBar = true;
+    this.CreatAccountForm.value.address = this.userId;
+    this.api.postResource('users', this.CreatAccountForm.value)
+    .subscribe(resp=>{
+      //console.log('resp from server ', resp);
+      // this.web3.initializePortis(resp)
+      this.user = resp
+      this.showForm = false;
+      this.api.postResource('messages', {"email": this.CreatAccountForm.value.email, "name": this.CreatAccountForm.value.username  })
+      .subscribe(resp=>{
+        console.log('created new user')
+        // this.showProgressBar = false;
+        this.signIn(this.user)
+        // this.dialogRef.close()
+        // this.zone.run(()=>this.router.navigateByUrl('/transfers'))// use 
+
+      })
+
+    }, error=>{
+      if(error.data.error == 'username in use'){
+        this.setStatus("username already in use");
+        this.usernameWarning = true;
+        this.showProgressBar = false;
+        this.CreatAccountForm.value.username ='';
+        this.ref.detectChanges();
+
+      }else if(error.data.error == 'email in use'){
+        this.setStatus("email already in use");
+        this.showProgressBar = false;
+        this.emailWarning = true;
+        this.ref.detectChanges();
+
+      }
+    })
     
   
-  // }
+  }
+  signIn(user){
+    this.signService.getmyToken(user)
+    // console.log('user id is? ', this.userId);
+    // this.tokenService.getTokenBalance(this.userId)
+    // .subscribe(resp=>{
+    //   console.log('user balance is ? ', resp)
+    // })
+  
+  }
   createForm(){
     this.CreatAccountForm =this.fb.group({
       email: ['', [Validators.email, Validators.required]],
