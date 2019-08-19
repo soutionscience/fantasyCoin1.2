@@ -19,7 +19,8 @@ export class AuthService {
   constructor(private router: Router) { }
 
   setToken(token: string, userName: string, userId: string, user: any, address: string, active: Boolean, email: String){
-
+  console.log("TCL: AuthService -> setToken -> setToken")
+    
     localStorage.setItem(this.storageKey, token)
     localStorage.setItem(this.userName, userName)
     localStorage.setItem(this.userId, userId)
@@ -27,7 +28,7 @@ export class AuthService {
     this.active = active;
     this.userEmail = email;
     this.checkExpiration();
-    window.location.reload()
+   // window.location.reload()
   }
   getToken(){
    return localStorage.getItem(this.storageKey)

@@ -122,12 +122,12 @@ getBaseAccount(){
     this.CreatAccountForm.value.address = this.AccountId;
     this.apiService.postResource('users', this.CreatAccountForm.value)
    .subscribe(resp=>{
-     console.log('resp from server ', resp)
+  //   console.log('resp from server ', resp)
      this.user = resp
      this.showCreate = false;
      this.showSignIn = true;
      this.ref.detectChanges();
-     this.apiService.postResource('messages', {"email": this.CreatAccountForm.value.email, "name": this.CreatAccountForm.value.username  }).subscribe()
+     //this.apiService.postResource('messages', {"email": this.CreatAccountForm.value.email, "name": this.CreatAccountForm.value.username  }).subscribe()
    }, error=>{
      if(error.data.error == 'username in use'){
       this.setStatus("username already in use");
@@ -165,7 +165,7 @@ getBaseAccount(){
         
        
              // use zone to take care of issue with ngOninit not firring after navigate
-        this.zone.run(()=>this.router.navigateByUrl('/transfers'))// use 
+        //this.zone.run(()=>this.router.navigateByUrl('/transfers'))// use 
         })
       
         })

@@ -6,8 +6,7 @@ import { MatSnackBar, MatDialogRef } from '@angular/material';
 import { AuthService } from '../../util/auth.service';
 import { Router } from '@angular/router';
 import { TokenService } from '../../util/token.service';
-import { User } from 'src/app/shared/user.model';
-;
+import { User } from '../../shared/user.model';
 import { SignerService } from '../../util/signer.service';
 
 @Component({
@@ -36,7 +35,7 @@ export class CreatePortisComponent implements OnInit {
     private zone: NgZone,
     private dialogRef: MatDialogRef<CreatePortisComponent>,
     private tokenService: TokenService,
-    private signService: SignerService) { }
+    private sign: SignerService) { }
 
   ngOnInit() {
     this.showLoading = false
@@ -51,6 +50,7 @@ export class CreatePortisComponent implements OnInit {
     this.showButton = false;
     this.showProgressBar = true;
     this.web3.initializePortis();
+    this.web3.checkWe3NetWork()
     this.web3.checkIfPortisIsLoggedIn()
     .subscribe(resp=>{
       this.userId = resp.address;
@@ -101,15 +101,17 @@ export class CreatePortisComponent implements OnInit {
       // this.web3.initializePortis(resp)
       this.user = resp
       this.showForm = false;
-      this.api.postResource('messages', {"email": this.CreatAccountForm.value.email, "name": this.CreatAccountForm.value.username  })
-      .subscribe(resp=>{
-        console.log('created new user')
-        // this.showProgressBar = false;
-        this.signIn(this.user)
-        // this.dialogRef.close()
-        // this.zone.run(()=>this.router.navigateByUrl('/transfers'))// use 
+      //this.api.postResource('messages', {"email": this.CreatAccountForm.value.email, "name": this.CreatAccountForm.value.username  })
+      //.subscribe()
+      this.sign.getmyToken(this.user, this.userId).
+      subscribe(resp=>{
 
+            // use zone to take care of issue with ngOninit not firring after navigate
+         this.zone.run(()=>this.router.navigateByUrl('/transfers'))// use 
+         this.dialogRef.close()
+         
       })
+      //console.log('sent to sign')
 
     }, error=>{
       if(error.data.error == 'username in use'){
@@ -131,12 +133,10 @@ export class CreatePortisComponent implements OnInit {
   
   }
   signIn(user){
-    this.signService.getmyToken(user)
-    // console.log('user id is? ', this.userId);
-    // this.tokenService.getTokenBalance(this.userId)
-    // .subscribe(resp=>{
-    //   console.log('user balance is ? ', resp)
-    // })
+   
+    this.sign.getmyToken(user, this.userId)
+   
+    
   
   }
   createForm(){

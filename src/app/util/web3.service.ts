@@ -93,7 +93,16 @@ export class Web3Service {
     this.web3 = new Web3(portis.provider);
     //console.log('are we getting email ', user.email)
     //portis.setDefaultEmail(user.email);
-    portis.showPortis()
+    portis.showPortis();
+
+    this.getCoinBase().subscribe((resp)=>{
+      this.account = resp
+      // console.log("TCL: initializePortis -> this.account ", this.account )
+  
+   
+     
+    
+    })
     
   } 
   checkIfPortisIsLoggedIn():Observable<any>{
@@ -121,10 +130,12 @@ export class Web3Service {
         throw err;
       }else{
         this.netWorkType = netId;
+        console.log("TCL: checkWe3NetWork -> this.netWorkType ", this.netWorkType )
       }
     })
   }
   getNetWorkType(){
+    console.log("TCL: getNetWorkType -> this.netWorkType", this.netWorkType)
     return this.netWorkType
   }
 
@@ -209,12 +220,13 @@ web3.eth.getAccounts((err, resp)=>{
 
  signTransaction(nonce):Observable<any>{
   // nounce= this.web3.utils.toHex( nounce.challenge)
- // console.log('received ', nonce)
+//  console.log('received ', nonce)
 
   let nonceValue = nonce.nonce
-//  console.log('signing nounce ', nonceValue)
+  // console.log('signing nounce ', nonceValue)
 
-  let from = this.account
+  let from = this.account;
+  // console.log('account ', this.account)
   
    
    return Observable.create(observer=>{
