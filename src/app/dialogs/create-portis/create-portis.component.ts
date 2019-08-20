@@ -95,6 +95,7 @@ export class CreatePortisComponent implements OnInit {
   submit(){
     this.showProgressBar = true;
     this.CreatAccountForm.value.address = this.userId;
+    this.CreatAccountForm.value.provider = 'portis'
     this.api.postResource('users', this.CreatAccountForm.value)
     .subscribe(resp=>{
       //console.log('resp from server ', resp);

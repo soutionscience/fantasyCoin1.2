@@ -120,6 +120,7 @@ getBaseAccount(){
     this.ref.detectChanges()
     this.showForm=false;
     this.CreatAccountForm.value.address = this.AccountId;
+    this.CreatAccountForm.value.provider = 'metamask'
     this.apiService.postResource('users', this.CreatAccountForm.value)
    .subscribe(resp=>{
   //   console.log('resp from server ', resp)
@@ -156,7 +157,7 @@ getBaseAccount(){
         console.log('signed by ', resp.account);
         this.apiService.getTokenResource('auth', this.AccountId, resp.sign, resp.nonce )
         .subscribe(resp=>{
-        this.authService.setToken(resp.token, resp.userName, resp.userId, resp, resp.address, resp.active, resp.email);
+        this.authService.setToken(resp.token, resp.userName, resp.userId, resp, resp.address, resp.active, resp.email, resp.provider);
         //this.apiService.postResource('messages', {"email": resp.email, "name": resp.userName  }).subscribe()
         this.tokenService.getTokenBalance(this.AccountId).subscribe(resp=>{
           this.showLoading = true;

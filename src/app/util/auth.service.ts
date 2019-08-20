@@ -9,6 +9,7 @@ export class AuthService {
   userName: string= 'userName'
   userId: string="userid"
   user: string= 'user';
+  provider: string = 'provider'
   userAdress: string ='address'
   mydate: string = 'mydate'
   newUser: string = 'newUser'
@@ -18,13 +19,15 @@ export class AuthService {
 
   constructor(private router: Router) { }
 
-  setToken(token: string, userName: string, userId: string, user: any, address: string, active: Boolean, email: String){
-  console.log("TCL: AuthService -> setToken -> setToken")
+  setToken(token: string, userName: string, userId: string, user: any, 
+    address: string, active: Boolean, email: String, provider: string){
+  
     
     localStorage.setItem(this.storageKey, token)
     localStorage.setItem(this.userName, userName)
     localStorage.setItem(this.userId, userId)
     localStorage.setItem(this.userAdress, address)
+    localStorage.setItem(this.provider, provider)
     this.active = active;
     this.userEmail = email;
     this.checkExpiration();
@@ -46,6 +49,9 @@ export class AuthService {
   }
   getUserEmail(){
     return this.userEmail;
+  }
+  getProvider(){
+    return localStorage.getItem(this.provider)
   }
   isActive(){
   if(this.active){

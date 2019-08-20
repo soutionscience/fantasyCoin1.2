@@ -67,27 +67,27 @@ export class Web3Service {
     }
  else if (typeof window.web3 !== 'undefined') {
 
-
-      console.warn(
-       'using metamsk detected'
-      );
       // Use Mist/MetaMask's provider
-      this.web3 = new Web3(Web3.givenProvider);
+    this.web3 = new Web3(Web3.givenProvider);
       // account = this.getCoinBaseHere();
       // console.log('coinbase ', account)
      // this.getSingleAccount()
       return this.web3;
     } else {
-  console.warn(
-        'No web3 detected'
-      );
-      // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-      // needs to be changed to better fall back plan
+  console.warn('No web3 detected ');
+  if(this.authService.getProvider() == 'portis'){
+    console.log('setting portis')
+    this.web3 = new Web3(portis.provider);
+    console.log('setting portis ', this.web3)
+    return this.web3;
+
+  }else{
+      console.log('no web3')
       this.web3 = new Web3();
 
       return null;
     }
-
+  }
   }
   initializePortis(){
     this.web3 = new Web3(portis.provider);
@@ -127,6 +127,7 @@ export class Web3Service {
   checkWe3NetWork(){
     this.web3.eth.net.getNetworkType((err, netId) => {
       if(err){
+        console.log('because no network')
         throw err;
       }else{
         this.netWorkType = netId;
@@ -135,6 +136,7 @@ export class Web3Service {
     })
   }
   getNetWorkType(){
+    this.checkWe3NetWork()
     console.log("TCL: getNetWorkType -> this.netWorkType", this.netWorkType)
     return this.netWorkType
   }
@@ -147,7 +149,7 @@ export class Web3Service {
   checkAccountChange(myaccount){ // check to see if account has changed/ network is ok
     //let account = this.web3.accounts[0]
     
-if(myaccount){
+if(myaccount && this.authService.getProvider() == 'metamask'){
     myaccount = myaccount.toLowerCase()
     this.web3.currentProvider.publicConfigStore.on('update', function(responce){
       let newAccount = responce.selectedAddress;

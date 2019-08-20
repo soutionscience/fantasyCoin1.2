@@ -19,8 +19,8 @@ export class SignerService {
       this.web3.signTransaction(user)
       .subscribe(resp=> this.apiService.getTokenResource('auth', id, resp.sign, resp.nonce)
       .subscribe(resp=>{
-      console.log("TCL: SignerService -> getmyToken -> resp=", resp)
-        this.auth.setToken(resp.token, resp.userName, resp.userId, resp, resp.address, resp.active, resp.email);
+      
+        this.auth.setToken(resp.token, resp.userName, resp.userId, resp, resp.address, resp.active, resp.email, resp.provider);
         
   
                // use zone to take care of issue with ngOninit not firring after navigate

@@ -23,19 +23,22 @@ export class LoaderService {
    //no web3 installed
    //web3 installed but wrong network
   checkIfReady(){
+    console.log('doing check if ready')
     this.isLoaded = false;
     this.registered = false;
     this.web3.getCoinBase()
     .subscribe(resp=>{
       this.web3.checkWe3NetWork() //not sure about this implementation
       if(!resp){
-      // console.log('no responce'); // cannot get coinbase, either it's locked or not web3
+      console.log('no responce'); // cannot get coinbase, either it's locked or not web3
        this.isLoaded = true;
       }else{
-   
+          console.log('got responce ', resp)
         if(this.auth.getUserAdress()){ // checks if the is  any user address stuff in browser
            
           if(this.auth.getUserAdress() == resp){
+          console.log("TCL: LoaderService -> checkIfReady -> resp", resp)
+            
             this.auth.confirmExporation();
             
             this.checkifRegister(resp)
@@ -43,7 +46,7 @@ export class LoaderService {
 
           }else{
             
-            this.auth.logOut();
+           // this.auth.logOut();
           }
 
 
