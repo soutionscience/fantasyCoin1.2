@@ -33,10 +33,10 @@ export class LoaderService {
       console.log('no responce'); // cannot get coinbase, either it's locked or not web3
        this.isLoaded = true;
       }else{
-          console.log('got responce ', resp)
+         // console.log('got responce ', resp.toLowerCase(), this.auth.getUserAdress())
         if(this.auth.getUserAdress()){ // checks if the is  any user address stuff in browser
-           
-          if(this.auth.getUserAdress() == resp){
+           console.log('user address in browser ')
+          if(this.auth.getUserAdress().toLowerCase() == resp){
           console.log("TCL: LoaderService -> checkIfReady -> resp", resp)
             
             this.auth.confirmExporation();
@@ -45,6 +45,7 @@ export class LoaderService {
             this.isLoaded = true;
 
           }else{
+            console.log('not matching')
             
            // this.auth.logOut();
           }
@@ -64,7 +65,7 @@ export class LoaderService {
     .subscribe(resp=>{
      this.User = resp
       
-     //console.log('setting status ', this.User.status )
+     console.log('setting status ', this.User.status )
       this.auth.setActiveStatus(this.User.status)
       
     },error=>{

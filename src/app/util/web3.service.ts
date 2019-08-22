@@ -74,15 +74,15 @@ export class Web3Service {
      // this.getSingleAccount()
       return this.web3;
     } else {
-  console.warn('No web3 detected ');
+//  console.warn('No web3 detected ');
   if(this.authService.getProvider() == 'portis'){
-    console.log('setting portis')
+    //console.log('setting portis')
     this.web3 = new Web3(portis.provider);
-    console.log('setting portis ', this.web3)
+   // console.log('setting portis ', this.web3)
     return this.web3;
 
   }else{
-      console.log('no web3')
+      //.log('no web3')
       this.web3 = new Web3();
 
       return null;
@@ -104,40 +104,51 @@ export class Web3Service {
     
     })
     
-  } 
-  checkIfPortisIsLoggedIn():Observable<any>{
+  };
+  initPortisAndGetAccount(): Observable<any>{
+    this.web3 = new Web3(portis.provider);
     return Observable.create(observer=>{
-      portis.onLogin((walletAddress, email, reputation) => {
+      this.getCoinBase().subscribe(resp=>{
+        this.account = resp
+        observer.next(resp);
+        observer.close()
+      })
+    })
+
+  }
+  checkIfPortisIsLoggedIn():Observable<any>{
+    console.log('are you hitting checkif portis is logged in')
+    return Observable.create(observer=>{
+       console.log('the fuck after observable ', portis)
+      portis.onLogin((walletAddress, email, reputation) => { 
+       console.log('onLogin')
         let obj={
           address: walletAddress,
           email: email
         }
-        console.log('obj ', obj)
+      //  console.log('obj ', obj)
          observer.next(obj);
          observer.complete()
       })
    
     })
     
- 
-    
-
-  }
+ }
 
   checkWe3NetWork(){
     this.web3.eth.net.getNetworkType((err, netId) => {
       if(err){
-        console.log('because no network')
+       // console.log('because no network')
         throw err;
       }else{
         this.netWorkType = netId;
-        console.log("TCL: checkWe3NetWork -> this.netWorkType ", this.netWorkType )
+       // console.log("TCL: checkWe3NetWork -> this.netWorkType ", this.netWorkType )
       }
     })
   }
   getNetWorkType(){
     this.checkWe3NetWork()
-    console.log("TCL: getNetWorkType -> this.netWorkType", this.netWorkType)
+   // console.log("TCL: getNetWorkType -> this.netWorkType", this.netWorkType)
     return this.netWorkType
   }
 
@@ -153,7 +164,7 @@ if(myaccount && this.authService.getProvider() == 'metamask'){
     myaccount = myaccount.toLowerCase()
     this.web3.currentProvider.publicConfigStore.on('update', function(responce){
       let newAccount = responce.selectedAddress;
-      console.log('responce has ',newAccount, ' and accounts ', myaccount)
+    //  console.log('responce has ',newAccount, ' and accounts ', myaccount)
       if(newAccount !== myaccount){
         setTimeout(function(){  window.location.reload(); }, 500);
         //this.tokenService.getTokenBalance(myaccount).subscribe()

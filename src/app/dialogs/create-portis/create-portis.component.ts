@@ -47,33 +47,43 @@ export class CreatePortisComponent implements OnInit {
   }
 
   loginWithPortis(){
+    console.log('loggin with portis')
     this.showButton = false;
     this.showProgressBar = true;
     this.web3.initializePortis();
     this.web3.checkWe3NetWork()
     this.web3.checkIfPortisIsLoggedIn()
     .subscribe(resp=>{
+    console.log('looged in ',resp)
       this.userId = resp.address;
  if(this.auth.getUserAdress()){ // if user address is in browser
      if(this.auth.getUserAdress() == resp.address){ //check if useraddress is same 
-       console.log('user address save is same us browser')
+      console.log('user address save is same us browser')
      }else{
-       console.log('dont match')
+     console.log('dont match')
      }
  }else{
    console.log('no browsewr address');
    this.checkIfRegisterd(resp.address, resp.email)
 
  }
+    },error=>{
+      console.log('nothing ', error)
     })
 
 
   }
   checkIfRegisterd(address, userEmail){
-    console.log('checking ', address)
+   // console.log('checking ', address)
     this.api.getSpecificResource('users', address)
     .subscribe(resp=>{
-      console.log(' user is registered?')
+      this.user = resp
+      //this.dialogRef.close();
+      //console.log('what is user? ', resp)
+      this.sign.getmyToken(this.user, address).subscribe(resp=>{
+        this.zone.run(()=>this.router.navigateByUrl('/transfers'))
+        this.dialogRef.close()
+      })
 
     }, error=>{
       //user is not registered
@@ -102,8 +112,8 @@ export class CreatePortisComponent implements OnInit {
       // this.web3.initializePortis(resp)
       this.user = resp
       this.showForm = false;
-      //this.api.postResource('messages', {"email": this.CreatAccountForm.value.email, "name": this.CreatAccountForm.value.username  })
-      //.subscribe()
+      this.api.postResource('messages', {"email": this.CreatAccountForm.value.email, "name": this.CreatAccountForm.value.username  })
+      .subscribe()
       this.sign.getmyToken(this.user, this.userId).
       subscribe(resp=>{
 

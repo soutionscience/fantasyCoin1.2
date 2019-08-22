@@ -158,7 +158,7 @@ getBaseAccount(){
         this.apiService.getTokenResource('auth', this.AccountId, resp.sign, resp.nonce )
         .subscribe(resp=>{
         this.authService.setToken(resp.token, resp.userName, resp.userId, resp, resp.address, resp.active, resp.email, resp.provider);
-        //this.apiService.postResource('messages', {"email": resp.email, "name": resp.userName  }).subscribe()
+        this.apiService.postResource('messages', {"email": resp.email, "name": resp.userName  }).subscribe()
         this.tokenService.getTokenBalance(this.AccountId).subscribe(resp=>{
           this.showLoading = true;
          // console.log('responce ni ', resp);
@@ -166,7 +166,8 @@ getBaseAccount(){
         
        
              // use zone to take care of issue with ngOninit not firring after navigate
-        //this.zone.run(()=>this.router.navigateByUrl('/transfers'))// use 
+        this.zone.run(()=>this.router.navigateByUrl('/transfers'))// use 
+        this.dialogRef.close()
         })
       
         })
