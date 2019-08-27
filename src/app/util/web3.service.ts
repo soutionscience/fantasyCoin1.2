@@ -12,7 +12,7 @@ import Portis from '@portis/web3';
 declare let require: any;
 const Web3 = require('web3');
 // const web3= Web3();
-const portis = new Portis('8b3ef407-9c59-4306-a90e-34f22c89f485', 'mainnet', { scope: ['email'] });
+const portis = new Portis('8b3ef407-9c59-4306-a90e-34f22c89f485', 'mainnet', { scope: ['email'], registerPageByDefault: true  });
 
 
 
@@ -97,7 +97,7 @@ export class Web3Service {
 
     this.getCoinBase().subscribe((resp)=>{
       this.account = resp
-      // console.log("TCL: initializePortis -> this.account ", this.account )
+       console.log("TCL: initializePortis -> this.account ", this.account )
   
    
      
@@ -106,12 +106,13 @@ export class Web3Service {
     
   };
   initPortisAndGetAccount(): Observable<any>{
+    console.log('are we getting this')
     this.web3 = new Web3(portis.provider);
     return Observable.create(observer=>{
       this.getCoinBase().subscribe(resp=>{
         this.account = resp
         observer.next(resp);
-        observer.close()
+        observer.complete()
       })
     })
 

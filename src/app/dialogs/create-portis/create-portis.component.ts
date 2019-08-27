@@ -51,7 +51,15 @@ export class CreatePortisComponent implements OnInit {
     this.showButton = false;
     this.showProgressBar = true;
     this.web3.initializePortis();
-    this.web3.checkWe3NetWork()
+    this.web3.checkWe3NetWork();
+    this.web3.initPortisAndGetAccount()
+    .subscribe(resp=>{
+      if(resp){
+        console.log('getting account ', resp)
+      }else{
+        console.log('no account')
+      }
+    })
     this.web3.checkIfPortisIsLoggedIn()
     .subscribe(resp=>{
     console.log('looged in ',resp)
@@ -67,8 +75,8 @@ export class CreatePortisComponent implements OnInit {
    this.checkIfRegisterd(resp.address, resp.email)
 
  }
-    },error=>{
-      console.log('nothing ', error)
+   
+      
     })
 
 
@@ -81,7 +89,8 @@ export class CreatePortisComponent implements OnInit {
       //this.dialogRef.close();
       //console.log('what is user? ', resp)
       this.sign.getmyToken(this.user, address).subscribe(resp=>{
-        this.zone.run(()=>this.router.navigateByUrl('/transfers'))
+        //this.zone.run(()=>this.router.navigateByUrl('/transfers'))
+      
         this.dialogRef.close()
       })
 
@@ -118,7 +127,7 @@ export class CreatePortisComponent implements OnInit {
       subscribe(resp=>{
 
             // use zone to take care of issue with ngOninit not firring after navigate
-         this.zone.run(()=>this.router.navigateByUrl('/transfers'))// use 
+         //this.zone.run(()=>this.router.navigateByUrl('/transfers'))// use 
          this.dialogRef.close()
          
       })
