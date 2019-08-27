@@ -25,32 +25,34 @@ export class LoaderService {
   checkIfReady(){
     this.isLoaded = false;
     this.registered = false;
+    if(!this.auth.getUserAdress()){// check if there is NO user stuff in browser and just load
+        this.isLoaded = true;
+        console.log('no user stuff')
+    } else{
+       console.log('present')
+       this.checkIfBrowserAddressMatch(this.auth.getUserAdress())
+       
+    }
+    
+    
+
+  }
+  checkIfBrowserAddressMatch(browserAddress){
+    this.web3.checkWe3NetWork()
     this.web3.getCoinBase()
     .subscribe(resp=>{
-      this.web3.checkWe3NetWork() //not sure about this implementation
       if(!resp){
-      // console.log('no responce'); // cannot get coinbase, either it's locked or not web3
-       this.isLoaded = true;
+        this.isLoaded = true
       }else{
-   
-        if(this.auth.getUserAdress()){ // checks if the is  any user address stuff in browser
-           
-          if(this.auth.getUserAdress() == resp){
-            this.auth.confirmExporation();
-            
-            this.checkifRegister(resp)
-            this.isLoaded = true;
+        if(browserAddress == resp){
+          this.auth.confirmExporation();
+          this.checkifRegister(resp)
+          this.isLoaded = true;
 
-          }else{
-            
-            this.auth.logOut();
-          }
-
-
+        }else{
+          this.auth.logOut()
+          this.isLoaded = true;
         }
-        this.isLoaded = true;
-        
-        
       }
     })
 

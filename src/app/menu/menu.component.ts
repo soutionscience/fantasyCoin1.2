@@ -22,17 +22,15 @@ export class MenuComponent implements OnInit {
     private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.getCoinBase()
+    //this.getCoinBase()
    
     this.userName = this.authService.getUserName()
     this.userAccount = this.authService.getUserAdress()
-    this.tokenService.getTokenBalance(this.userAccount)
-    .subscribe(resp=>{
-    this.accountBal = this.tokenService.getTokenCount();
-
-    //console.log('account balance ', this.accountBal)
-
-    })
+//     this.tokenService.getTokenBalance(this.userAccount)
+//     .subscribe(resp=>{
+//     this.accountBal = this.tokenService.getTokenCount();
+// //console.log('account balance ', this.accountBal)
+// })
   
     
       this.ref.detectChanges();

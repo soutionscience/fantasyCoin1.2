@@ -7,6 +7,7 @@ import { Web3Service } from '../util/web3.service';
 import { MatDialog } from '@angular/material';
 import { ApiServiceService } from '../util/api-service.service';
 import { AuthService } from '../util/auth.service';
+import { CreatePortisComponent } from '../dialogs/create-portis/create-portis.component';
 
 @Component({
   selector: 'app-login-horizontal',
@@ -41,7 +42,7 @@ export class LoginHorizontalComponent implements OnInit {
       }
       if(resp== 3){
       //  console.log('web3 not installed!!')
-        this.dialog.open(InstallMetamaskComponent, {width: '600px' , height: 'auto'})
+        this.dialog.open(CreatePortisComponent, {width: '600px' , height: 'auto'})
        
       }
     })
