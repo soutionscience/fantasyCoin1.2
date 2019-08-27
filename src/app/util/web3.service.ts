@@ -5,10 +5,15 @@ import { Factory, League } from '../shared/address';
 import { ObserversModule } from '@angular/cdk/observers';
 import { TokenService } from './token.service';
 import { AuthService } from './auth.service';
+import Portis from '@portis/web3';
+
 
 declare let require: any;
 const Web3 = require('web3');
 // const web3= Web3();
+
+const portis = new Portis('8b3ef407-9c59-4306-a90e-34f22c89f485', 'mainnet', { scope: ['email'], registerPageByDefault: true  });
+
 
 
 declare let window: any;
@@ -147,6 +152,29 @@ if(myaccount){
         observer.complete()
       }
 
+    })
+
+  }
+
+  //portis 
+
+  initPortisAndGetAccount(): Observable<any>{
+    console.log('are we getting this')
+    this.web3 = new Web3(portis.provider);
+    return Observable.create(observer=>{
+      portis.onLogin((walletAddress, email, reputation)=>{
+        let obj = {
+          account: walletAddress,
+          email: email
+        }
+        observer.next(obj)
+        observer.complete()
+      })
+      this.getCoinBase().subscribe(resp=>{
+        this.account = resp
+        observer.next(resp);
+        observer.complete()
+      })
     })
 
   }

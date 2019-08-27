@@ -1,3 +1,25 @@
-<p>
-  create-portis works!
-</p>
+<div class="creatForm">
+  <div class="create">
+    <div class="myTitle">
+      <p class="has-text-primary">Create Account</p>
+   
+    </div>
+    </div>
+    <div class="separator">
+  
+    </div>
+    
+  <div class="myText">
+    <p *ngIf="!showPortisText">
+        Your email address is used to send you crucial and account related updates.
+        Your nickname is public and is how other users will identify you.
+    </p>
+
+  </div>
+  <div class="separator">
+  
+  </div>
+  <div class="mybutton">
+    <button class="button is-primary" (click)="loginWithPortis()">Login with Portis</button>
+  </div>
+    </div>
