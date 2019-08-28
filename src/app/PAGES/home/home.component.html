@@ -6,7 +6,7 @@
           <p class="title">Build a Team. Choose your players.
               <br/> Earn Crypto coins</p>
     
-              <button class="button is-warning">Get started</button>
+              <button class="button is-warning" (click)="getStarted()" *ngIf="showButton">Get started</button>
   
 
       </div>
