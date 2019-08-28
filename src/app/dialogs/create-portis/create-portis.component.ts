@@ -3,6 +3,7 @@ import { Web3Service } from '../../util/web3.service';
 import { AuthService } from '../../util/auth.service';
 import { ApiServiceService } from '../../util/api-service.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-create-portis',
@@ -16,13 +17,17 @@ export class CreatePortisComponent implements OnInit {
   showButton: Boolean;
   progressText: String;
   showPortisText: Boolean;
-  showForm: Boolean
+  showForm: Boolean;
+  userId: String;
+  usernameWarning : Boolean;
+  emailWarning: Boolean;
 
 
   constructor(private web: Web3Service, private auth: AuthService, 
     private api: ApiServiceService,
     private fb: FormBuilder,
-    private ref: ChangeDetectorRef) { }
+    private ref: ChangeDetectorRef,
+    private matSnackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.createForm()
@@ -30,6 +35,8 @@ export class CreatePortisComponent implements OnInit {
     this.showProgressBar = false;
     this.showPortisText = true;
     this.showForm = false;
+    this.usernameWarning  = false;
+    this.emailWarning = false;
     
   }
 
@@ -44,12 +51,12 @@ export class CreatePortisComponent implements OnInit {
      if(resp.email){
       this.progressText ="setting up your account..."
       this.ref.detectChanges()
-       console.log('with email ', resp)
+       this.userId = resp.account;
        this.emailValue = resp.email
       this.checkBrowser(resp.account)
 
      }else{
-       console.log('bila email ', resp)
+       this.userId = resp;
        this.emailValue = '';
        this.checkBrowser(resp)
      }
@@ -68,6 +75,8 @@ export class CreatePortisComponent implements OnInit {
     this.progressText ="just a moment.."
     console.log('user does not exit, create account ');
     this.showPortisText = false
+
+    this.CreatAccountForm.patchValue({email: this.emailValue})
     this.showForm = true;
     this.ref.detectChanges();
 
@@ -92,6 +101,41 @@ export class CreatePortisComponent implements OnInit {
       username: ['', [Validators.required]]
     })
 
+  }
+  register(){
+    this.CreatAccountForm.value.address = this.userId;
+    this.CreatAccountForm.value.provider = 'portis';
+    this.showProgressBar = true;
+    this.progressText = "setting up your account"
+    this.ref.detectChanges()
+    this.api.postResource('users', this.CreatAccountForm.value)
+    .subscribe(resp=>{
+      console.log('registerd')
+      this.showForm = false;
+      this.ref.detectChanges();
+      //send email message;
+
+    }, error=>{
+      if(error.data.error == 'username in use'){
+        this.setStatus("username already in use");
+        this.usernameWarning = true;
+        this.showProgressBar = false;
+        this.CreatAccountForm.value.username ='';
+        this.ref.detectChanges();
+
+      }else if(error.data.error == 'email in use'){
+        this.setStatus("email already in use");
+        this.showProgressBar = false;
+        this.emailWarning = true;
+        this.ref.detectChanges();
+
+      }
+    })
+
+  }
+
+  setStatus(status){
+    this.matSnackBar.open(status, null, {duration: 1000, horizontalPosition: 'center', verticalPosition: 'bottom'})
   }
 
 }
