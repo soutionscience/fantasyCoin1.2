@@ -22,20 +22,18 @@
   <div class="separator">
   
   </div>
-  <progress class="progress is-small is-primary" max="100" *ngIf="showProgressBar">15%</progress>
 
   <div class="mybutton" *ngIf="showButton">
     <button class="button is-primary" (click)="loginWithPortis()">Login with Portis</button>
   </div>
-  <div class="separator"></div>
-  <p *ngIf="showProgressBar" class="progressText">{{progressText}}</p>
+  
     </div>
 
 
  <!-- creation form -->
 
- <div class="creationForm" *ngIf="showForm">
-  <form class="form" [formGroup]="CreatAccountForm">
+ <div class="creationForm">
+  <form class="form" [formGroup]="CreatAccountForm" *ngIf="showForm">
       <div class="field">
           <!-- <label class="label">Name</label> -->
           <div class="control">
@@ -61,16 +59,20 @@
               <button type="button" class="button is-primary is-large is-centered" (click)="register()" [disabled]="CreatAccountForm.invalid">Create</button>
             </div>
         </div>
+        
+        <div class="terms">
+
+
+
+          <p>by signing up you agree to our terms of service and privacy policy</p>
+        </div>
   
   
   
   </form>
-  <div class="separator">
-  
-    </div>
-    <div class="terms">
-      <p>by signing up you agree to our terms of service and privacy policy</p>
-    </div>
+
+
+ 
   </div>
 
 

@@ -107,7 +107,7 @@ export class CreatePortisComponent implements OnInit {
     this.CreatAccountForm.value.provider = 'portis';
     this.showProgressBar = true;
     this.progressText = "setting up your account"
-    this.ref.detectChanges()
+   // this.ref.detectChanges()
     this.api.postResource('users', this.CreatAccountForm.value)
     .subscribe(resp=>{
       console.log('registerd')
