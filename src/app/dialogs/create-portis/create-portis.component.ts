@@ -4,6 +4,7 @@ import { AuthService } from '../../util/auth.service';
 import { ApiServiceService } from '../../util/api-service.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { SignerService } from '../../util/signer.service';
 
 @Component({
   selector: 'app-create-portis',
@@ -21,13 +22,15 @@ export class CreatePortisComponent implements OnInit {
   userId: String;
   usernameWarning : Boolean;
   emailWarning: Boolean;
+  WelcomeText: String;
 
 
   constructor(private web: Web3Service, private auth: AuthService, 
     private api: ApiServiceService,
     private fb: FormBuilder,
     private ref: ChangeDetectorRef,
-    private matSnackBar: MatSnackBar) { }
+    private matSnackBar: MatSnackBar,
+    private signer: SignerService) { }
 
   ngOnInit() {
     this.createForm()
@@ -70,7 +73,9 @@ export class CreatePortisComponent implements OnInit {
   .subscribe(resp=>{
     this.progressText ="just a moment.."
    this.ref.detectChanges();
-    console.log('user is registered ', resp)
+   //this.WelcomeText = `welcome back ${resp[0].username}`
+  //  console.log('user is registered ', resp[0].username);
+
   }, error=>{
     this.progressText ="just a moment.."
     console.log('user does not exit, create account ');
