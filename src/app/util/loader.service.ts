@@ -41,6 +41,7 @@ export class LoaderService {
     this.web3.checkWe3NetWork()
     this.web3.getCoinBase()
     .subscribe(resp=>{
+      console.log('responce ', resp, 'browser address ', browserAddress)
       if(!resp){
         this.isLoaded = true
       }else{
@@ -50,7 +51,7 @@ export class LoaderService {
           this.isLoaded = true;
 
         }else{
-          this.auth.logOut()
+          //this.auth.logOut()
           this.isLoaded = true;
         }
       }

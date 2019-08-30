@@ -161,13 +161,13 @@ getBaseAccount(){
   }
   signIn(){
 // signs user in with new Authtoken
-    console.log('reso from server ', this.user)
+   // console.log('reso from server ', this.user)
       this.web3Service.signTransaction(this.user)
       .subscribe(resp=>{
-        console.log('signed by ', resp.account);
+      //  console.log('signed by ', resp.account);
         this.apiService.getTokenResource('auth', this.AccountId, resp.sign, resp.nonce )
         .subscribe(resp=>{
-        this.authService.setToken(resp.token, resp.userName, resp.userId, resp, resp.address, resp.active, resp.email);
+        this.authService.setToken(resp.token, resp.userName, resp.userId, resp, resp.address, resp.active, resp.email, resp.provider);
         //this.apiService.postResource('messages', {"email": resp.email, "name": resp.userName  }).subscribe()
         this.tokenService.getTokenBalance(this.AccountId).subscribe(resp=>{
           this.showLoading = true;

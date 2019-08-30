@@ -112,7 +112,7 @@ if(myaccount){
     myaccount = myaccount.toLowerCase()
     this.web3.currentProvider.publicConfigStore.on('update', function(responce){
       let newAccount = responce.selectedAddress;
-      console.log('responce has ',newAccount, ' and accounts ', myaccount)
+      //console.log('responce has ',newAccount, ' and accounts ', myaccount)
       if(newAccount !== myaccount){
         setTimeout(function(){  window.location.reload(); }, 500);
         //this.tokenService.getTokenBalance(myaccount).subscribe()
@@ -159,8 +159,9 @@ if(myaccount){
   //portis 
 
   initPortisAndGetAccount(): Observable<any>{
-    console.log('are we getting this')
+    //console.log('are we getting this')
     this.web3 = new Web3(portis.provider);
+     this.checkWe3NetWork()
     return Observable.create(observer=>{
       portis.onLogin((walletAddress, email, reputation)=>{
         let obj = {
@@ -204,7 +205,7 @@ web3.eth.getAccounts((err, resp)=>{
 
  signTransaction(nonce):Observable<any>{
   // nounce= this.web3.utils.toHex( nounce.challenge)
- // console.log('received ', nonce)
+//console.log('received ', nonce)
 
   let nonceValue = nonce.nonce
 //  console.log('signing nounce ', nonceValue)

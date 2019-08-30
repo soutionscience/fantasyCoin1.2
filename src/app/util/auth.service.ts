@@ -14,12 +14,14 @@ export class AuthService {
   newUser: string = 'newUser'
   myDates: any [] =[];
   active: Boolean;
-  userEmail: String
+  userEmail: String;
+  provider: string = 'provider'
+
 
   constructor(private router: Router) { }
 
-  setToken(token: string, userName: string, userId: string, user: any, address: string, active: Boolean, email: String){
-
+  setToken(token: string, userName: string, userId: string, user: any, address: string, active: Boolean, email: String, provider: String){
+     //.log('storage key ', token)
     localStorage.setItem(this.storageKey, token)
     localStorage.setItem(this.userName, userName)
     localStorage.setItem(this.userId, userId)
@@ -27,7 +29,7 @@ export class AuthService {
     this.active = active;
     this.userEmail = email;
     this.checkExpiration();
-    window.location.reload()
+    //window.location.reload()
   }
   getToken(){
    return localStorage.getItem(this.storageKey)
@@ -36,7 +38,7 @@ export class AuthService {
     return localStorage.getItem(this.userId)
   }
   setActiveStatus(status){
-    console.log('are we calling set active status?')
+    //console.log('are we calling set active status?')
     this.active = status;
 
   }
@@ -48,10 +50,10 @@ export class AuthService {
   }
   isActive(){
   if(this.active){
-    console.log('user is active ', this.active)
+   // console.log('user is active ', this.active)
     return true
   }else{
-   console.log('user is not active')
+   //console.log('user is not active')
     return false
   }
   }
@@ -86,20 +88,20 @@ return this.getToken() !== null;
   }
 
   checkExpiration(){
-  console.log('checking exploration')
+  //console.log('checking exploration')
   var myHour = new Date();
   myHour.setHours(myHour.getHours() + 1);
   this.myDates.push(myHour)
-  console.log('time' , this.myDates)
+ // console.log('time' , this.myDates)
 localStorage.setItem(this.mydate, JSON.stringify(this.myDates))
 }
 
 
   confirmExporation(){
-    console.log('checking to see if expired')
+   // console.log('checking to see if expired')
     var values = JSON.parse(localStorage.getItem('mydate'));
     var oldate  = new Date(values[0])
-    console.log('values ', oldate);
+  //  console.log('values ', oldate);
     if (oldate < new Date()) {
      localStorage.removeItem("mydate");
     this.logOut()
