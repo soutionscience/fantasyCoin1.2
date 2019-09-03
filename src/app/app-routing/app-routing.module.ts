@@ -6,6 +6,7 @@ import { PitchComponent } from '../pitch/pitch.component';
 import { TeamComponent } from '../team/team.component';
 
 const routes : Routes=[
+  {path: 'start', loadChildren: './start.module#StartModule'},
   {path: '', loadChildren: './welcome.module#WelcomeModule'}
 
 ]
