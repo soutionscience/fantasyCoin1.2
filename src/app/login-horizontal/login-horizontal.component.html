@@ -2,7 +2,9 @@
     
     <div class="field is-grouped">
         <div class="control">
-            <button class="button is-primary is-large is-focused" (click)="login()" *ngIf="!authService.isLoggedIn()">Get Started! </button>
+            <button class="button is-primary is-large is-focused" (click)="login()"
+             *ngIf="!authService.isLoggedIn()"
+             >Get Started! </button>
         </div>
         <div class="control">
             <button class="button is-link is-medium is-inverted" [routerLink]="[ '/howto']"  *ngIf="authService.isLoggedIn()">How to Play</button>

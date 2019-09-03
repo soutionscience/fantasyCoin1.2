@@ -159,7 +159,7 @@ if(myaccount){
   //portis 
 
   initPortisAndGetAccount(): Observable<any>{
-    //console.log('are we getting this')
+    console.log('are we getting this')
     this.web3 = new Web3(portis.provider);
      this.checkWe3NetWork()
     return Observable.create(observer=>{
@@ -192,6 +192,7 @@ if(myaccount){
   }
 
  getSingleAccount(web3){
+   console.log('get single account')
 web3.eth.getAccounts((err, resp)=>{
    //this.account = resp[0];
    return resp;
@@ -199,7 +200,9 @@ web3.eth.getAccounts((err, resp)=>{
   })
  }
  getMyCoinBase(){
+  console.log('get single account')
    let account = this.web3.eth.getAccounts()
+   console.log('account ', account)
    return account;
  }
 

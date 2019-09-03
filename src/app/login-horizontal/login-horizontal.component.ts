@@ -19,7 +19,7 @@ export class LoginHorizontalComponent implements OnInit {
   showButton: Boolean;
 
   constructor(private web3Service: Web3Service, private dialog: MatDialog,
-    private apiService: ApiServiceService, private authService: AuthService) { }
+    private apiService: ApiServiceService, public authService: AuthService) { }
 
   ngOnInit() {
   this.getCoinBase();

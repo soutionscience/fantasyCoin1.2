@@ -50,6 +50,27 @@ export class MyWeb3Service {
       }
     })
   }
+
+  getCoinBase():Observable<any>{
+    console.log('calling get accounts')
+    return Observable.create(observer=>{
+      this.web3.eth.getAccounts((err, resp)=>{
+        console.log('get accounts')
+        if(err) observer.next(err)
+        //console.log('get coinBase resp ', resp)
+        observer.next(resp[0])
+        observer.complete()
+      })
+    })
+  }
+  getMyCoinBase(){
+    console.log('get single account')
+     let account = this.web3.eth.getAccounts()
+     return account;
+   }
+
+
+
 }
 
 
