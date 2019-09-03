@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MyWeb3Service } from '../../util/my-web3.service';
+import { MatDialog } from '@angular/material';
+import { CreatePortisComponent } from '../../dialogs/create-portis/create-portis.component';
 
 @Component({
   selector: 'app-start',
@@ -11,7 +13,7 @@ export class StartComponent implements OnInit {
   buttonText: String;
   coinBase: String;
 
-  constructor(private web3: MyWeb3Service) { }
+  constructor(private web3: MyWeb3Service, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.buttonText = "Get Started"
@@ -19,13 +21,23 @@ export class StartComponent implements OnInit {
   login(){
     this.buttonText ="starting.."
     this.loading = true;
-    this.getCoinBase()
+    this.getCoinBase()// check provider
 
 
 
   }
   getCoinBase(){
-this.web3.checkAndInitWeb3().subscribe()
+ this.web3.checkAndInitWeb3().subscribe(resp=>{
+   this.buttonText = `launching ${resp} ..`;
+   if(resp == 'portis'){
+     console.log('stating portis');
+     this.dialog.open(CreatePortisComponent, {width: '600px' , height: 'auto'})
+
+     
+   }else{
+     console.log('metamask client')
+   }
+ })
   
    }
 
