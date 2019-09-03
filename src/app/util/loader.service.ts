@@ -23,16 +23,16 @@ export class LoaderService {
    //no web3 installed
    //web3 installed but wrong network
   checkIfReady(){
-    this.isLoaded = false;
-    this.registered = false;
-    if(!this.auth.getUserAdress()){// check if there is NO user stuff in browser and just load
-        this.isLoaded = true;
-        console.log('no user stuff')
-    } else{
-       console.log('present')
-       this.checkIfBrowserAddressMatch(this.auth.getUserAdress())
+    this.isLoaded = true;
+   // this.registered = false;
+    // if(!this.auth.getUserAdress()){// check if there is NO user stuff in browser and just load
+    //     this.isLoaded = true;
+    //     console.log('no user stuff')
+    // } else{
+    //    console.log('present')
+    //    this.checkIfBrowserAddressMatch(this.auth.getUserAdress())
        
-    }
+    // }
     
     
 

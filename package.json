@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4300 --host 192.168.0.12 --ssl true",
-    "build": "ng build",
+    "start": "ng serve --host 192.168.0.13 --port 4300 --ssl",
+    "build": "ng build --prod",
     "test": "ng test --watch=false",
     "lint": "ng lint",
     "e2e": "ng e2e",

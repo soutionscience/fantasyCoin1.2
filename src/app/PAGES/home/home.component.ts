@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
     private dialog: MatDialog, private apiService: ApiServiceService) { }
 
   ngOnInit() {
-    this.getCoinBase();
+   // this.getCoinBase();
     this.checkIfToDisplayButton()
 
   }
@@ -53,9 +53,12 @@ export class HomeComponent implements OnInit {
 
 
   checkIfToDisplayButton(){
-    if(this.coinBase && this.authService.isLoggedIn()){
+    console.log('are you checking?')
+    if(this.authService.isLoggedIn()){
+      console.log('ati')
       this.showButton = false
     }else{
+      console.log('not loading')
       this.showButton = true;
     }
     

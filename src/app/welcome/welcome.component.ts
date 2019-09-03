@@ -18,14 +18,15 @@ export class WelcomeComponent implements OnInit {
 
   constructor(private web3Service: Web3Service, private auth: AuthService,
     private dialog: MatDialog, private ref: ChangeDetectorRef,
-    public loader: LoaderService) { }
+    public loader: LoaderService
+    ) { }
 
   ngOnInit() {
     this.loader.checkIfReady()
     //console.log('loading ..', this.auth.checkExpiration())
     this.ref.detectChanges()
     this.checkIfNew();
-    this.hasLoaded = false;
+    this.hasLoaded = true;
   }
   checkIfNew(){
    setTimeout(()=>{if(this.auth.getNewUser()== null){
