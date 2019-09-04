@@ -42,3 +42,63 @@ myTitle{
     padding: 2px;
   
 }
+
+@import url('https://fonts.googleapis.com/css?family=Old+Standard+TT&display=swap');
+
+.home{
+    font-family: 'Old Standard TT', serif;
+   
+}
+.title{
+    color: white;
+}
+.mainTitle{
+    height: 300px;
+    background: #303F9F;
+    color:  white;
+    border-top: gainsboro solid 1px;
+    margin-top: 4px;
+}
+.promo{
+    background-color:white;
+    min-height: 300px;
+    color : black;
+}
+.soon{
+    border: solid rgb(216, 215, 215) 1px;
+}
+
+body {
+    text-align: center;
+    padding: 100px 0 0 0;
+    color: #fff;
+    background: #1d1f20;
+}
+
+#loading {
+    -webkit-animation: rotation 2s infinite linear;
+}
+
+@-webkit-keyframes rotation {
+    from {
+            -webkit-transform: rotate(0deg);
+    }
+    to {
+            -webkit-transform: rotate(359deg);
+    }
+}
+.footer{
+  
+    background: url('../../../assets/images/background.png');
+    background-size: cover;
+    height: auto;
+    padding-top: 8px;
+    // padding-bottom: 8px;
+    width: 100%;
+}
+.title{
+    color: white;
+}
+a{
+    color: white;
+}

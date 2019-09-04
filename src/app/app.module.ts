@@ -27,6 +27,7 @@ import { WarningBetaComponent } from './dialogs/warning-beta/warning-beta.compon
 import { SignInComponent } from './dialogs/sign-in/sign-in.component';
 import { EarlyBetaComponent } from './dialogs/early-beta/early-beta.component';
 import { CreatePortisComponent } from './dialogs/create-portis/create-portis.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 

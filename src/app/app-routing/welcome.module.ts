@@ -9,7 +9,6 @@ import { BrandingComponent } from '../branding/branding.component';
 import { LoginHorizontalComponent } from '../login-horizontal/login-horizontal.component';
 import { PitchComponent } from '../pitch/pitch.component';
 import { TeamModule } from './team.module';
-import { FooterComponent } from '../footer/footer.component';
 import { UserLeagueComponent } from '../DETAILS/user-league/user-league.component';
 import { TeamComponent } from '../team/team.component';
 import { ActiveGuard } from '../GUARDS/active.guard';
@@ -23,6 +22,8 @@ import { LoginMetamaskComponent } from '../dialogs/login-metamask/login-metamask
 import { CreateAccountComponent } from '../dialogs/create-account/create-account.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Web3Service } from '../util/web3.service';
+import { BuyMoreComponent } from '../dialogs/buy-more/buy-more.component';
+import { FooterComponent } from '../footer/footer.component';
 
 const routes : Routes =[{
   path: '', component: WelcomeComponent, children:[
@@ -46,7 +47,8 @@ const routes : Routes =[{
 
 @NgModule({
   declarations: [CreateAccountComponent, RemovePlayerComponent, WelcomeComponent, MenuComponent, LogosComponent,
-    BannerComponent, BrandingComponent, LoginHorizontalComponent, FooterComponent, InstallMetamaskComponent, UnlockMetamaskComponent, LoginMetamaskComponent],
+    BannerComponent, BrandingComponent, LoginHorizontalComponent, InstallMetamaskComponent, 
+    UnlockMetamaskComponent, LoginMetamaskComponent, BuyMoreComponent, FooterComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

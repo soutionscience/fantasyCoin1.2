@@ -29,16 +29,11 @@ export class StartComponent implements OnInit {
   getCoinBase(){
  this.web3.checkAndInitWeb3().subscribe(resp=>{
    this.buttonText = `launching ${resp} ..`;
-   if(resp == 'portis'){
+ 
 
      this.dialog.open(CreatePortisComponent, {width: '600px' , height: 'auto'})
 
-     
-   }else{
-    
-  this.web3.getCoinBase().subscribe(resp=>{this.coinBase = resp;})
-    
-   }
+ 
  })
   
    }

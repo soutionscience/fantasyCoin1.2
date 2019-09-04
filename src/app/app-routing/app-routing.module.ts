@@ -4,6 +4,7 @@ import {Routes, RouterModule} from '@angular/router'
 import { AppComponent } from '../app.component';
 import { PitchComponent } from '../pitch/pitch.component';
 import { TeamComponent } from '../team/team.component';
+import { FooterComponent } from '../footer/footer.component';
 
 const routes : Routes=[
   {path: 'start', loadChildren: './start.module#StartModule'},
