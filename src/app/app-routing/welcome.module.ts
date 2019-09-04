@@ -17,14 +17,20 @@ import { MainnetGuard } from '../GUARDS/mainnet.guard';
 import { AuthGuard } from '../GUARDS/auth.guard';
 import { RemovePlayerComponent } from '../dialogs/remove-player/remove-player.component';
 import { MatDialogModule } from '@angular/material';
+import { InstallMetamaskComponent } from '../dialogs/install-metamask/install-metamask.component';
+import { UnlockMetamaskComponent } from '../dialogs/unlock-metamask/unlock-metamask.component';
+import { LoginMetamaskComponent } from '../dialogs/login-metamask/login-metamask.component';
+import { CreateAccountComponent } from '../dialogs/create-account/create-account.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Web3Service } from '../util/web3.service';
 
 const routes : Routes =[{
   path: '', component: WelcomeComponent, children:[
    {path: '', loadChildren:'./home.module#HomeModule'},
    {path: 'teams', loadChildren: './team.module#TeamModule',  canActivate:[AuthGuard, ActiveGuard]},
    {path: 'leagues', loadChildren: './leagues.module#LeaguesModule',  canActivate:[ActiveGuard, MainnetGuard, AuthGuard]},
-   {path: 'transfers', loadChildren: './transfer.module#TransferModule'},
-   {path: 'my-team', loadChildren: './user-team-page.module#UserTeamPageModule'},
+   {path: 'transfers', loadChildren: './transfer.module#TransferModule', canActivate:[ActiveGuard, MainnetGuard, AuthGuard]},
+   {path: 'my-team', loadChildren: './user-team-page.module#UserTeamPageModule', canActivate:[ActiveGuard, MainnetGuard, AuthGuard]},
    {path: 'login', loadChildren:'./login.module#LoginModule'},
    {path: 'beta', loadChildren: './beta.module#BetaModule', canActivate: [AuthGuard]},
    {path: 'network', loadChildren: './mainnet.module#MainnetModule'},
@@ -39,14 +45,17 @@ const routes : Routes =[{
 ]
 
 @NgModule({
-  declarations: [RemovePlayerComponent, WelcomeComponent, MenuComponent, LogosComponent,
-    BannerComponent, BrandingComponent, LoginHorizontalComponent, FooterComponent],
+  declarations: [CreateAccountComponent, RemovePlayerComponent, WelcomeComponent, MenuComponent, LogosComponent,
+    BannerComponent, BrandingComponent, LoginHorizontalComponent, FooterComponent, InstallMetamaskComponent, UnlockMetamaskComponent, LoginMetamaskComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MatDialogModule
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule
 ],
-entryComponents:[RemovePlayerComponent],
+providers:[AuthGuard, ActiveGuard, MainnetGuard, Web3Service],
+entryComponents:[CreateAccountComponent, RemovePlayerComponent, InstallMetamaskComponent, UnlockMetamaskComponent, LoginMetamaskComponent],
   exports: [WelcomeComponent]
 })
 export class WelcomeModule { }
