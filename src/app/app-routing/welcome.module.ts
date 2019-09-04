@@ -15,14 +15,16 @@ import { TeamComponent } from '../team/team.component';
 import { ActiveGuard } from '../GUARDS/active.guard';
 import { MainnetGuard } from '../GUARDS/mainnet.guard';
 import { AuthGuard } from '../GUARDS/auth.guard';
+import { RemovePlayerComponent } from '../dialogs/remove-player/remove-player.component';
+import { MatDialogModule } from '@angular/material';
 
 const routes : Routes =[{
   path: '', component: WelcomeComponent, children:[
    {path: '', loadChildren:'./home.module#HomeModule'},
    {path: 'teams', loadChildren: './team.module#TeamModule',  canActivate:[AuthGuard, ActiveGuard]},
    {path: 'leagues', loadChildren: './leagues.module#LeaguesModule',  canActivate:[ActiveGuard, MainnetGuard, AuthGuard]},
-   {path: 'transfers', loadChildren: './transfer.module#TransferModule', canActivate:[ActiveGuard, MainnetGuard, AuthGuard]},
-   {path: 'my-team', loadChildren: './user-team-page.module#UserTeamPageModule',canActivate:[ActiveGuard, MainnetGuard, AuthGuard]},
+   {path: 'transfers', loadChildren: './transfer.module#TransferModule'},
+   {path: 'my-team', loadChildren: './user-team-page.module#UserTeamPageModule'},
    {path: 'login', loadChildren:'./login.module#LoginModule'},
    {path: 'beta', loadChildren: './beta.module#BetaModule', canActivate: [AuthGuard]},
    {path: 'network', loadChildren: './mainnet.module#MainnetModule'},
@@ -37,12 +39,14 @@ const routes : Routes =[{
 ]
 
 @NgModule({
-  declarations: [WelcomeComponent, MenuComponent, LogosComponent,
+  declarations: [RemovePlayerComponent, WelcomeComponent, MenuComponent, LogosComponent,
     BannerComponent, BrandingComponent, LoginHorizontalComponent, FooterComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    MatDialogModule
 ],
-  exports: []
+entryComponents:[RemovePlayerComponent],
+  exports: [WelcomeComponent]
 })
 export class WelcomeModule { }

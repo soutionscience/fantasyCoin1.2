@@ -40,7 +40,7 @@ import { CreatePortisComponent } from './dialogs/create-portis/create-portis.com
 
 
 @NgModule({
-  declarations: [ RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
+  declarations: [  UnlockMetamaskComponent, CreateAccountComponent,
     LoginMetamaskComponent, InstallMetamaskComponent, WarningBetaComponent, BuyMoreComponent, SignInComponent, EarlyBetaComponent, CreatePortisComponent],
   imports: [
     BrowserAnimationsModule,
@@ -60,7 +60,7 @@ import { CreatePortisComponent } from './dialogs/create-portis/create-portis.com
     MatSnackBarModule
   ],
   providers: [Web3Service, AuthService, AuthGuard, ActiveGuard, MainnetGuard],
-  entryComponents: [RemovePlayerComponent, UnlockMetamaskComponent, CreateAccountComponent,
+  entryComponents: [ UnlockMetamaskComponent, CreateAccountComponent,
      LoginMetamaskComponent, InstallMetamaskComponent, WarningBetaComponent,SignInComponent,
     EarlyBetaComponent, CreatePortisComponent],
   bootstrap: [AppComponent],
