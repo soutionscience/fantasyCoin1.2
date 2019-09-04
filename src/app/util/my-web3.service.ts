@@ -18,15 +18,15 @@ export class MyWeb3Service {
   checkAndInitWeb3():Observable<any>{
     return Observable.create(observer=>{
       if(typeof window.ethereum !== 'undefined'){
-        // console.log('modern browser');
+       
          this.web3 = new Web3(window.ethereum);
    
          try{
            window.ethereum.enable()
-           //window.location.reload()
+         
            
          }catch(error){
-          // console.log('user denied')
+      
          }
          observer.next('metamask');
          observer.complete()
@@ -34,14 +34,10 @@ export class MyWeb3Service {
        }else if(typeof window.web3 !== 'undefined') {
 
 
-        console.warn(
-         'using metamsk detected'
-        );
-        // Use Mist/MetaMask's provider
+      
+    
         this.web3 = new Web3(Web3.givenProvider);
-        // account = this.getCoinBaseHere();
-        // console.log('coinbase ', account)
-       // this.getSingleAccount()
+
        observer.next('metamask');
        observer.complete()
       }else{
@@ -52,19 +48,19 @@ export class MyWeb3Service {
   }
 
   getCoinBase():Observable<any>{
-    console.log('calling get accounts')
+    
     return Observable.create(observer=>{
       this.web3.eth.getAccounts((err, resp)=>{
-        console.log('get accounts')
+      
         if(err) observer.next(err)
-        //console.log('get coinBase resp ', resp)
+       
         observer.next(resp[0])
         observer.complete()
       })
     })
   }
   getMyCoinBase(){
-    console.log('get single account')
+  
      let account = this.web3.eth.getAccounts()
      return account;
    }

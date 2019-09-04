@@ -30,14 +30,13 @@ export class StartComponent implements OnInit {
  this.web3.checkAndInitWeb3().subscribe(resp=>{
    this.buttonText = `launching ${resp} ..`;
    if(resp == 'portis'){
-     //console.log('stating portis');
+
      this.dialog.open(CreatePortisComponent, {width: '600px' , height: 'auto'})
 
      
    }else{
-     console.log('metamask client');
-  this.web3.getCoinBase().subscribe(resp=>{this.coinBase = resp;
-  console.log('do we hve a coinbase ', this.coinBase)})
+    
+  this.web3.getCoinBase().subscribe(resp=>{this.coinBase = resp;})
     
    }
  })
