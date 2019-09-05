@@ -6,7 +6,8 @@
     "ng": "ng",
     "start": "ng serve --port 4300",
     "build": "ng build --prod",
-    "test": "ng test --watch=false",
+    "build-zipped": "ng build --prod && gzipper --verbose ./dist",
+     "test": "ng test --watch=false",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "node patch.js"
