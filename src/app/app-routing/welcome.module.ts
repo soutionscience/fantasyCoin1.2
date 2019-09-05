@@ -39,7 +39,8 @@ const routes : Routes =[{
    {path: 'markets', loadChildren: './market.module#MarketModule'},
    {path:'howto', loadChildren: './howto.module#HowtoModule'},
    {path: 'rankings', loadChildren: './ranking.module#RankingModule', canActivate:[AuthGuard, ActiveGuard]},
-   {path: 'new-team', loadChildren: './new-team.module#NewTeamModule', canActivate:[MainnetGuard,  AuthGuard, ActiveGuard]}
+   {path: 'new-team', loadChildren: './new-team.module#NewTeamModule'},
+   {path: 'new-team-mobile', loadChildren: './mobile-new-team.module#MobileNewTeamModule'}
   ]
 }
 
