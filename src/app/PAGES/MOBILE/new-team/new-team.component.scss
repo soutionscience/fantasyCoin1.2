@@ -4,3 +4,30 @@ body{
 .new-team{
     color: black;
 }
+.buttons{
+    padding: 8px;
+    align-content: center;
+}
+.myButtons{
+    margin: 2px;
+    background-image: url('../../../../assets/images/background.png');
+    color: white;
+}
+.deadline{
+    background-image: url('../../../../assets/images/background.png');
+    height: auto;
+    width: 100%;
+    padding: 2px;
+    color: white;
+}
+.myTabs{
+    margin: 2px;
+    background-image: url('../../../../assets/images/button.png');
+    background-size: cover;
+    color: white;
+    padding: 4px;
+    text-align: center;
+    min-height: 10px;;
+   
+
+}
