@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NewTeamComponent } from '../PAGES/MOBILE/new-team/new-team.component';
 import { Routes, RouterModule } from '@angular/router';
+import { MyPitchComponent } from '../DETAILS/Mobile/my-pitch/my-pitch.component';
 
 
 const routes: Routes =[
@@ -9,7 +10,7 @@ const routes: Routes =[
 ]
 
 @NgModule({
-  declarations: [NewTeamComponent],
+  declarations: [NewTeamComponent, MyPitchComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes)
