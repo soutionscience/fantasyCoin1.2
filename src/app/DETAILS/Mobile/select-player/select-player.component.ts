@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-select-player',
@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./select-player.component.scss']
 })
 export class SelectPlayerComponent implements OnInit {
+  @Input() players: any []
 
   constructor() { }
 
   ngOnInit() {
+    console.log('receiveing ', this.players)
   }
 
 }

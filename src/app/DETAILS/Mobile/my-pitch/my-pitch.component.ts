@@ -36,7 +36,7 @@ export class MyPitchComponent implements OnInit {
     this.showPitch = false;
     this.showSelect = true;
     this.filterByPosition(l);
-    console.log('test me ', this.positionPlayers)
+    // console.log('test me ', this.positionPlayers)
   }
 
   filterByPosition(position){
