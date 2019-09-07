@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4300 --ssl",
+    "start": "ng serve --port 4300",
+    "start-mobile": "ng serve --port 4300 --host 192.168.0.12 --ssl",
     "build": "ng build --prod",
     "build-zipped": "ng build --prod && gzipper --verbose ./dist",
      "test": "ng test --watch=false",

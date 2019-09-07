@@ -1,8 +1,8 @@
-<div class="pitch">
+<div class="pitch" *ngIf="showPitch">
     <div class="myPitch">
         <div class="container">
           <div class="keeper-area">
-              <div class="keeper" id="keeper">
+              <div class="keeper" id="keeper" (click)=selectKeeper(1)>
                   <img src="../../../../assets/images/design/add.png" alt="">
                 </div>
       
@@ -54,5 +54,9 @@
         </div>
       </div>
 
+</div>
+
+<div class="select" *ngIf="showSelect">
+  <app-select-player></app-select-player>
 </div>
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiServiceService } from '../../../util/api-service.service';
 
 @Component({
   selector: 'app-new-team',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewTeamComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private api: ApiServiceService) { }
 
   ngOnInit() {
+  
   }
+
+
 
 }
