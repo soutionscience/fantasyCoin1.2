@@ -1,3 +1,35 @@
-<p>
-  select-player works!
-</p>
+
+<div class="select-player">
+    <div class="card">
+        <nav class="panel">
+          <div class="panel-heading is-primary heading"> <p>select player</p></div>
+          <div class="panel-block">
+              Choose from a club
+            </div>
+            <div class="panel-block teams">
+                <div class="navbar-item has-dropdown is-hoverable button">
+                    <a class="navbar-link">
+                     Select Team
+                    </a>
+                    <div class="navbar-dropdown is-boxed " >
+                        <a *ngFor="let t of teams" class="navbar-item" (click)=" selectTeam(t.code)">
+                         <p> {{t.name}}</p>
+                      
+                        </a>
+                      </div>
+                  </div>
+            </div>
+            <div class="players">
+                <div class="panel-block heading has-background-warning">
+                    <span>
+                        <div class="heading is-warning">Goal Keepers</div>
+                    </span>
+
+
+                  </div>
+            </div>
+      
+        </nav>
+      </div>
+
+</div>

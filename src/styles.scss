@@ -2,19 +2,11 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 
-.my-loading{
-    background: url('./assets/images/gifs/logo/newLogo.png');
-    background-repeat: no-repeat;
-    width: 60px;
-    height: 45px;
-    -webkit-animation: rotation 2s infinite linear;
+.primary-backgroud-color{
+    background-color: #3F51B5;
+    color: white;
 }
-
-@-webkit-keyframes rotation {
-    from {
-            -webkit-transform: rotate(0deg);
-    }
-    to {
-            -webkit-transform: rotate(359deg);
-    }
+.secondary-backgroud-color{
+    background-color:rgb(2, 14, 82);
+    color: white;
 }

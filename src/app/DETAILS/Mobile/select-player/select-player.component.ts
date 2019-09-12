@@ -7,11 +7,16 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SelectPlayerComponent implements OnInit {
   @Input() players: any []
+  @Input()teams: any []
 
   constructor() { }
 
   ngOnInit() {
-    console.log('receiveing ', this.players)
+    console.log('receiveing ', this.players);
+    console.log('teams ', this.teams)
+  }
+  selectTeam(code){
+    console.log('selected ', code)
   }
 
 }

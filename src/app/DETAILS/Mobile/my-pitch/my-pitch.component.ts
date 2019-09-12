@@ -12,35 +12,50 @@ export class MyPitchComponent implements OnInit {
   showPitch: Boolean;
   showSelect: Boolean;
   positionPlayers: String [];
-  AllPlayers: String[]
+  allPlayers: String[];
+  allTeams: String [];
 
   constructor(private api: ApiServiceService) { }
 
   ngOnInit() {
+
     this.showLoading = true;
     this.getAllPlayers();
+    // this.getAllTeams();
+
     this.showPitch = true;
-    this.showSelect = false
+    this.showSelect = false;
+    
   }
   getAllPlayers(){
     this.api.getResource('players')
     .subscribe(resp=>{
-      console.log('loaded')
+      
       this.showLoading = false;
-      this.AllPlayers = resp;
+      this.allPlayers = resp;
+      console.log('all players ', this.allPlayers)
+      this.getAllTeams()
     })
 
+  };
+  getAllTeams(){
+    this.api.getResource('teams')
+    .subscribe(resp=>{ this.allTeams = resp;
+     // this.selectKeeper(1)
+    })
   }
   selectKeeper(l){
     console.log('keeper one');
     this.showPitch = false;
     this.showSelect = true;
     this.filterByPosition(l);
-    // console.log('test me ', this.positionPlayers)
+     console.log('test me ', this.positionPlayers)
   }
 
   filterByPosition(position){
-    this.positionPlayers = this.filterList(this.AllPlayers, position)
+    console.log('is this beign called? ', this.allPlayers)
+    
+    this.positionPlayers = this.filterList(this.allPlayers, position)
 
   }
   filterList(list, id){

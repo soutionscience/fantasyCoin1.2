@@ -56,7 +56,7 @@
 
 </div>
 
-<div class="select" *ngIf="showSelect">
-  <app-select-player [players]="positionPlayers"></app-select-player>
+<div *ngIf="showSelect">
+  <app-select-player [players]="positionPlayers" [teams]="allTeams"></app-select-player>
 </div>
 
