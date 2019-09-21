@@ -1,15 +1,12 @@
 <nav class="navbar  menu">
-  <!-- <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src='../../assets/images/logo3.png' alt="Bulma: a modern CSS framework based on Flexbox" width="128">
-    </a>
-    <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div> -->
-  <div class="container">
+    <div (click)="toggle()">
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+<div class="container">
   <div id="navbarExampleTransparentExample" class="navbar-menu">
     <div class="navbar-start">
       
@@ -39,22 +36,7 @@
           <a class="navbar-item " routerLink='/feedback'>
             feedback
           </a>
-          <!-- <a class="navbar-item" routerLink='/about'>
-            about us
-          </a>
-          <a class="navbar-item  " href="https://bulma.io/documentation/layout/container/">
-            Layout
-          </a>
-          <a class="navbar-item " href="https://bulma.io/documentation/form/general/">
-            Form
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
-            Elements
-          </a>
-          <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
-            Components
-          </a> -->
+    
         </div>
       </div>
     </div>
@@ -62,44 +44,57 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="field is-grouped">
-          <!-- <p class="control" *ngIf="userCheck">
-            <a class="bd-tw-button button " [ngClass]="{'is-loading': accountBalCheck}">
-              <span class="icon">
-                <i class="fab fa-bitcoin fa-lg"></i>
-              </span>
-              <span >
-              Account Balance:  {{accountBal}} Ether
-              </span>
-            </a>
-          </p> -->
+      
           <p class="control">
             <button class="button mytext is-danger" *ngIf="authService.isLoggedIn()">Welcome {{userName}} </button>
             <a *ngIf="authService.isLoggedIn()" class="button is-primary" >
-              <!-- <span class="icon">
-                <i class="fas fa-user"></i>
-              </span> -->
+           
               <span>{{tokenService.getTokenCount()}} fantasy coins</span>
             </a>
           </p>
           <p class="control">
             <a (click)="logOut()" class="button is-warning" *ngIf="authService.isLoggedIn()">
-              <!-- <span class="icon">
-                <i class="fas fa-user"></i>
-              </span> -->
+             
               <span>Sign Out </span>
             </a>
           </p>
-          <!-- <p class="control">
-            <a (click)="testRPC()" class="button is-info">
-              <span class="icon">
-                <i class="fas fa-user"></i>
-              </span>
-              <span>Test RPC </span>
-            </a>
-          </p> -->
+        
         </div>
       </div>
     </div>
   </div>
+</div>
+<div class="dropdown is-hidden-desktop mymenu">
+    <div *ngIf="shown" class="navbar-dropdown">
+        <a class="navbar-item mytext" routerLink="/">
+          Home
+        </a>
+        <a class="navbar-item mytext" routerLink="/my-team">
+          My Team
+           </a>
+           <a class="navbar-item mytext" routerLink="/transfers">
+            transfer
+         </a>
+         <a class="navbar-item mytext" routerLink="/leagues">
+          Leagues
+            </a>
+            <a class="navbar-item mytext" routerLink="/markets">
+              Market
+              </a>
+              <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="navbar-link mytext" routerLink='/howto'>
+                  More
+                  </a>
+                  <div class="navbar-dropdown is-boxed">
+                    <a class="navbar-item mytext" routerLink='/howto'>
+                      how to play
+                    </a>
+                    <a class="navbar-item mytext " routerLink='/feedback'>
+                      feedback
+                    </a>
+              
+                  </div>
+                </div>
+      </div>
 </div>
 </nav>

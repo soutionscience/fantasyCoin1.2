@@ -15,6 +15,7 @@ export class MenuComponent implements OnInit {
   accountBal: Number;
   userName: String;
   coinBase: String;
+  shown: Boolean;
 
   constructor(public authService: AuthService, private tokenService: TokenService,
     private ref: ChangeDetectorRef,
@@ -23,6 +24,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
     //this.getCoinBase()
+    this.shown = false;
    
     this.userName = this.authService.getUserName()
     this.userAccount = this.authService.getUserAdress()
@@ -40,6 +42,9 @@ export class MenuComponent implements OnInit {
   checkmetamask(){
 
 
+  }
+  toggle(){
+    this.shown = !this.shown;
   }
 
   logOut(){
