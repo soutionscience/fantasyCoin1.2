@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-select-player',
@@ -8,15 +8,24 @@ import { Component, OnInit, Input } from '@angular/core';
 export class SelectPlayerComponent implements OnInit {
   @Input() players: any []
   @Input()teams: any []
+  dropdownLable: String;
+  showDropDown: Boolean
 
-  constructor() { }
+  constructor(private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
     console.log('receiveing ', this.players);
-    console.log('teams ', this.teams)
+    console.log('teams ', this.teams);
+    this.dropdownLable = 'All'
+    this.showDropDown = false;
   }
   selectTeam(code){
     console.log('selected ', code)
   }
+  dropdownClick(){
+    this.showDropDown =!this.showDropDown;
+    this.ref.detectChanges()
+  }
+
 
 }
