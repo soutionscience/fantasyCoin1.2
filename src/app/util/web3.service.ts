@@ -12,7 +12,7 @@ declare let require: any;
 const Web3 = require('web3');
 // const web3= Web3();
 
-const portis = new Portis('8b3ef407-9c59-4306-a90e-34f22c89f485', 'mainnet', { scope: ['email'], registerPageByDefault: true  });
+const portis = new Portis('8b3ef407-9c59-4306-a90e-34f22c89f485', 'ropsten', { scope: ['email'], registerPageByDefault: true  });
 
 
 

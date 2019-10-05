@@ -45,7 +45,7 @@ export class StartComponent implements OnInit {
    }
    checkIfNew(){
     setTimeout(()=>{if(this.auth.getNewUser()== null){
-     this.dialog.open(WarningBetaComponent,{width: '450px', height: 'auto'})
+     this.dialog.open(WarningBetaComponent,{width: '450px', height: '800px'})
     }}, 1000)
   }
   toggle(){
