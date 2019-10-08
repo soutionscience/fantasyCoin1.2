@@ -66,30 +66,30 @@
 </div>
 <div class="dropdown is-hidden-desktop mymenu">
     <div *ngIf="shown" class="navbar-dropdown">
-        <a class="navbar-item mytext" routerLink="/">
+        <a (click)="toggle()" class="navbar-item mytext" routerLink="/">
           Home
         </a>
-        <a class="navbar-item mytext" routerLink="/my-team">
+        <a (click)="toggle()" class="navbar-item mytext" routerLink="/my-team">
           My Team
            </a>
-           <a class="navbar-item mytext" routerLink="/transfers">
+           <a (click)="toggle()" class="navbar-item mytext" routerLink="/transfers">
             transfer
          </a>
-         <a class="navbar-item mytext" routerLink="/leagues">
+         <a (click)="toggle()" class="navbar-item mytext" routerLink="/leagues">
           Leagues
             </a>
-            <a class="navbar-item mytext" routerLink="/markets">
+            <a (click)="toggle()" class="navbar-item mytext" routerLink="/markets">
               Market
               </a>
               <div class="navbar-item has-dropdown is-hoverable">
-                  <a class="navbar-link mytext" routerLink='/howto'>
+                  <a (click)="toggle()" class="navbar-link mytext" routerLink='/howto'>
                   More
                   </a>
                   <div class="navbar-dropdown is-boxed">
-                    <a class="navbar-item mytext" routerLink='/howto'>
+                    <a (click)="toggle()" class="navbar-item mytext" routerLink='/howto'>
                       how to play
                     </a>
-                    <a class="navbar-item mytext " routerLink='/feedback'>
+                    <a (click)="toggle()" class="navbar-item mytext " routerLink='/feedback'>
                       feedback
                     </a>
               
