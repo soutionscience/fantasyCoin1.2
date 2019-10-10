@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material';
 import { CreatePortisComponent } from '../../dialogs/create-portis/create-portis.component';
 import { WarningBetaComponent } from '../../dialogs/warning-beta/warning-beta.component';
 import { AuthService } from '../../util/auth.service';
+import { NewClientsComponent } from '../../dialogs/new-clients/new-clients.component';
 
 @Component({
   selector: 'app-start',
@@ -25,10 +26,10 @@ export class StartComponent implements OnInit {
     this.shown = false;
   }
   login(){
-    this.buttonText ="starting.."
-    this.loading = true;
-    this.getCoinBase()// check provider
-
+    // this.buttonText ="starting.."
+    // this.loading = true;
+    // this.getCoinBase()// check provider
+  this.dialog.open(NewClientsComponent, {width: '600px', height: 'auto'})
 
 
   }

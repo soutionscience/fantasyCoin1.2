@@ -28,11 +28,13 @@ import { SignInComponent } from './dialogs/sign-in/sign-in.component';
 import { EarlyBetaComponent } from './dialogs/early-beta/early-beta.component';
 import { CreatePortisComponent } from './dialogs/create-portis/create-portis.component';
 import { FooterComponent } from './footer/footer.component';
+import { NewClientsComponent } from './dialogs/new-clients/new-clients.component';
 
 
 
 @NgModule({
-  declarations: [ WarningBetaComponent, SignInComponent, EarlyBetaComponent, CreatePortisComponent],
+  declarations: [ WarningBetaComponent, SignInComponent, EarlyBetaComponent, NewClientsComponent,
+     CreatePortisComponent],
   imports: [
     BrowserAnimationsModule,
     CommonModule,
@@ -52,7 +54,7 @@ import { FooterComponent } from './footer/footer.component';
   ],
   providers: [AuthService, Web3Service],
   entryComponents: [WarningBetaComponent,SignInComponent,
-    EarlyBetaComponent, CreatePortisComponent],
+    EarlyBetaComponent, CreatePortisComponent, NewClientsComponent],
   bootstrap: [AppComponent],
   exports: [AppComponent]
 })

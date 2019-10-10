@@ -1,0 +1,62 @@
+
+<div class="creatForm">
+  <div class="create">
+    <div class="myTitle">
+      <p class="has-text-primary">Create Account</p>
+   
+    </div>
+    <div class="separator">
+  
+      </div>
+      
+    <div class="myText">
+      <p>
+          Your email address is used to send you crucial and account related updates.
+          Your nickname is public and is how other users will identify you.
+      </p>
+    </div>
+    <div class="separator">
+  
+    </div>
+  </div>
+  <div class="spinner button is-loading is-large" *ngIf="showLoading"></div>
+  
+  <div class="creationForm">
+  <form class="form" [formGroup]="CreatAccountForm" *ngIf="showForm">
+      <div class="field">
+          <!-- <label class="label">Name</label> -->
+          <div class="control">
+            <input class="input is-medium" type="email" placeholder="e.g AlexSmith@email.com"
+             formControlName="email" [email]="true">
+          </div>
+          <p class="help is-danger" *ngIf="emailWarning">This email is already in use</p>
+          <p class="help is-danger" *ngIf="CreatAccountForm.invalid">This email is invalid</p>
+        </div>
+  
+        <div class="field">
+          <!-- <label class="label">Email</label> -->
+          <div class="control">
+            <input class="input is-medium" type="text" placeholder="e.g. The one"
+             formControlName="username">
+          </div>
+          <p class="help is-danger" *ngIf="usernameWarning">username is already in use</p>
+          <p class="help is-danger" *ngIf="CreatAccountForm.invalid">Username is required</p>
+        </div>
+  
+        <div class="field is-grouped create_button">
+            <div class="column">
+              <button type="button" class="button is-primary is-large is-centered" (click)="submit()" [disabled]="CreatAccountForm.invalid">Create</button>
+            </div>
+        </div>
+  
+  
+  
+  </form>
+  <div class="separator">
+  
+    </div>
+    <div class="terms">
+      <p>by signing up you agree to our terms of service and privacy policy</p>
+    </div>
+  </div>
+  </div>
