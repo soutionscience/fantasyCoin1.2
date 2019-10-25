@@ -26,8 +26,15 @@ nav{
 
     
 }
+
 .navbar-dropdown{
  width: 100%;
+
+}
+.navbar-dropdown .navbar-item{
+    color: black;
+    background-color: #f5f5f5;
+
 }
 .navbar-item:hover{
     font-size: 1.1em;

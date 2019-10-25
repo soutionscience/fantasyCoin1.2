@@ -1,5 +1,5 @@
 
-<div class="creatForm">
+<div class="creatForm" *ngIf="showForm">
   <div class="create">
     <div class="myTitle">
       <p class="has-text-primary">Create Account</p>
@@ -19,18 +19,18 @@
   
     </div>
   </div>
-  <div class="spinner button is-loading is-large" *ngIf="showLoading"></div>
+
   
   <div class="creationForm">
-  <form class="form" [formGroup]="CreatAccountForm" *ngIf="showForm">
+  <form class="form" [formGroup]="CreatAccountForm" >
       <div class="field">
-          <!-- <label class="label">Name</label> -->
+        <p class="help is-danger" *ngIf="showDataError">{{dataError}}</p>
           <div class="control">
             <input class="input is-medium" type="email" placeholder="e.g AlexSmith@email.com"
              formControlName="email" [email]="true">
           </div>
-          <p class="help is-danger" *ngIf="emailWarning">This email is already in use</p>
-          <p class="help is-danger" *ngIf="CreatAccountForm.invalid">This email is invalid</p>
+          <!-- <p class="help is-danger" *ngIf="emailWarning">This email is already in use</p>
+          <p class="help is-danger" *ngIf="CreatAccountForm.invalid">This email is invalid</p> -->
         </div>
   
         <div class="field">
@@ -59,4 +59,26 @@
       <p>by signing up you agree to our terms of service and privacy policy</p>
     </div>
   </div>
+  </div>
+
+  <!-- loading icon -->
+  <div class="spinner button is-loading is-large is-fullwidth is-rounded is-primary is-outlined" *ngIf="showLoading"></div>
+  <div class="complete" *ngIf="complete">
+    <div class="columns is-vcentered">
+      <div class="column">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" class="check has-text-primary">check_circle</mat-icon>
+          <p>Thank you for registering </p>
+      </div>
+    </div>
+
+   
+         <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-link" (click)="close">Close</button>
+            </div>
+            <div class="control">
+              <button class="button is-primary" (click)="howToPlay()">How to play</button>
+            </div>
+          </div>
+
   </div>

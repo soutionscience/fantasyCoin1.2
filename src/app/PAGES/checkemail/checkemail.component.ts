@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { NewClientsComponent } from 'src/app/dialogs/new-clients/new-clients.component';
+import { NewClientsComponent } from '../../dialogs/new-clients/new-clients.component';
 
 @Component({
   selector: 'app-checkemail',
@@ -9,10 +9,10 @@ import { NewClientsComponent } from 'src/app/dialogs/new-clients/new-clients.com
 })
 export class CheckemailComponent implements OnInit {
 
-  constructor(private dialogRefNewClients: MatDialogRef<NewClientsComponent> ) { }
+  constructor() { }
 
   ngOnInit() {
-    this.dialogRefNewClients.close()
+    // this.dialogRefNewClients.close()
   }
 
 }

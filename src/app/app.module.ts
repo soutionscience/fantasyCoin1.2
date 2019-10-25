@@ -12,7 +12,8 @@ import {
   MatInputModule,
   MatToolbarModule,
   MatDialogModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatIconModule
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { RestangularModule } from 'ngx-restangular';
@@ -50,6 +51,7 @@ import { NewClientsComponent } from './dialogs/new-clients/new-clients.component
     HttpClientModule,
     RestangularModule.forRoot(restangularConfigFactory),
     MatDialogModule,
+    MatIconModule,
     MatSnackBarModule
   ],
   providers: [AuthService, Web3Service],

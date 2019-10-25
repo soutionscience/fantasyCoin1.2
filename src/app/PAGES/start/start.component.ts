@@ -5,6 +5,7 @@ import { CreatePortisComponent } from '../../dialogs/create-portis/create-portis
 import { WarningBetaComponent } from '../../dialogs/warning-beta/warning-beta.component';
 import { AuthService } from '../../util/auth.service';
 import { NewClientsComponent } from '../../dialogs/new-clients/new-clients.component';
+import { ApiServiceService } from '../../util/api-service.service';
 
 @Component({
   selector: 'app-start',
@@ -18,7 +19,7 @@ export class StartComponent implements OnInit {
   shown: Boolean
 
   constructor(private web3: MyWeb3Service, private dialog: MatDialog, 
-    private auth: AuthService) { }
+    private auth: AuthService, private api: ApiServiceService) { }
 
   ngOnInit() {
     this.buttonText = "Get Started";
@@ -26,12 +27,16 @@ export class StartComponent implements OnInit {
     this.shown = false;
   }
   login(){
-    // this.buttonText ="starting.."
-    // this.loading = true;
-    // this.getCoinBase()// check provider
-  this.dialog.open(NewClientsComponent, {width: '600px', height: 'auto'})
+    
+     this.api.postResource('mystat', {'normal':''}).subscribe()
+    this.dialog.open(NewClientsComponent, {width: '600px', height: 'auto'})
 
 
+  }
+  loginPortis(){
+    this.api.postResource('mystat',  {'portis':'kivici'}).subscribe();
+    this.dialog.open(CreatePortisComponent, {width: '600px' , height: 'auto'})
+    
   }
   getCoinBase(){
  this.web3.checkAndInitWeb3().subscribe(resp=>{
