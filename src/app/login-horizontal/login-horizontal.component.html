@@ -3,14 +3,14 @@
     <div class="field is-grouped">
         <div class="control">
             <button class="button is-primary is-large is-focused" (click)="login()"
-             *ngIf="!authService.isLoggedIn()"
+             *ngIf="!authService.isLoggedIn() || !newUserService.hasRegistered()"
              >Get Started! </button>
         </div>
         <div class="control">
-            <button class="button is-link is-medium is-inverted" [routerLink]="[ '/howto']"  *ngIf="authService.isLoggedIn()">How to Play</button>
+            <button class="button is-link is-medium is-inverted" [routerLink]="[ '/howto']"  *ngIf="authService.isLoggedIn() ||newUserService.hasRegistered()">How to Play</button>
         </div>
         <div class="control">
-            <button class="button is-link is-medium is-inverted" [routerLink]="[ '/feedback']" *ngIf="authService.isLoggedIn()">More</button>
+            <button class="button is-link is-medium is-inverted" [routerLink]="[ '/feedback']" *ngIf="authService.isLoggedIn() ||newUserService.hasRegistered()">More</button>
         </div>
       </div>
   </div>

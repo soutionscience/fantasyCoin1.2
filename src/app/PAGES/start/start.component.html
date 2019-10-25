@@ -106,7 +106,8 @@
     
     <div class="field is-grouped">
         <div class="control">
-            <button class="button is-primary is-large is-focused" (click)="login()">{{buttonText}} </button>
+            <button    *ngIf="!auth.isLoggedIn() || !newUserService.hasRegistered()"
+            class="button is-primary is-large is-focused" (click)="login()">{{buttonText}} </button>
         </div>
       
       </div>

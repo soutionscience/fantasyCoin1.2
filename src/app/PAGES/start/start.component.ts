@@ -6,6 +6,7 @@ import { WarningBetaComponent } from '../../dialogs/warning-beta/warning-beta.co
 import { AuthService } from '../../util/auth.service';
 import { NewClientsComponent } from '../../dialogs/new-clients/new-clients.component';
 import { ApiServiceService } from '../../util/api-service.service';
+import { NewPayerService } from '../../util/new-payer.service';
 
 @Component({
   selector: 'app-start',
@@ -19,7 +20,8 @@ export class StartComponent implements OnInit {
   shown: Boolean
 
   constructor(private web3: MyWeb3Service, private dialog: MatDialog, 
-    private auth: AuthService, private api: ApiServiceService) { }
+    private auth: AuthService, private api: ApiServiceService,
+    private newUserService: NewPayerService) { }
 
   ngOnInit() {
     this.buttonText = "Get Started";

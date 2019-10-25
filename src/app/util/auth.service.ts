@@ -58,6 +58,7 @@ export class AuthService {
   }
   }
    isLoggedIn(){
+     console.log('tokens ?', this.getToken() !== null)
 return this.getToken() !== null;
 
   }

@@ -3,6 +3,7 @@ import { FormControlName, FormBuilder, Validators, FormGroup } from '@angular/fo
 import { ApiServiceService } from '../../util/api-service.service';
 import { RouteReuseStrategy, Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material';
+import { NewPayerService } from '../../util/new-payer.service';
 
 @Component({
   selector: 'app-new-clients',
@@ -23,7 +24,8 @@ export class NewClientsComponent implements OnInit {
     private zone: NgZone,
     private router: Router,
     private dialogRef: MatDialogRef<NewClientsComponent>,
-    private  ref: ChangeDetectorRef) { }
+    private  ref: ChangeDetectorRef,
+    private newPlayer: NewPayerService) { }
 
   ngOnInit() {
     this.showLoading = false;
@@ -45,6 +47,8 @@ export class NewClientsComponent implements OnInit {
     this.showForm = false;
     this.api.postResource('newUser', this.CreatAccountForm.value)
     .subscribe(resp=>{
+
+      this.newPlayer.setNewUserId(resp)
       this.showLoading = false;
       this.complete = true;
       this.showForm = false;
@@ -81,11 +85,12 @@ export class NewClientsComponent implements OnInit {
     })
   }
   close(){
-    this.dialogRef.close()
+    this.dialogRef.close();
+    this.ref.detectChanges()
   }
   howToPlay(){
        this.zone.run(()=>this.router.navigateByUrl('/howto'));
-       this.dialogRef.close()
+       this.close()
 
   }
 

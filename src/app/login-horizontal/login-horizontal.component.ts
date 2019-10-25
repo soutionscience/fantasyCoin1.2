@@ -7,6 +7,7 @@ import { Web3Service } from '../util/web3.service';
 import { MatDialog } from '@angular/material';
 import { ApiServiceService } from '../util/api-service.service';
 import { AuthService } from '../util/auth.service';
+import {NewPayerService} from '../util/new-payer.service'
 import { CreatePortisComponent } from '../dialogs/create-portis/create-portis.component';
 
 @Component({
@@ -19,7 +20,8 @@ export class LoginHorizontalComponent implements OnInit {
   showButton: Boolean;
 
   constructor(private web3Service: Web3Service, private dialog: MatDialog,
-    private apiService: ApiServiceService, public authService: AuthService) { }
+    private apiService: ApiServiceService, public authService: AuthService,
+    private newUserService: NewPayerService ) { }
 
   ngOnInit() {
   this.getCoinBase();
