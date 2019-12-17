@@ -20,8 +20,8 @@ export class StartComponent implements OnInit {
   shown: Boolean
 
   constructor(private web3: MyWeb3Service, private dialog: MatDialog, 
-    private auth: AuthService, private api: ApiServiceService,
-    private newUserService: NewPayerService) { }
+    public auth: AuthService, private api: ApiServiceService,
+    public newUserService: NewPayerService) { }
 
   ngOnInit() {
     this.buttonText = "Get Started";

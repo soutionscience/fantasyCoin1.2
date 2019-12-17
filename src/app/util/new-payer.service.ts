@@ -13,7 +13,7 @@ export class NewPayerService {
 
   }
   hasRegistered(){
-    console.log('what is ', this.getNewUserId() !== null)
+  
     return this.getNewUserId() !== null;
 
   }

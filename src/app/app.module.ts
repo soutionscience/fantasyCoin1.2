@@ -30,6 +30,7 @@ import { EarlyBetaComponent } from './dialogs/early-beta/early-beta.component';
 import { CreatePortisComponent } from './dialogs/create-portis/create-portis.component';
 import { FooterComponent } from './footer/footer.component';
 import { NewClientsComponent } from './dialogs/new-clients/new-clients.component';
+import { LogosComponent } from './logos/logos.component';
 
 
 

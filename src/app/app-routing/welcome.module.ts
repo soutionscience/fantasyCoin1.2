@@ -29,9 +29,9 @@ const routes : Routes =[{
   path: '', component: WelcomeComponent, children:[
    {path: '', loadChildren:'./home.module#HomeModule'},
    {path: 'teams', loadChildren: './team.module#TeamModule',  canActivate:[AuthGuard, ActiveGuard]},
-   {path: 'leagues', loadChildren: './leagues.module#LeaguesModule',  canActivate:[ActiveGuard, MainnetGuard, AuthGuard]},
-   {path: 'transfers', loadChildren: './transfer.module#TransferModule', canActivate:[ActiveGuard, MainnetGuard, AuthGuard]},
-   {path: 'my-team', loadChildren: './user-team-page.module#UserTeamPageModule', canActivate:[ActiveGuard, MainnetGuard, AuthGuard]},
+   {path: 'leagues', loadChildren: './leagues.module#LeaguesModule',  canActivate:[ActiveGuard,  AuthGuard]},
+   {path: 'transfers', loadChildren: './transfer.module#TransferModule', canActivate:[ActiveGuard,  AuthGuard]},
+   {path: 'my-team', loadChildren: './user-team-page.module#UserTeamPageModule', canActivate:[ActiveGuard, AuthGuard]},
    {path: 'login', loadChildren:'./login.module#LoginModule'},
    {path: 'beta', loadChildren: './beta.module#BetaModule', canActivate: [AuthGuard]},
    {path: 'network', loadChildren: './mainnet.module#MainnetModule'},

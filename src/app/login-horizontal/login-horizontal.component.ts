@@ -21,7 +21,7 @@ export class LoginHorizontalComponent implements OnInit {
 
   constructor(private web3Service: Web3Service, private dialog: MatDialog,
     private apiService: ApiServiceService, public authService: AuthService,
-    private newUserService: NewPayerService ) { }
+    public newUserService: NewPayerService ) { }
 
   ngOnInit() {
   this.getCoinBase();
